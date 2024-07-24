@@ -1,0 +1,26 @@
+@font-face {
+  font-family: 'Phetsarath OT';
+  src: url('./../../../../uploads/fonts/Phetsarath-OT.ttf');
+}
+@font-face {
+  font-family: 'Phetsarath OT_Bold';
+  src: url('./../../../../uploads/fonts/Phetsarath-OT_Bold.ttf');
+}
+.la, .swal2-title, .swal2-html-container{font-family: 'Phetsarath OT';}
+.la-bold{font-family: 'Phetsarath OT_Bold';}
+a.btn-action, button.btn-action {margin-bottom: 7px;}
+.lightBoxGallery img {
+  margin: 5px;
+}
+p{font-family: 'Phetsarath OT';}
+table td{font-family: 'Phetsarath OT';}
+table th{font-family: 'Phetsarath OT_Bold';}
+div.error{font-size: 12;font-style: italic;color: red;}
+.select-status{
+  width: 90px;background: #ffffff !important;
+  color: #3F4254;
+  border-color: #E4E6EF !important;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.hide{display: none;}

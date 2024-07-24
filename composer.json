@@ -1,0 +1,7 @@
+{
+    "require": {
+        "linecorp/line-bot-sdk": "^3.6",
+        "bcosca/fatfree-core": "^3.8",
+        "firebase/php-jwt": "^5.0"
+    }
+}
