@@ -240,18 +240,19 @@
                                 $('#scoreModal').modal('hide');
                                 Swal.fire('ສຳເລັດ!',data.message,'success');
                             } else {
-                                Swal.fire('ຜິດພາດ!','ກະລຸນາລອງໃໝ່ອີກຄັ້ງ','error');
+                                Swal.fire('ຜິດພາດ!',data.message,'error');
                             }
                         })
                     },
                     addScore:function(student_no,first_name,last_name,class_id,class_no,semester){
+                        var score = $('.score-'+student_no).text();
                         this.student_no = student_no;
                         this.first_name = first_name;
                         this.last_name = last_name;
                         this.class_id = class_id;
                         this.class_no = class_no;
                         this.semester = semester;
-                        this.score = $('.score-'+student_no).text();
+                        this.score = score != '-' ? score : '';
                         $('#scoreModal').modal('show');
                     }
 				}
