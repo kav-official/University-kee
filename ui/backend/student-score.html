@@ -8,9 +8,6 @@
 		<meta name="description" content="Child datatable from local data" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 		<include href="backend/inc/header.html" />
-        <style>
-            .form-group label{font-family: 'NotoSerifLao' !important;}
-        </style>
 	</head>
 	<!--end::Head-->
 	<!--begin::Body-->
@@ -107,12 +104,14 @@
                                                         <th>ເມືອງ</th>
                                                         <th>ບ້ານ</th>
                                                         <th>ເບີໂທ</th>
+                                                        <th>ຄະແນນ</th>
                                                         <th class="text-center">ປ້ອນຄະແນນ</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <repeat group="{{ @items }}" value="{{ @row }}" counter="{{ @ctr }}">
                                                         <set district="{{ @help->getTitle('DistrictServices',['id = ?',@row.district_id],'district_name') }}"></set>
+                                                        <set score="{{ @help->getByOne('ScoreServices',['student_no = ? AND semester = ?',@row.student_no,@row.semester]) }}"></set>
                                                         <tr id="item-{{@row.id}}">
                                                             <td>{{ @ctr }}</td>
                                                             <td>{{ @row.student_no }}</td>
@@ -124,6 +123,7 @@
                                                             <td>{{ @district }}</td>
                                                             <td>{{ @row.village }}</td>
                                                             <td>{{ @row.phone }}</td>
+                                                            <td class="score-{{ @row.student_no }}">{{ @score->score ?? '-' }}</td>
                                                             <td class="text-center">
                                                                 <div class="btn-group action-tooltip">
                                                                     <button class="btn-primary btn btn-sm" data-toggle="tooltip" 
@@ -145,51 +145,53 @@
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <div class="row">
-                                                                <div class="col-md-6">
-                                                                    <div class="form-group">
-                                                                        <label>ສົກຮຽນ</label>
-                                                                        <input type="text" name="semester" class="form-control" v-model="semester" readonly>
+                                                            <form id="score-form">
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label class="la-normal">ສົກຮຽນ</label>
+                                                                            <input type="text" name="semester" class="form-control" v-model="semester" readonly>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <div class="form-group">
-                                                                        <label>ຫ້ອງຮຽນ</label>
-                                                                        <input type="text" name="class_no" class="form-control" v-model="class_no" readonly>
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label class="la-normal">ຫ້ອງຮຽນ</label>
+                                                                            <input type="text" name="class_no" class="form-control" v-model="class_no" readonly>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="col-md-2">
-                                                                    <div class="form-group">
-                                                                        <label>ລະຫັດ</label>
-                                                                        <input type="text" name="student_no" class="form-control" v-model="student_no" readonly>
-                                                                        <input type="hidden" name="class_id" v-model="class_id">
+                                                                    <div class="col-md-2">
+                                                                        <div class="form-group">
+                                                                            <label class="la-normal">ລະຫັດ</label>
+                                                                            <input type="text" name="student_no" class="form-control" v-model="student_no" readonly>
+                                                                            <input type="hidden" name="class_id" v-model="class_id">
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="col-md-5">
-                                                                    <div class="form-group">
-                                                                        <label>ຊື່</label>
-                                                                        <input type="text" name="first_name" class="form-control" v-model="first_name" readonly>
+                                                                    <div class="col-md-5">
+                                                                        <div class="form-group">
+                                                                            <label class="la-normal">ຊື່</label>
+                                                                            <input type="text" name="first_name" class="form-control" v-model="first_name" readonly>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="col-md-5">
-                                                                    <div class="form-group">
-                                                                        <label>ນາມສະກຸນ</label>
-                                                                        <input type="text" name="last_name" class="form-control" v-model="last_name" readonly>
+                                                                    <div class="col-md-5">
+                                                                        <div class="form-group">
+                                                                            <label class="la-normal">ນາມສະກຸນ</label>
+                                                                            <input type="text" name="last_name" class="form-control" v-model="last_name" readonly>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
 
-                                                                <div class="col-md-6">
-                                                                    <div class="form-group">
-                                                                        <label>ຄະແນນ</label>
-                                                                        <input type="text" name="score" class="form-control">
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label class="la-normal">ຄະແນນ</label>
+                                                                            <input type="text" name="score" class="form-control" v-model="score">
+                                                                        </div>
                                                                     </div>
+                                                                    
                                                                 </div>
-                                                                
-                                                            </div>
+                                                            </form>
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <button type="button" class="btn btn-primary">ບັນທຶກ</button>
-                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ປິດ</button>
+                                                            <button type="button" class="btn btn-primary la-normal" v-on:click="handleSubmit()">ບັນທຶກ</button>
+                                                            <button type="button" class="btn btn-danger la-normal" data-dismiss="modal">ປິດ</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -229,6 +231,19 @@
                     score:'',
 				},
 				methods:{
+                    handleSubmit:function(){
+                        axios.post('{{ @BASE }}/student-score',$('#score-form').serialize())
+                        .then(res => {
+                            var data = res.data;
+                            if(data.success){
+                                $('.score-'+this.student_no).text(data.score);
+                                $('#scoreModal').modal('hide');
+                                Swal.fire('ສຳເລັດ!',data.message,'success');
+                            } else {
+                                Swal.fire('ຜິດພາດ!','ກະລຸນາລອງໃໝ່ອີກຄັ້ງ','error');
+                            }
+                        })
+                    },
                     addScore:function(student_no,first_name,last_name,class_id,class_no,semester){
                         this.student_no = student_no;
                         this.first_name = first_name;
@@ -236,12 +251,8 @@
                         this.class_id = class_id;
                         this.class_no = class_no;
                         this.semester = semester;
-                        axios.get('{{ @BASE }}/student/score/'+student_no+'/'+student_no)
-                        .then(res => {
-                            var data = res.data;
-                            this.score = data.score;
-                            $('#scoreModal').modal('show');
-                        })
+                        this.score = $('.score-'+student_no).text();
+                        $('#scoreModal').modal('show');
                     }
 				}
 			})
