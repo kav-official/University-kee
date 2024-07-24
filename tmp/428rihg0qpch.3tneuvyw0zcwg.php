@@ -75,7 +75,7 @@
                         </div>
                     </li>
 
-                    <li class="menu-item menu-item-submenu menu-item-rel <?= ($nav == 'register' ? 'menu-item-here' : '') ?> || <?= ($nav == 'registerold' ? 'menu-item-here' : '') ?> la"  data-menu-toggle="hover" aria-haspopup="true">
+                    <li class="menu-item menu-item-submenu menu-item-rel <?= ($nav == 'register' ? 'menu-item-here' : '') ?> || <?= ($nav == 'register-old' ? 'menu-item-here' : '') ?> la"  data-menu-toggle="hover" aria-haspopup="true">
                         <a href="javascript:;" class="menu-link menu-toggle">
                             <span class="menu-text">ລົງທະບຽນ</span>
                             <span class="menu-desc">ລົງທະບຽນນັກສຶກສາ</span>
@@ -97,8 +97,8 @@
                                         <span class="menu-text">ລົງທະບຽນນັກສຶກສາໃໝ່</span>
                                     </a>
                                 </li>
-                                <li class="menu-item menu-item-submenu <?= ($subnav == 'registerold-list' ? 'menu-item-here' : '') ?>" data-menu-toggle="hover" aria-haspopup="true">
-                                    <a href="<?= ($BASE) ?>/registerold" class="menu-link">
+                                <li class="menu-item menu-item-submenu <?= ($subnav == 'register-old' ? 'menu-item-here' : '') ?>" data-menu-toggle="hover" aria-haspopup="true">
+                                    <a href="<?= ($BASE) ?>/register-old/edit" class="menu-link">
                                         <span class="svg-icon menu-icon">
                                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -123,7 +123,7 @@
                         </a>
                         <div class="menu-submenu menu-submenu-classic menu-submenu-left">
                             <ul class="menu-subnav">
-                                <li class="menu-item menu-item-submenu <?= ($subnav == 'order-list' ? 'menu-item-here' : '') ?>" data-menu-toggle="hover" aria-haspopup="true">
+                                <li class="menu-item menu-item-submenu <?= ($subnav == 'student-score' ? 'menu-item-here' : '') ?>" data-menu-toggle="hover" aria-haspopup="true">
                                     <a href="<?= ($BASE) ?>/student-score" class="menu-link">
                                         <span class="svg-icon menu-icon">
                                             <!--begin::Svg Icon | path:<?= ($BASE) ?>/ui/backend/assets/media/svg/icons/Communication/Add-user.svg-->
@@ -139,8 +139,8 @@
                                         <span class="menu-text">ໃຫ້ຄະແນນນັກສຶກສາ</span>
                                     </a>
                                 </li>
-                                <li class="menu-item menu-item-submenu <?= ($subnav == 'order-list' ? 'menu-item-here' : '') ?>" data-menu-toggle="hover" aria-haspopup="true">
-                                    <a href="<?= ($BASE) ?>/admin/order" class="menu-link">
+                                <li class="menu-item menu-item-submenu <?= ($subnav == 'calculate-grade' ? 'menu-item-here' : '') ?>" data-menu-toggle="hover" aria-haspopup="true">
+                                    <a href="<?= ($BASE) ?>/calculate-grade" class="menu-link">
                                         <span class="svg-icon menu-icon">
                                             <!--begin::Svg Icon | path:<?= ($BASE) ?>/ui/backend/assets/media/svg/icons/Communication/Add-user.svg-->
                                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">

@@ -1,5 +1,29 @@
 <?php
 class CustomFunctions{
+  function calculate_grade($score){
+    if($score == null){
+      return '-';
+    }
+    $grade = array(
+      'A' => '95-100',
+      'B+' => '90-94',
+      'B' => '80-89',
+      'C+' => '71-79',
+      'C' => '60-70',
+      'D+' => '50-59',
+      'D' => '40-49',
+      'F' => '0-39'
+    );
+    foreach($grade as $key => $value){
+      $arr = explode("-",$value);
+      $A = (int)$arr[0];
+      $B = (int)$arr[1];
+      if($A <= $score && $score <= $B){
+        return $key;
+      }
+    }
+    return "-";
+  }
   function semester(){
     $semester = date('Y').'-'.((int)date('Y')+1);
     return $semester;

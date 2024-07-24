@@ -12,6 +12,9 @@ class ScoreServices extends BaseServiceReadBean{
         $class_id = $f3->get('POST.class_id');
         $semester = $f3->get('POST.semester');
         $score = $f3->get('POST.score');
+        if((string)$score > 100){
+            API::success(array('success' => false, 'message' => 'ການປ້ອນຄະແນນບໍ່ຖືກຕ້ອງ'));
+        }
         $check = $this->load(array('student_no = ? AND semester = ?',$student_no,$semester));
         if($check){
             $check->student_no = $student_no;
