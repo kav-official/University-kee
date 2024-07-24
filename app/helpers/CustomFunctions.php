@@ -1,5 +1,9 @@
 <?php
 class CustomFunctions{
+  function semester(){
+    $semester = ((int)date('Y')-1).'-'.date('Y');
+    return $semester;
+  }
   function payment_type(){
     $arr = array('prepaid' => 'ຈ່າຍລ່ວງໜ້າ/ມັດຈຳ', 'pay-cash' => 'ຈ່າຍສົດ', 'transfer' => 'ໂອນ', 'owe' => 'ຄ້າງຊຳລະ');
     return $arr;
