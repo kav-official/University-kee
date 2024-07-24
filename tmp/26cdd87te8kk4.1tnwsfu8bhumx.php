@@ -85,52 +85,48 @@
 										</div>
 									</div>
 									<div class="card-body">
-                                      <!--begin::Wizard Form-->
-                                        <form id="submit-form" method="<?= ($method) ?>" action="<?= ($BASE) ?>/register-old">
-                                            <input type="hidden" name="id" value="<?= ($id) ?>">
                                             <div class="row justify-content-center">
                                                 <div class="col-xl-9">
                                                     <!--begin::Wizard Step 1-->
                                                     <div class="my-5 step" data-wizard-type="step-content" data-wizard-state="current">
-                                                
                                                         <div class="form-group row la">
                                                             <label class="col-xl-2 col-lg-2 col-form-label">ລະຫັດນັກສຶກສາ</label>
                                                             <div class="col-lg-9 col-xl-9">
-                                                                <input style="height: 50px; border-color: aqua;border-style: dotted;background-color: #ffffff;" class="form-control form-control-solid form-control-lg" name="student_no" type="text" />
+                                                                <input style="height: 50px; border-color: aqua;border-style: dotted;background-color: #ffffff;" class="form-control form-control-solid form-control-lg student-no" name="student_no" type="text" />
                                                             </div>
                                                         </div>
                                                         <div class="form-group row la">
                                                             <label class="col-xl-2 col-lg-2 col-form-label">ຊື່​ແທ້</label>
                                                             <div class="col-lg-4">
-                                                                <input class="form-control form-control-solid form-control-lg" name="first_name" type="text" />
+                                                                <input class="form-control first-name form-control-solid form-control-lg" name="first_name" type="text" />
                                                             </div>
                                                              <label class="col-lg-1 col-form-label">ນາມ​ສະ​ກຸນ</label>
                                                             <div class="col-lg-4">
-                                                                <input class="form-control form-control-solid form-control-lg" name="last_name" type="text"/>
+                                                                <input class="form-control last-name form-control-solid form-control-lg" name="last_name" type="text"/>
                                                             </div>
                                                         </div>
                                                         <div class="form-group row la">
                                                             <label class="col-xl-2 col-lg-2 col-form-label">ວັນເດືອນປີເກີດ</label>
                                                             <div class="col-lg-4">
-                                                                <input class="form-control form-control-solid form-control-lg" name="first_name" type="text"/>
+                                                                <input class="form-control dob form-control-solid form-control-lg" name="first_name" type="text"/>
                                                             </div>
                                                              <label class="col-lg-1 col-form-label">ປີຮຽນ</label>
                                                             <div class="col-lg-4">
-                                                                <input class="form-control form-control-solid form-control-lg" name="last_name" type="text"  />
+                                                                <input class="form-control year form-control-solid form-control-lg" name="last_name" type="text"  />
                                                             </div>
                                                         </div>
-                                                       
                                                     </div>
-                                                    <div class="d-flex text-center border-top pt-10 mt-15">
-                                                        <div class="mr-2"></div>
-                                                        <div>
-                                                            <a href="<?= ($BASE) ?>/register" class="btn btn-default font-weight-bolder px-9 py-4">Cancel <i class="fa"></i></a>
-                                                            <button type="submit" class="btn btn-success font-weight-bolder px-9 py-4 btn-submit">Submit <i class="fa"></i></button>
+
+                                                    <form id="submit-form" method="<?= ($method) ?>" action="<?= ($BASE) ?>/register-old">
+                                                        <div class="d-flex text-center border-top pt-10 mt-15">
+                                                            <input type="hidden" name="student_no" class="post-student-no">
+                                                            <div class="text-center">
+                                                                <button type="submit" class="btn btn-success font-weight-bolder px-9 py-4 btn-submit">Submit <i class="fa"></i></button>
+                                                            </div>
                                                         </div>
-                                                    </div>
+                                                    </form>
                                                 </div>
                                             </div>
-                                        </form>
 									</div>
 								</div>
 								<!--end::Card-->
@@ -152,17 +148,25 @@
 		<?php echo $this->render('backend/inc/script.html',NULL,get_defined_vars(),0); ?>
 		<script type="text/javascript">
             $(document).ready(function(){
-                $(".class-option").on('change',function(){
-                    $.ajax({
-                        url:'<?= ($BASE) ?>/get-class/fee/'+$(this).val(),
-                        type:'GET',
-                        success:function(data){
-                            if(data.success ==true){
-                                $('.current-fee').val(data.data)
+                $(".student-no").keydown(function (e) {
+                    if (e.keyCode == 13) {
+                        $('.post-student-no').val($(this).val())
+                        $.ajax({
+                            url:'<?= ($BASE) ?>/get-registered/'+$(this).val(),
+                            type:'GET',
+                            success:function(data){
+                                if(data.success == true){
+                                    $('.first-name').val(data.first)
+                                    $('.last-name').val(data.last)
+                                    $('.dob').val(data.dob)
+                                    $('.year').val(data.year)
+                                }else{
+                                    Swal.fire('Waring',data.message,'warning')
+                                }
                             }
-                        }
-                    })
-                })
+                        })
+                    }
+                });
 
              $('#submit-form').submit(function(event){
                 event.preventDefault();

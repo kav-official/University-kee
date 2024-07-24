@@ -100,10 +100,15 @@ class RegisterServices extends BaseServiceReadBean
         API::success($this->data);
     }
 
-    function getClassFee(){
-        $Svr = new FeeServices($this->db);
-        $fee = $Svr->getByOne(['class=?',$this->f3->get('PARAMS.class')]);
-        $this->data = ['success'=>true,'data' =>$fee->price];
+    function oldstudentData(){
+        $Svr   = new RegisterServices($this->db);
+        $check = $Svr->load(['student_no=?',$this->f3->get('PARAMS.student_no')]);
+        if($check){
+            $item = $Svr->getByOne(['student_no=?',$this->f3->get('PARAMS.student_no')]);
+            $this->data = ['success'=>true,'first' =>$item->first_name,'last' =>$item->last_name,'dob' =>$item->dob,'year' =>$item->year];
+        }else{
+            $this->data = ['success'=>false,'message' =>'ບໍໍພົບລະຫັດນີ້'];
+        }
         API::success($this->data);
     }
 }

@@ -198,4 +198,8 @@ class ActionController
     {
         $this->Svr->getClassFee();
     }
+    public function oldstudentData()
+    {
+        $this->Svr->oldstudentData();
+    }
 }
