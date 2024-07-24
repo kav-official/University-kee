@@ -94,7 +94,9 @@
                                             <table class="table">
                                                 <thead>
                                                     <tr style="font-family: NotoSerifLao;">
-                                                        <th>ຊື່​ເຕັມ</th>
+                                                        <th>ສົກຮຽນ</th>
+                                                        <th>ປີຮຽນ</th>
+                                                        <th>ຊື່​ນັກສຶກສາ</th>
                                                         <th>ຫ້ອງສອນ</th>
                                                         <th>ເພດ</th>
                                                         <th>ວັນເດືອນປີເກີດ</th>
@@ -109,16 +111,27 @@
                                                 <tbody>
                                                     <repeat group="{{@items}}" value="{{@row}}">
                                                         <tr id="item-{{@row.id}}">
-													
+                                                        <td>{{ @row.semester }}</td>
+                                                        <td>{{ @row.year }}</td>
                                                         <td>{{@row.first_name}} {{@row.last_name}}</td>
                                                         <td>{{ @arrClass[@row.class] }}</td>
-                                                        <td>{{@row.gender}}</td>
+                                                        <td>
+															<check if="{{ @row.gender == 'M'}}">
+																<true>ເພດຊາຍ</true>
+															</check>
+															<check if="{{ @row.gender == 'F'}}">
+																<true>ເພດຍີງ</true>
+															</check>
+															<check if="{{ @row.gender == 'O'}}">
+																<true>ອື່ນໆ...</true>
+															</check>
+														</td>
                                                         <td>{{@row.dob}}</td>
                                                         <td>{{ @arrProvince[@row.province_id] }}</td>
                                                         <td>{{@row.district}}</td>
                                                         <td>{{@row.village}}</td>
                                                         <td>{{@row.phone}}</td>
-                                                        <td>{{date('d-m-Y H:i:s',@row.created_at)}}</td>
+                                                        <td>{{@row.created_at}}</td>
                                                         <td class="text-center">
                                                             <div class="btn-group action-tooltip">
                                                                 <a class="btn-white btn btn-sm" data-toggle="tooltip" data-placement="top" href="{{@BASE}}/student/edit/{{@row.id}}" title="Delete"><i class="fa fa-edit"></i></a>

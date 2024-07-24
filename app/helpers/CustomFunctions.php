@@ -1,7 +1,7 @@
 <?php
 class CustomFunctions{
   function semester(){
-    $semester = ((int)date('Y')-1).'-'.date('Y');
+    $semester = date('Y').'-'.((int)date('Y')+1);
     return $semester;
   }
   function payment_type(){

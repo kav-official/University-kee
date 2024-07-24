@@ -1,5 +1,5 @@
 <?php
-class StudentServices extends BaseServiceReadBean
+class RegisterServices extends BaseServiceReadBean
 {
     private $f3;
     private $data;
@@ -10,7 +10,7 @@ class StudentServices extends BaseServiceReadBean
     function __construct($db)
 	{
 		$this->f3 = Base::instance();
-		$this->tbl = "tblstudent";
+		$this->tbl = "tblregister";
         $this->custom = new CustomFunctions();
 		parent::__construct($db,$this->tbl);
 	}
@@ -20,6 +20,7 @@ class StudentServices extends BaseServiceReadBean
         if ($_SERVER['REQUEST_METHOD'] == 'POST')
         {
             $id          = $this->f3->get('POST.id');
+            $semester    = $this->f3->get('POST.semester');
             $student_no  = $this->f3->get('POST.student_no');
             $first_name  = $this->f3->get('POST.first_name');
             $last_name   = $this->f3->get('POST.last_name');
@@ -32,24 +33,30 @@ class StudentServices extends BaseServiceReadBean
             $class       = $this->f3->get('POST.class');
             $region      = $this->f3->get('POST.region');
             $ethnicity   = $this->f3->get('POST.ethnicity');
-            $year        = $this->f3->get('POST.year');
+            $semester    = $this->f3->get('POST.semester');
 
-        
-            $this->student_no  = $student_no;
-            $this->first_name  = $first_name;
-            $this->last_name   = $last_name;
-            $this->gender      = $gender;
-            $this->dob         = $dob;
-            $this->province_id = $province_id;
-            $this->district    = $district;
-            $this->village     = $village;
-            $this->phone       = $phone;
-            $this->class       = $class;
-            $this->region      = $region;
-            $this->ethnicity   = $ethnicity;
-            $this->year        = $year;
-            $this->save();
-            $this->data = ['success'=> true, 'message'=> '"'.$first_name.'" ບັນທຶກສຳເລັດ'];
+            $check = $this->load(['semester=? AND student_no=?',$semester,$student_no]);
+            if($check){
+                $this->data = ['success'=> false, 'message'=> 'ນັກສຶກສາຜູ້ນີ້ລົງທະບຽນແລ້ວ'];
+            }else{
+                $this->semester    = $semester;
+                $this->student_no  = $student_no;
+                $this->first_name  = $first_name;
+                $this->last_name   = $last_name;
+                $this->gender      = $gender;
+                $this->dob         = $dob;
+                $this->province_id = $province_id;
+                $this->district    = $district;
+                $this->village     = $village;
+                $this->phone       = $phone;
+                $this->class       = $class;
+                $this->region      = $region;
+                $this->ethnicity   = $ethnicity;
+                $this->year        = 1;
+                $this->semester    = $semester;
+                $this->save();
+                $this->data = ['success'=> true, 'message'=> '"'.$first_name.'" ບັນທຶກສຳເລັດ'];
+            }
            
         }
         if ($_SERVER['REQUEST_METHOD'] == 'PUT')
@@ -69,7 +76,7 @@ class StudentServices extends BaseServiceReadBean
            $class       = $up_row['class'];
            $region      = $up_row['region'];
            $ethnicity   = $up_row['ethnicity'];
-           $year        = $up_row['year'];
+           $semester    = $up_row['semester'];
 
             $this->Svr              = $this->load(['id = ?',$id]);
             $this->Svr->student_no  = $student_no;
@@ -84,7 +91,7 @@ class StudentServices extends BaseServiceReadBean
             $this->Svr->class       = $class;
             $this->Svr->region      = $region;
             $this->Svr->ethnicity   = $ethnicity;
-            $this->Svr->year        = $year;
+            $this->Svr->semester    = $semester;
             $this->Svr->update(); 
 
             $this->data = ['success'=>true,'message' => '"'.$first_name.'" ແກ້ໄຂສຳເລັດແລ້ວ'];
@@ -96,7 +103,7 @@ class StudentServices extends BaseServiceReadBean
     function getClassFee(){
         $Svr = new FeeServices($this->db);
         $fee = $Svr->getByOne(['class=?',$this->f3->get('PARAMS.class')]);
-        $this->data = ['success'=>true,'data' =>number_format($fee->price)];
+        $this->data = ['success'=>true,'data' =>$fee->price];
         API::success($this->data);
     }
 }

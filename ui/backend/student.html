@@ -86,12 +86,18 @@
 									</div>
 									<div class="card-body">
                                       <!--begin::Wizard Form-->
-                                        <form id="submit-form" method="{{@method}}" action="{{@BASE}}/student">
+                                        <form id="submit-form" method="{{@method}}" action="{{@BASE}}/register">
                                             <input type="hidden" name="id" value="{{@id}}">
                                             <div class="row justify-content-center">
                                                 <div class="col-xl-9">
                                                     <!--begin::Wizard Step 1-->
                                                     <div class="my-5 step" data-wizard-type="step-content" data-wizard-state="current">
+                                                        <div class="form-group row la">
+                                                            <label class="col-xl-2 col-lg-2 col-form-label">ສົກຮຽນ</label>
+                                                            <div class="col-lg-9 col-xl-9">
+                                                                <input class="form-control form-control-solid form-control-lg" name="semester" type="text" value="{{@item->semester ?? ''}}"  />
+                                                            </div>
+                                                        </div>
                                                         <div class="form-group row la">
                                                             <label class="col-xl-2 col-lg-2 col-form-label">ລະຫັດນັກສຶກສາ</label>
                                                             <div class="col-lg-9 col-xl-9">
@@ -100,13 +106,11 @@
                                                         </div>
                                                         <div class="form-group row la">
                                                             <label class="col-xl-2 col-lg-2 col-form-label">ຊື່​ແທ້</label>
-                                                            <div class="col-lg-9 col-xl-9">
+                                                            <div class="col-lg-4">
                                                                 <input class="form-control form-control-solid form-control-lg" name="first_name" type="text" value="{{@item->first_name ?? ''}}"  />
                                                             </div>
-                                                        </div>
-                                                        <div class="form-group row la">
-                                                            <label class="col-xl-2 col-lg-2 col-form-label">ນາມ​ສະ​ກຸນ</label>
-                                                            <div class="col-lg-9 col-xl-9">
+                                                             <label class="col-lg-1 col-form-label">ນາມ​ສະ​ກຸນ</label>
+                                                            <div class="col-lg-4">
                                                                 <input class="form-control form-control-solid form-control-lg" name="last_name" type="text" value="{{@item->last_name ?? ''}}"  />
                                                             </div>
                                                         </div>
@@ -167,27 +171,19 @@
                                                         </div>
                                                       
                                                         <div class="form-group row la">
-                                                            <label class="col-xl-2 col-lg-2 col-form-label">ຫ້ອງຮຽນ</label>
-                                                            <div class="col-lg-9 col-xl-9">
-                                                                <select name="class" class="form-control">
+                                                            <label class="col-xl-2 col-lg-4 col-form-label">ຫ້ອງຮຽນ</label>
+                                                            <div class="col-lg-4 col-xl-4">
+                                                                <select name="class" class="form-control class-option">
                                                                     {{ @custom->renderArraySelect(@arrClass,@item->class ?? '' )}}
                                                                 </select>
                                                             </div>
                                                         </div>
 
-                                                        <div class="form-group row la">
-                                                            <label class="col-xl-2 col-lg-2 col-form-label">ປີ</label>
-                                                            <div class="col-lg-9 col-xl-9">
-                                                                <input class="form-control form-control-solid form-control-lg" value="{{ @item->year ?? '' }}" name="year" type="text" />
-                                                            </div>
-                                                        </div>
-                                                      
-
                                                     </div>
                                                     <div class="d-flex justify-content-between border-top pt-10 mt-15">
                                                         <div class="mr-2"></div>
                                                         <div>
-                                                            <a href="{{@BASE}}/student" class="btn btn-default font-weight-bolder px-9 py-4">Cancel <i class="fa"></i></a>
+                                                            <a href="{{@BASE}}/register" class="btn btn-default font-weight-bolder px-9 py-4">Cancel <i class="fa"></i></a>
                                                             <button type="submit" class="btn btn-success font-weight-bolder px-9 py-4 btn-submit">Submit <i class="fa"></i></button>
                                                         </div>
                                                     </div>
@@ -236,7 +232,7 @@
                                     showConfirmButton: false,
                                     timer: 1500
                                 }).then((result)=>{
-                                    window.location.href="{{@BASE}}/student";
+                                    window.location.href="{{@BASE}}/register";
                                 });
                             } else {
                                 Swal.fire("Error!", data.message, "error");
@@ -253,6 +249,7 @@
                         },
                     });
                 }
+              
             });
             $("#submit-form").validate({
             rules: {

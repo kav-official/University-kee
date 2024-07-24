@@ -14,6 +14,6 @@ class RegisterListController extends BaseController
         $this->f3->set('arrProvince',$this->custom->province());
         $this->f3->set('arrClass',$this->custom->arrClass());
         $this->f3->set('custom',$this->custom);
-	    parent::__construct('StudentServices', 'backend/register-list.html', 'register', 'register-list', 'ຈຳນວນນັກສຶກສາລົງທະບຽນໃໝ່','','',$this->f3->get('ITEM_PER_PAGE'));
+	    parent::__construct('RegisterServices', 'backend/register-list.html', 'register', 'register-list', 'ຈຳນວນນັກສຶກສາລົງທະບຽນໃໝ່','','',$this->f3->get('ITEM_PER_PAGE'));
     }
 }

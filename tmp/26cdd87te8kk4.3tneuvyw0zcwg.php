@@ -7,15 +7,15 @@
             <div id="kt_header_menu" class="header-menu header-menu-left header-menu-mobile header-menu-layout-default">
                 <!--begin::Header Nav-->
                 <ul class="menu-nav">
-                    <li class="menu-item menu-item-open  menu-item-submenu menu-item-rel menu-item-open {{@nav == 'home' ? 'menu-item-here' : ''}}" data-menu-toggle="hover" aria-haspopup="true">
-                        <a href="{{@BASE}}/" class="menu-link">
+                    <li class="menu-item menu-item-open  menu-item-submenu menu-item-rel menu-item-open <?= ($nav == 'home' ? 'menu-item-here' : '') ?>" data-menu-toggle="hover" aria-haspopup="true">
+                        <a href="<?= ($BASE) ?>/" class="menu-link">
                             <span class="menu-text la">ໜ້າຫຼັກ</span>
                             <span class="menu-desc">Home Page</span>
                             <i class="menu-arrow"></i>
                         </a>
                     </li>
 
-                    <li class="menu-item menu-item-submenu menu-item-rel {{@nav == 'student' ? 'menu-item-here' : ''}} || {{@nav == 'fee' ? 'menu-item-here' : ''}} || {{@nav == 'user' ? 'menu-item-here' : ''}} la"  data-menu-toggle="hover" aria-haspopup="true">
+                    <li class="menu-item menu-item-submenu menu-item-rel <?= ($nav == 'student' ? 'menu-item-here' : '') ?> || <?= ($nav == 'fee' ? 'menu-item-here' : '') ?> || <?= ($nav == 'user' ? 'menu-item-here' : '') ?> la"  data-menu-toggle="hover" aria-haspopup="true">
                         <a href="javascript:;" class="menu-link menu-toggle">
                             <span class="menu-text">ຈັດການຂໍ້ມູນພື້ນຖານ</span>
                             <span class="menu-desc">ຈັດການຂໍ້ມູນຕ່າງໆ</span>
@@ -23,10 +23,10 @@
                         </a>
                         <div class="menu-submenu menu-submenu-classic menu-submenu-left">
                             <ul class="menu-subnav">
-                                <li class="menu-item menu-item-submenu {{@subnav == 'student-list' ? 'menu-item-here' : ''}}" data-menu-toggle="hover" aria-haspopup="true">
-                                    <a href="{{@BASE}}/student" class="menu-link">
+                                <li class="menu-item menu-item-submenu <?= ($subnav == 'student-list' ? 'menu-item-here' : '') ?>" data-menu-toggle="hover" aria-haspopup="true">
+                                    <a href="<?= ($BASE) ?>/student" class="menu-link">
                                         <span class="svg-icon menu-icon">
-                                            <!--begin::Svg Icon | path:{{@BASE}}/ui/backend/assets/media/svg/icons/Communication/Add-user.svg-->
+                                            <!--begin::Svg Icon | path:<?= ($BASE) ?>/ui/backend/assets/media/svg/icons/Communication/Add-user.svg-->
                                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                                     <polygon points="0 0 24 0 24 24 0 24" />
@@ -39,10 +39,10 @@
                                         <span class="menu-text">ຈັດການຂໍ້ມູນນັກສຶກສາ</span>
                                     </a>
                                 </li>
-                                <li class="menu-item menu-item-submenu {{@subnav == 'user-list' ? 'menu-item-here' : ''}}" data-menu-toggle="hover" aria-haspopup="true">
-                                    <a href="{{@BASE}}/user" class="menu-link">
+                                <li class="menu-item menu-item-submenu <?= ($subnav == 'user-list' ? 'menu-item-here' : '') ?>" data-menu-toggle="hover" aria-haspopup="true">
+                                    <a href="<?= ($BASE) ?>/user" class="menu-link">
                                         <span class="svg-icon menu-icon">
-                                            <!--begin::Svg Icon | path:{{@BASE}}/ui/backend/assets/media/svg/icons/Communication/Add-user.svg-->
+                                            <!--begin::Svg Icon | path:<?= ($BASE) ?>/ui/backend/assets/media/svg/icons/Communication/Add-user.svg-->
                                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                                     <polygon points="0 0 24 0 24 24 0 24" />
@@ -55,10 +55,10 @@
                                         <span class="menu-text">ຈັດການຂໍ້ມູນພະນັກງານ</span>
                                     </a>
                                 </li>
-                                <li class="menu-item menu-item-submenu {{@subnav == 'fee-list' ? 'menu-item-here' : ''}}" data-menu-toggle="hover" aria-haspopup="true">
-                                    <a href="{{@BASE}}/fee" class="menu-link">
+                                <li class="menu-item menu-item-submenu <?= ($subnav == 'fee-list' ? 'menu-item-here' : '') ?>" data-menu-toggle="hover" aria-haspopup="true">
+                                    <a href="<?= ($BASE) ?>/fee" class="menu-link">
                                         <span class="svg-icon menu-icon">
-                                            <!--begin::Svg Icon | path:{{@BASE}}/ui/backend/assets/media/svg/icons/Communication/Add-user.svg-->
+                                            <!--begin::Svg Icon | path:<?= ($BASE) ?>/ui/backend/assets/media/svg/icons/Communication/Add-user.svg-->
                                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                                     <polygon points="0 0 24 0 24 24 0 24" />
@@ -75,7 +75,7 @@
                         </div>
                     </li>
 
-                    <li class="menu-item menu-item-submenu menu-item-rel {{@nav == 'register' ? 'menu-item-here' : ''}} || {{@nav == 'register-old' ? 'menu-item-here' : ''}} la"  data-menu-toggle="hover" aria-haspopup="true">
+                    <li class="menu-item menu-item-submenu menu-item-rel <?= ($nav == 'register' ? 'menu-item-here' : '') ?> || <?= ($nav == 'register-old' ? 'menu-item-here' : '') ?> la"  data-menu-toggle="hover" aria-haspopup="true">
                         <a href="javascript:;" class="menu-link menu-toggle">
                             <span class="menu-text">ລົງທະບຽນ</span>
                             <span class="menu-desc">ລົງທະບຽນນັກສຶກສາ</span>
@@ -83,8 +83,8 @@
                         </a>
                         <div class="menu-submenu menu-submenu-classic menu-submenu-left">
                             <ul class="menu-subnav">
-                                <li class="menu-item menu-item-submenu {{@subnav == 'register-list' ? 'menu-item-here' : ''}}" data-menu-toggle="hover" aria-haspopup="true">
-                                    <a href="{{@BASE}}/register" class="menu-link">
+                                <li class="menu-item menu-item-submenu <?= ($subnav == 'register-list' ? 'menu-item-here' : '') ?>" data-menu-toggle="hover" aria-haspopup="true">
+                                    <a href="<?= ($BASE) ?>/register" class="menu-link">
                                         <span class="svg-icon menu-icon">
                                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -97,8 +97,8 @@
                                         <span class="menu-text">ລົງທະບຽນນັກສຶກສາໃໝ່</span>
                                     </a>
                                 </li>
-                                <li class="menu-item menu-item-submenu {{@subnav == 'register-old' ? 'menu-item-here' : ''}}" data-menu-toggle="hover" aria-haspopup="true">
-                                    <a href="{{@BASE}}/register-old/edit" class="menu-link">
+                                <li class="menu-item menu-item-submenu <?= ($subnav == 'register-old' ? 'menu-item-here' : '') ?>" data-menu-toggle="hover" aria-haspopup="true">
+                                    <a href="<?= ($BASE) ?>/register-old/edit" class="menu-link">
                                         <span class="svg-icon menu-icon">
                                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -115,7 +115,7 @@
                         </div>
                     </li>
 
-                    <li class="menu-item menu-item-submenu menu-item-rel {{@nav == 'order' ? 'menu-item-here' : ''}} la"  data-menu-toggle="hover" aria-haspopup="true">
+                    <li class="menu-item menu-item-submenu menu-item-rel <?= ($nav == 'order' ? 'menu-item-here' : '') ?> la"  data-menu-toggle="hover" aria-haspopup="true">
                         <a href="javascript:;" class="menu-link menu-toggle">
                             <span class="menu-text">ປະເມີນຜົນ</span>
                             <span class="menu-desc">ປະເມີນຜົນນັກສຶກສາ</span>
@@ -123,10 +123,10 @@
                         </a>
                         <div class="menu-submenu menu-submenu-classic menu-submenu-left">
                             <ul class="menu-subnav">
-                                <li class="menu-item menu-item-submenu {{@subnav == 'order-list' ? 'menu-item-here' : ''}}" data-menu-toggle="hover" aria-haspopup="true">
-                                    <a href="{{@BASE}}/student-score" class="menu-link">
+                                <li class="menu-item menu-item-submenu <?= ($subnav == 'order-list' ? 'menu-item-here' : '') ?>" data-menu-toggle="hover" aria-haspopup="true">
+                                    <a href="<?= ($BASE) ?>/student-score" class="menu-link">
                                         <span class="svg-icon menu-icon">
-                                            <!--begin::Svg Icon | path:{{@BASE}}/ui/backend/assets/media/svg/icons/Communication/Add-user.svg-->
+                                            <!--begin::Svg Icon | path:<?= ($BASE) ?>/ui/backend/assets/media/svg/icons/Communication/Add-user.svg-->
                                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                                     <polygon points="0 0 24 0 24 24 0 24" />
@@ -139,10 +139,10 @@
                                         <span class="menu-text">ໃຫ້ຄະແນນນັກສຶກສາ</span>
                                     </a>
                                 </li>
-                                <li class="menu-item menu-item-submenu {{@subnav == 'order-list' ? 'menu-item-here' : ''}}" data-menu-toggle="hover" aria-haspopup="true">
-                                    <a href="{{@BASE}}/admin/order" class="menu-link">
+                                <li class="menu-item menu-item-submenu <?= ($subnav == 'order-list' ? 'menu-item-here' : '') ?>" data-menu-toggle="hover" aria-haspopup="true">
+                                    <a href="<?= ($BASE) ?>/admin/order" class="menu-link">
                                         <span class="svg-icon menu-icon">
-                                            <!--begin::Svg Icon | path:{{@BASE}}/ui/backend/assets/media/svg/icons/Communication/Add-user.svg-->
+                                            <!--begin::Svg Icon | path:<?= ($BASE) ?>/ui/backend/assets/media/svg/icons/Communication/Add-user.svg-->
                                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                                     <polygon points="0 0 24 0 24 24 0 24" />
@@ -155,10 +155,10 @@
                                         <span class="menu-text">ຄິດໄລ່ເກຣດ</span>
                                     </a>
                                 </li>
-                                <li class="menu-item menu-item-submenu {{@subnav == 'order-list' ? 'menu-item-here' : ''}}" data-menu-toggle="hover" aria-haspopup="true">
-                                    <a href="{{@BASE}}/admin/order" class="menu-link">
+                                <li class="menu-item menu-item-submenu <?= ($subnav == 'order-list' ? 'menu-item-here' : '') ?>" data-menu-toggle="hover" aria-haspopup="true">
+                                    <a href="<?= ($BASE) ?>/admin/order" class="menu-link">
                                         <span class="svg-icon menu-icon">
-                                            <!--begin::Svg Icon | path:{{@BASE}}/ui/backend/assets/media/svg/icons/Communication/Add-user.svg-->
+                                            <!--begin::Svg Icon | path:<?= ($BASE) ?>/ui/backend/assets/media/svg/icons/Communication/Add-user.svg-->
                                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                                     <polygon points="0 0 24 0 24 24 0 24" />
@@ -175,7 +175,7 @@
                         </div>
                     </li>
 
-                     <li class="menu-item menu-item-submenu menu-item-rel {{@nav == 'order' ? 'menu-item-here' : ''}} la"  data-menu-toggle="hover" aria-haspopup="true">
+                     <li class="menu-item menu-item-submenu menu-item-rel <?= ($nav == 'order' ? 'menu-item-here' : '') ?> la"  data-menu-toggle="hover" aria-haspopup="true">
                         <a href="javascript:;" class="menu-link menu-toggle">
                             <span class="menu-text">ຫ້ອງຮຽນ</span>
                             <span class="menu-desc">ຫ້ອງຮຽນນັກສຶກສາ</span>
@@ -183,10 +183,10 @@
                         </a>
                         <div class="menu-submenu menu-submenu-classic menu-submenu-left">
                             <ul class="menu-subnav">
-                                <li class="menu-item menu-item-submenu {{@subnav == 'order-list' ? 'menu-item-here' : ''}}" data-menu-toggle="hover" aria-haspopup="true">
-                                    <a href="{{@BASE}}/admin/order" class="menu-link">
+                                <li class="menu-item menu-item-submenu <?= ($subnav == 'order-list' ? 'menu-item-here' : '') ?>" data-menu-toggle="hover" aria-haspopup="true">
+                                    <a href="<?= ($BASE) ?>/admin/order" class="menu-link">
                                         <span class="svg-icon menu-icon">
-                                            <!--begin::Svg Icon | path:{{@BASE}}/ui/backend/assets/media/svg/icons/Communication/Add-user.svg-->
+                                            <!--begin::Svg Icon | path:<?= ($BASE) ?>/ui/backend/assets/media/svg/icons/Communication/Add-user.svg-->
                                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                                     <polygon points="0 0 24 0 24 24 0 24" />
@@ -199,10 +199,10 @@
                                         <span class="menu-text">ສະແດງນັກສຶກສາໃນຫອ້ງຮຽນ</span>
                                     </a>
                                 </li>
-                                <li class="menu-item menu-item-submenu {{@subnav == 'order-list' ? 'menu-item-here' : ''}}" data-menu-toggle="hover" aria-haspopup="true">
-                                    <a href="{{@BASE}}/admin/order" class="menu-link">
+                                <li class="menu-item menu-item-submenu <?= ($subnav == 'order-list' ? 'menu-item-here' : '') ?>" data-menu-toggle="hover" aria-haspopup="true">
+                                    <a href="<?= ($BASE) ?>/admin/order" class="menu-link">
                                         <span class="svg-icon menu-icon">
-                                            <!--begin::Svg Icon | path:{{@BASE}}/ui/backend/assets/media/svg/icons/Communication/Add-user.svg-->
+                                            <!--begin::Svg Icon | path:<?= ($BASE) ?>/ui/backend/assets/media/svg/icons/Communication/Add-user.svg-->
                                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                                     <polygon points="0 0 24 0 24 24 0 24" />
@@ -215,10 +215,10 @@
                                         <span class="menu-text">ສະແດງຂໍ້ມູນອາຈານປະຈໍາຫອ້ງ</span>
                                     </a>
                                 </li>
-                                <li class="menu-item menu-item-submenu {{@subnav == 'order-list' ? 'menu-item-here' : ''}}" data-menu-toggle="hover" aria-haspopup="true">
-                                    <a href="{{@BASE}}/admin/order" class="menu-link">
+                                <li class="menu-item menu-item-submenu <?= ($subnav == 'order-list' ? 'menu-item-here' : '') ?>" data-menu-toggle="hover" aria-haspopup="true">
+                                    <a href="<?= ($BASE) ?>/admin/order" class="menu-link">
                                         <span class="svg-icon menu-icon">
-                                            <!--begin::Svg Icon | path:{{@BASE}}/ui/backend/assets/media/svg/icons/Communication/Add-user.svg-->
+                                            <!--begin::Svg Icon | path:<?= ($BASE) ?>/ui/backend/assets/media/svg/icons/Communication/Add-user.svg-->
                                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                                     <polygon points="0 0 24 0 24 24 0 24" />
@@ -235,7 +235,7 @@
                         </div>
                     </li>
 
-                    <li class="menu-item menu-item-submenu menu-item-rel {{@nav == 'order' ? 'menu-item-here' : ''}} la"  data-menu-toggle="hover" aria-haspopup="true">
+                    <li class="menu-item menu-item-submenu menu-item-rel <?= ($nav == 'order' ? 'menu-item-here' : '') ?> la"  data-menu-toggle="hover" aria-haspopup="true">
                         <a href="javascript:;" class="menu-link menu-toggle">
                             <span class="menu-text">ຈ່າຍຄ່າເທີມ</span>
                             <span class="menu-desc">ນັກສຶກສາຈ່າຍຄ່າເທີມ</span>
@@ -243,10 +243,10 @@
                         </a>
                         <div class="menu-submenu menu-submenu-classic menu-submenu-left">
                             <ul class="menu-subnav">
-                                <li class="menu-item menu-item-submenu {{@subnav == 'order-list' ? 'menu-item-here' : ''}}" data-menu-toggle="hover" aria-haspopup="true">
-                                    <a href="{{@BASE}}/admin/order" class="menu-link">
+                                <li class="menu-item menu-item-submenu <?= ($subnav == 'order-list' ? 'menu-item-here' : '') ?>" data-menu-toggle="hover" aria-haspopup="true">
+                                    <a href="<?= ($BASE) ?>/admin/order" class="menu-link">
                                         <span class="svg-icon menu-icon">
-                                            <!--begin::Svg Icon | path:{{@BASE}}/ui/backend/assets/media/svg/icons/Communication/Add-user.svg-->
+                                            <!--begin::Svg Icon | path:<?= ($BASE) ?>/ui/backend/assets/media/svg/icons/Communication/Add-user.svg-->
                                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                                     <polygon points="0 0 24 0 24 24 0 24" />
@@ -259,10 +259,10 @@
                                         <span class="menu-text">ອັບເດດສະຖານະການຈ່າຍ</span>
                                     </a>
                                 </li>
-                                <li class="menu-item menu-item-submenu {{@subnav == 'order-list' ? 'menu-item-here' : ''}}" data-menu-toggle="hover" aria-haspopup="true">
-                                    <a href="{{@BASE}}/admin/order" class="menu-link">
+                                <li class="menu-item menu-item-submenu <?= ($subnav == 'order-list' ? 'menu-item-here' : '') ?>" data-menu-toggle="hover" aria-haspopup="true">
+                                    <a href="<?= ($BASE) ?>/admin/order" class="menu-link">
                                         <span class="svg-icon menu-icon">
-                                            <!--begin::Svg Icon | path:{{@BASE}}/ui/backend/assets/media/svg/icons/Communication/Add-user.svg-->
+                                            <!--begin::Svg Icon | path:<?= ($BASE) ?>/ui/backend/assets/media/svg/icons/Communication/Add-user.svg-->
                                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                                     <polygon points="0 0 24 0 24 24 0 24" />
@@ -279,7 +279,7 @@
                         </div>
                     </li>
 
-                    <li class="menu-item menu-item-submenu menu-item-rel {{@nav == 'order' ? 'menu-item-here' : ''}} la"  data-menu-toggle="hover" aria-haspopup="true">
+                    <li class="menu-item menu-item-submenu menu-item-rel <?= ($nav == 'order' ? 'menu-item-here' : '') ?> la"  data-menu-toggle="hover" aria-haspopup="true">
                         <a href="javascript:;" class="menu-link menu-toggle">
                             <span class="menu-text">ລາຍງານ</span>
                             <span class="menu-desc">ລາຍງານຕ່າງໆ</span>
@@ -287,10 +287,10 @@
                         </a>
                         <div class="menu-submenu menu-submenu-classic menu-submenu-left">
                             <ul class="menu-subnav">
-                                <li class="menu-item menu-item-submenu {{@subnav == 'order-list' ? 'menu-item-here' : ''}}" data-menu-toggle="hover" aria-haspopup="true">
-                                    <a href="{{@BASE}}/admin/order" class="menu-link">
+                                <li class="menu-item menu-item-submenu <?= ($subnav == 'order-list' ? 'menu-item-here' : '') ?>" data-menu-toggle="hover" aria-haspopup="true">
+                                    <a href="<?= ($BASE) ?>/admin/order" class="menu-link">
                                         <span class="svg-icon menu-icon">
-                                            <!--begin::Svg Icon | path:{{@BASE}}/ui/backend/assets/media/svg/icons/Communication/Add-user.svg-->
+                                            <!--begin::Svg Icon | path:<?= ($BASE) ?>/ui/backend/assets/media/svg/icons/Communication/Add-user.svg-->
                                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                                     <polygon points="0 0 24 0 24 24 0 24" />
@@ -303,10 +303,10 @@
                                         <span class="menu-text">ລາຍງານຄະແນນ</span>
                                     </a>
                                 </li>
-                                <li class="menu-item menu-item-submenu {{@subnav == 'order-list' ? 'menu-item-here' : ''}}" data-menu-toggle="hover" aria-haspopup="true">
-                                    <a href="{{@BASE}}/admin/order" class="menu-link">
+                                <li class="menu-item menu-item-submenu <?= ($subnav == 'order-list' ? 'menu-item-here' : '') ?>" data-menu-toggle="hover" aria-haspopup="true">
+                                    <a href="<?= ($BASE) ?>/admin/order" class="menu-link">
                                         <span class="svg-icon menu-icon">
-                                            <!--begin::Svg Icon | path:{{@BASE}}/ui/backend/assets/media/svg/icons/Communication/Add-user.svg-->
+                                            <!--begin::Svg Icon | path:<?= ($BASE) ?>/ui/backend/assets/media/svg/icons/Communication/Add-user.svg-->
                                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                                     <polygon points="0 0 24 0 24 24 0 24" />
@@ -319,10 +319,10 @@
                                         <span class="menu-text">ລາຍງານການຈ່າຍຄ່າເທີມ</span>
                                     </a>
                                 </li>
-                                <li class="menu-item menu-item-submenu {{@subnav == 'order-list' ? 'menu-item-here' : ''}}" data-menu-toggle="hover" aria-haspopup="true">
-                                    <a href="{{@BASE}}/admin/order" class="menu-link">
+                                <li class="menu-item menu-item-submenu <?= ($subnav == 'order-list' ? 'menu-item-here' : '') ?>" data-menu-toggle="hover" aria-haspopup="true">
+                                    <a href="<?= ($BASE) ?>/admin/order" class="menu-link">
                                         <span class="svg-icon menu-icon">
-                                            <!--begin::Svg Icon | path:{{@BASE}}/ui/backend/assets/media/svg/icons/Communication/Add-user.svg-->
+                                            <!--begin::Svg Icon | path:<?= ($BASE) ?>/ui/backend/assets/media/svg/icons/Communication/Add-user.svg-->
                                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                                     <polygon points="0 0 24 0 24 24 0 24" />
@@ -335,10 +335,10 @@
                                         <span class="menu-text">ລາຍງານຂໍ້ມູນນັກສຶກສາ</span>
                                     </a>
                                 </li>
-                                <li class="menu-item menu-item-submenu {{@subnav == 'order-list' ? 'menu-item-here' : ''}}" data-menu-toggle="hover" aria-haspopup="true">
-                                    <a href="{{@BASE}}/admin/order" class="menu-link">
+                                <li class="menu-item menu-item-submenu <?= ($subnav == 'order-list' ? 'menu-item-here' : '') ?>" data-menu-toggle="hover" aria-haspopup="true">
+                                    <a href="<?= ($BASE) ?>/admin/order" class="menu-link">
                                         <span class="svg-icon menu-icon">
-                                            <!--begin::Svg Icon | path:{{@BASE}}/ui/backend/assets/media/svg/icons/Communication/Add-user.svg-->
+                                            <!--begin::Svg Icon | path:<?= ($BASE) ?>/ui/backend/assets/media/svg/icons/Communication/Add-user.svg-->
                                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                                     <polygon points="0 0 24 0 24 24 0 24" />

@@ -7,7 +7,7 @@
 		<title>ຜູ້ໃຊ້ | Joint Pharma</title>
 		<meta name="description" content="Child datatable from local data" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-		<include href="backend/inc/header.html" />
+		<?php echo $this->render('backend/inc/header.html',NULL,get_defined_vars(),0); ?>
 	</head>
 	<!--end::Head-->
 	<!--begin::Body-->
@@ -16,8 +16,8 @@
 		<!--begin::Header Mobile-->
 		<div id="kt_header_mobile" class="header-mobile bg-primary header-mobile-fixed">
 			<!--begin::Logo-->
-			<a href="{{@BASE}}/">
-				<img alt="Logo" src="{{@BASE}}/ui/backend/assets/media/logos/logo-letter-9.png" class="max-h-30px" />
+			<a href="<?= ($BASE) ?>/">
+				<img alt="Logo" src="<?= ($BASE) ?>/ui/backend/assets/media/logos/logo-letter-9.png" class="max-h-30px" />
 			</a>
 			<!--end::Logo-->
 			<!--begin::Toolbar-->
@@ -50,10 +50,10 @@
 					<!--begin::Header-->
 					<div id="kt_header" class="header flex-column header-fixed">
 						<!--begin::Top-->
-                        <include href="backend/inc/topnav.html" />
+                        <?php echo $this->render('backend/inc/topnav.html',NULL,get_defined_vars(),0); ?>
 						<!--end::Top-->
 						<!--begin::Bottom-->
-						<include href="backend/inc/nav.html" />
+						<?php echo $this->render('backend/inc/nav.html',NULL,get_defined_vars(),0); ?>
 						<!--end::Bottom-->
 					</div>
 					<!--end::Header-->
@@ -84,13 +84,13 @@
 								<div class="card card-custom">
 									<div class="card-header flex-wrap border-0 pt-6 pb-0">
 										<div class="card-title la">
-											<h3 class="card-label">{{@strPage}} ({{ @entrycount }})
-											<span class="d-block text-muted pt-2 font-size-sm">{{@strAction}}</span></h3>
+											<h3 class="card-label"><?= ($strPage) ?> (<?= ($entrycount) ?>)
+											<span class="d-block text-muted pt-2 font-size-sm"><?= ($strAction) ?></span></h3>
 										</div>
 										<div class="card-toolbar">
 											<!--begin::Dropdown-->
 											<div class="dropdown dropdown-inline mr-2 la">
-												<a href="{{@BASE}}/register/edit" class="btn btn-light-primary font-weight-bolder">
+												<a href="<?= ($BASE) ?>/register/edit" class="btn btn-light-primary font-weight-bolder">
 												<span class="svg-icon svg-icon-md">
 													<i class="fa fa-plus"></i>
 												</span>ລົງທະບຽນໃໝ່</a>
@@ -121,70 +121,70 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <repeat group="{{@items}}" value="{{@row}}">
-                                                        <tr id="item-{{@row.id}}">
-                                                        <td>{{ @row.semester }}</td>
-                                                        <td>ປີ {{ @row.year }}</td>
-                                                        <td>{{ @row.student_no }}</td>
-                                                        <td>{{ @row.first_name}} {{@row.last_name }}</td>
-                                                        <td>{{ @arrClass[@row.class] }}</td>
-                                                        <td>{{ @row.gender }}</td>
-                                                        <td>{{ @row.dob }}</td>
-                                                        <td>{{ @row.ethnicity }}</td>
-                                                        <td>{{ @arrProvince[@row.province_id] }}</td>
-                                                        <td>{{ @row.district }}</td>
-                                                        <td>{{ @row.village }}</td>
-                                                        <td>{{ @row.phone }}</td>
+                                                    <?php foreach (($items?:[]) as $row): ?>
+                                                        <tr id="item-<?= ($row['id']) ?>">
+                                                        <td><?= ($row['semester']) ?></td>
+                                                        <td>ປີ <?= ($row['year']) ?></td>
+                                                        <td><?= ($row['student_no']) ?></td>
+                                                        <td><?= ($row['first_name']) ?> <?= ($row['last_name']) ?></td>
+                                                        <td><?= ($arrClass[$row['class']]) ?></td>
+                                                        <td><?= ($row['gender']) ?></td>
+                                                        <td><?= ($row['dob']) ?></td>
+                                                        <td><?= ($row['ethnicity']) ?></td>
+                                                        <td><?= ($arrProvince[$row['province_id']]) ?></td>
+                                                        <td><?= ($row['district']) ?></td>
+                                                        <td><?= ($row['village']) ?></td>
+                                                        <td><?= ($row['phone']) ?></td>
                                                         <td>
-															<check if="{{@row.payment_status==0}}">
-																<true><p class="btn btn-danger">ຍັງບໍ່ຈ່າຍ</p></true>
-															</check>
-															<check if="{{@row.payment_status==1}}">
-																<true><p class="btn btn-warning">ຈ່າຍເຄີ່ງໜື່ງ</p></true>
-															</check>
-															<check if="{{@row.payment_status==2}}">
-																<true><p class="btn btn-success">ຈ່າຍແລ້ວ</p></true>
-															</check>
+															<?php if ($row['payment_status']==0): ?>
+																<p class="btn btn-danger">ຍັງບໍ່ຈ່າຍ</p>
+															<?php endif; ?>
+															<?php if ($row['payment_status']==1): ?>
+																<p class="btn btn-warning">ຈ່າຍເຄີ່ງໜື່ງ</p>
+															<?php endif; ?>
+															<?php if ($row['payment_status']==2): ?>
+																<p class="btn btn-success">ຈ່າຍແລ້ວ</p>
+															<?php endif; ?>
 														</td>
-                                                        <td>{{ @row.created_at }}</td>
+                                                        <td><?= ($row['created_at']) ?></td>
                                                         </tr>
-                                                    </repeat>       
+                                                    <?php endforeach; ?>       
                                                     </tbody>
 													<tfoot>
 														<tr>
 															<td colspan="6" class="footable-visible text-right">
 																<div class="d-flex justify-content-between align-items-center flex-wrap">
 																	<div class="d-flex flex-wrap py-2 mr-3 text-right">
-																		<a class="btn btn-icon btn-sm btn-light mr-2 my-1" href="{{@BASE}}/register?pg=1&limit={{@limit}}" aria-label="Previous">
+																		<a class="btn btn-icon btn-sm btn-light mr-2 my-1" href="<?= ($BASE) ?>/register?pg=1&limit=<?= ($limit) ?>" aria-label="Previous">
 																			<span aria-hidden="true">&laquo;</span>
 																			<span class="sr-only">Previous</span>
 																		</a>
 																		
-																		<a class="btn btn-icon btn-sm btn-light mr-2 my-1 {{@singlePrevious.class ?? ''}}" href="{{@BASE}}/register?pg={{@singlePrevious.pg ?? ''}}&limit={{@limit}}">&#8249;</a>
+																		<a class="btn btn-icon btn-sm btn-light mr-2 my-1 <?= ($singlePrevious['class'] ?? '') ?>" href="<?= ($BASE) ?>/register?pg=<?= ($singlePrevious['pg'] ?? '') ?>&limit=<?= ($limit) ?>">&#8249;</a>
 												
-																		<check if="{{count(@PreviousStart)>0}}">
-																			<true>
-																				<a class="btn btn-icon btn-sm btn-light mr-2 my-1 {{@PreviousStart.class ?? ''}}" href="{{@BASE}}/register?pg={{@PreviousStart.pg ?? ''}}&limit={{@limit}}">{{@PreviousStart.pg}}</a>
+																		<?php if (count($PreviousStart)>0): ?>
+																			
+																				<a class="btn btn-icon btn-sm btn-light mr-2 my-1 <?= ($PreviousStart['class'] ?? '') ?>" href="<?= ($BASE) ?>/register?pg=<?= ($PreviousStart['pg'] ?? '') ?>&limit=<?= ($limit) ?>"><?= ($PreviousStart['pg']) ?></a>
 																				<a class="btn btn-icon btn-sm btn-light mr-2 my-1" href="#">...</a>
-																			</true>
-																		</check>
+																			
+																		<?php endif; ?>
 												
-																		<repeat group="{{@arrPagination}}" value="{{@paginationRow}}">
-																			<a class="btn btn-icon btn-sm btn-light mr-2 my-1 {{@paginationRow.class ?? ''}}" href="{{@BASE}}/register?pg={{@paginationRow.pg ?? ''}}&limit={{@limit}}">{{@paginationRow.pg}}</a>
-																		</repeat>
+																		<?php foreach (($arrPagination?:[]) as $paginationRow): ?>
+																			<a class="btn btn-icon btn-sm btn-light mr-2 my-1 <?= ($paginationRow['class'] ?? '') ?>" href="<?= ($BASE) ?>/register?pg=<?= ($paginationRow['pg'] ?? '') ?>&limit=<?= ($limit) ?>"><?= ($paginationRow['pg']) ?></a>
+																		<?php endforeach; ?>
 												
-																		<check if="{{count(@singleNexPage)>0}}">
-																			<true>
+																		<?php if (count($singleNexPage)>0): ?>
+																			
 																				<a class="btn btn-icon btn-sm btn-light mr-2 my-1" href="#">...</a>
-																				<a class="btn btn-icon btn-sm btn-light mr-2 my-1 {{@doubleNexPage.class ?? ''}}" href="{{@BASE}}/register?pg={{@doubleNexPage.pg ?? ''}}&limit={{@limit}}">{{@doubleNexPage.pg}}</a>
-																				<a class="btn btn-icon btn-sm btn-light mr-2 my-1 {{@singleNexPage.class ?? ''}}" href="{{@BASE}}/register?pg={{@singleNexPage.pg ?? ''}}&limit={{@limit}}">&#8250;</a>
-																			</true>
-																			<false>
-																				<a class="btn btn-icon btn-sm btn-light mr-2 my-1 {{@singleNexPage.class ?? ''}}" href="{{@BASE}}/register?pg={{@singleNexPage.pg ?? ''}}&limit={{@limit}}">&#8250;</a>
-																			</false>
-																		</check>
+																				<a class="btn btn-icon btn-sm btn-light mr-2 my-1 <?= ($doubleNexPage['class'] ?? '') ?>" href="<?= ($BASE) ?>/register?pg=<?= ($doubleNexPage['pg'] ?? '') ?>&limit=<?= ($limit) ?>"><?= ($doubleNexPage['pg']) ?></a>
+																				<a class="btn btn-icon btn-sm btn-light mr-2 my-1 <?= ($singleNexPage['class'] ?? '') ?>" href="<?= ($BASE) ?>/register?pg=<?= ($singleNexPage['pg'] ?? '') ?>&limit=<?= ($limit) ?>">&#8250;</a>
+																			
+																			<?php else: ?>
+																				<a class="btn btn-icon btn-sm btn-light mr-2 my-1 <?= ($singleNexPage['class'] ?? '') ?>" href="<?= ($BASE) ?>/register?pg=<?= ($singleNexPage['pg'] ?? '') ?>&limit=<?= ($limit) ?>">&#8250;</a>
+																			
+																		<?php endif; ?>
 												
-																		<a class="btn btn-icon btn-sm btn-light mr-2 my-1 {{@doubleNexPage.class ?? ''}}" href="{{@BASE}}/register?pg={{@doubleNexPage.pg ?? ''}}&limit={{@limit}}" aria-label="Next">
+																		<a class="btn btn-icon btn-sm btn-light mr-2 my-1 <?= ($doubleNexPage['class'] ?? '') ?>" href="<?= ($BASE) ?>/register?pg=<?= ($doubleNexPage['pg'] ?? '') ?>&limit=<?= ($limit) ?>" aria-label="Next">
 																			<span aria-hidden="true">&raquo;</span>
 																			<span class="sr-only">Next</span>
 																		</a>
@@ -206,21 +206,21 @@
 					</div>
 					<!--end::Content-->
 					<!--begin::Footer-->
-					<include href="backend/inc/footer.html" />
+					<?php echo $this->render('backend/inc/footer.html',NULL,get_defined_vars(),0); ?>
 					<!--end::Footer-->
 				</div>
 				<!--end::Wrapper-->
 			</div>
 			<!--end::Page-->
 		</div>
-		<include href="backend/inc/panel.html"/>
-		<include href="backend/inc/script.html" />
+		<?php echo $this->render('backend/inc/panel.html',NULL,get_defined_vars(),0); ?>
+		<?php echo $this->render('backend/inc/script.html',NULL,get_defined_vars(),0); ?>
 		<!--end::Page Scripts-->
 		<script type="text/javascript">
 			new Vue({
 				el:"#app",
 				data:{
-					baseUrl:"{{@BASE}}/",
+					baseUrl:"<?= ($BASE) ?>/",
 				},
 				methods:{
 					getStatus:function(id,status)

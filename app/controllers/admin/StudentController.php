@@ -13,6 +13,6 @@ class StudentController extends ActionController {
         $this->f3->set('arrProvince',$this->custom->province());
         $this->f3->set('arrClass',$this->custom->arrClass());
         $this->f3->set('custom',$this->custom);
-	    parent::__construct('StudentServices', 'backend/student.html', 'student', 'student', 'ຈັດການຂໍ້ມູນນັກສຶກສາ');
+	    parent::__construct('RegisterServices', 'backend/student.html', 'student', 'student', 'ຈັດການຂໍ້ມູນນັກສຶກສາ');
     }
 }
