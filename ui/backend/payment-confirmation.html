@@ -108,12 +108,14 @@
                                                         <th>ແຂວງ</th>
                                                         <th>ເບີໂທ</th>
                                                         <th>ວັນທີລົງບຽນ</th>
-                                                        <th>ສະຖານະ</th>
+                                                        <th width="150">ສະຖານະ</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <repeat group="{{ @items }}" value="{{ @row }}">
                                                         <set district="{{ @help->getTitle('DistrictServices',['id = ?',@row.district_id],'district_name') }}"></set>
+                                                        <set amount="{{ @help->getByOne('PaymentServices',['semester = ? AND student_no = ?',@row.semester,@row.student_no]) }}"></set>
+                                                        <set amount="{{ @amount->total_amount ?? 0 }}"></set>
                                                         <tr id="item-{{@row.id}}">
                                                             <td>{{ @row.semester }}</td>
                                                             <td>ປີ {{ @row.year }}</td>
@@ -131,7 +133,8 @@
                                                             <td>{{ @row.created_at }}</td>
                                                             <td class="payment-status-{{ @row.id }}">
                                                                 <button class="btn btn-inline {{ @paymentStatusBtn[@row.payment_status] }}" 
-                                                                        v-on:click="handlePayment('{{ @row.id }}','{{ @row.student_no}}','{{ @row.first_name}} {{ @row.last_name }}','{{ @row.payment_status }}')">{{ @paymentStatus[@row.payment_status] ?? '-' }}</button>
+                                                                        v-on:click="handlePayment('{{ @row.id }}','{{ @row.student_no}}','{{ @row.first_name}} {{ @row.last_name }}','{{ @row.payment_status }}','{{ @amount > 0 ? number_format(@amount) : "" }}','{{ @row.semester }}')">{{ @paymentStatus[@row.payment_status] ?? '-' }}</button>
+                                                                <button class="btn btn-info" v-on:click="handlePrint('{{ @row.semester }}','{{ @row.student_no }}')"><i class="fa fa-print" aria-hidden="true"></i></button>
                                                             </td>
                                                         </tr>
                                                     </repeat>       
@@ -151,6 +154,8 @@
                                                         <div class="modal-body">
                                                             <form id="payment-status-form">
                                                                 <input type="hidden" name="id" v-model="id">
+                                                                <input type="hidden" name="semester" v-model="semester">
+                                                                <input type="hidden" name="student_no" v-model="student_no">
                                                                 <div class="row">
                                                                     <div class="col-md-12">
                                                                         <div class="form-group">
@@ -158,6 +163,12 @@
                                                                             <select name="payment_status" class="form-control la-normal" v-model="status">
                                                                                 {{ @custom->renderArraySelect(@paymentStatus,'') }}
                                                                             </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-12">
+                                                                        <div class="form-group">
+                                                                            <label class="la-normal">ຍອດຊຳລະທັງໝົດ</label>
+                                                                            <input type="text" name="total_amount" class="form-control add-commas" v-model="total_amount">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -170,7 +181,52 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                          </div>
+                                            <div style="display: none;" id="print-bill">
+                                                <table width="100%">
+                                                    <tr>
+                                                        <td valign="top" align="center" colspan="2">
+                                                            <img src="{{ @BASE }}/uploads/logo/logo.png" width="100" alt="">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <div class="la-nomal">
+                                                                ຊື່: <strong>{-{{ paymentData.first_name }}-} {-{{ paymentData.last_name }}-}</strong> <br>
+                                                                ເບີໂທ: <strong>{-{{ paymentData.phone }}-}</strong> <br>
+                                                                ຫ້ອງຮຽນ: <strong>{-{{ paymentData.class }}-}</strong> <br>
+                                                            </div>
+                                                        </td>
+                                                        <td class="la-nomal" align="right">
+                                                            ເລກບິນ: <strong>{-{{ paymentData.bill_no }}-}</strong> <br>
+                                                            ວັນທີ: {-{{ paymentData.created_at }}-}
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <table class="table table-bordered table-striped table-sm" id="print-table">
+                                                    <tr class="la-bold" style="border-bottom: 1pt dashed black;">
+                                                        <td>ລຳດັບ</td>
+                                                        <td>ລາຍການ</td>
+                                                        <td>ລາຄາ</td>
+                                                        <td>ລາຄາລວມ</td>
+                                                    </tr>
+                                                    <tr class="la-nomal tr-bottom">
+                                                        <td>1</td>
+                                                        <td>ຄ່າທຳນຽມ</td>
+                                                        <td align="right">{-{{ paymentData.total_amount }}-}</td>
+                                                        <td align="right">{-{{ paymentData.total_amount }}-}</td>
+                                                    </tr>
+                                                    <tr class="la-bold">
+                                                        <td colspan="3" align="right">ລວມທັງໝົດ</td>
+                                                        <td align="right">{-{{ paymentData.total_amount }}-}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="center" colspan="4">
+                                                            ໝາຍເຫດ: <strong>{-{{ paymentData.payment_status }}-}</strong>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
 										<!--end: Datatable-->
 									</div>
 								</div>
@@ -200,13 +256,18 @@
                     student_no:'',
                     full_name:'',
                     status:0,
+                    total_amount:'',
+                    semester:'',
+                    paymentData:{},
                 },
                 methods:{
-                    handlePayment:function(id,student_no,full_name,status){
+                    handlePayment:function(id,student_no,full_name,status,amount,semester){
                         this.id = id;
                         this.student_no = student_no;
                         this.full_name = full_name;
                         this.status = status;
+                        this.total_amount = amount;
+                        this.semester = semester;
                         $('#paymentStatusModal').modal('show');
                     },
                     handleSubmit:function(){
@@ -224,7 +285,36 @@
                                 Swal.fire('ຜິດພາດ!','ກະລຸນາລອງໃໝ່ອີກຄັ້ງ','error');
                             }
                         })
-                    }
+                    },
+                    handlePrint:function(semester,student_no){
+                        axios.get('{{ @BASE }}/payment/data/'+semester+'/'+student_no)
+                        .then(res => {
+                            var data = res.data;
+                            this.paymentData = data.item;
+                            var self = this;
+                            setTimeout(function(){
+                                self.print();
+                            },300)
+                        })
+                    },
+                    print: function () {
+                    var data = document.getElementById('print-bill').innerHTML;
+                    var myWindow = window.open('', 'ພີມໃບບິນ', '');
+                    //var myWindow = window.open('', 'my div', 'height=700,width=800');
+                    myWindow.document.write('<html><head><title>ພີມໃບບິນ</title>');
+                    var htmlToPrint = '<style type="text/css">  @font-face {font-family: "Phetsarath OT";src: url("./../../uploads/fonts/Phetsarath-OT.ttf");}@font-face {font-family: "Phetsarath OT_Bold";src: url("./../../uploads/fonts/Phetsarath-OT_Bold.ttf");}table,.bill-footer {font-family: "Phetsarath OT"; margin-top:7px;}#print-table {border-collapse: collapse;width: 100%;}.tr-bottom{border-bottom: 1pt dashed black;}.logo{display:none;}.black-logo{display:block}.shop-name{font-size: 25px;font-family: "Phetsarath OT_Bold";}</style>';
+                    myWindow.document.write('</head><body >');
+                    myWindow.document.write(data);
+                    myWindow.document.write('</body></html>');
+                    myWindow.document.write(htmlToPrint);
+                    myWindow.document.close(); // necessary for IE >= 10
+                    myWindow.onload = function () { // necessary if the div contain images
+                        myWindow.focus(); // necessary for IE >= 10
+                        myWindow.print();
+                        myWindow.close();
+                    };
+                    $('#paymentStatusModalvvvvvvv').modal('hide');
+                },
                 }
             })
 		</script>

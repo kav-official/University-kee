@@ -28,20 +28,47 @@ class PaymentConfirmationController{
         echo $tmp->render("backend/payment-confirmation.html");
     }
 
-    function storePaymentStatus(){
+    function data(){
         $f3 = Base::instance();
+        $semester = $f3->get('PARAMS.semester');
+        $student_no = $f3->get('PARAMS.student_no');
         $custom = new CustomFunctions();
-        $Svr = new RegisterServices($this->db);
-        if ($_SERVER['REQUEST_METHOD'] == 'PUT'){
-           $data = $f3->get('BODY');
-           parse_str($data,$post_vars);
-           $paymentStatus = $custom->paymentStatus();
-           $paymentStatusBtn = $custom->paymentStatusBtn();
-           $Svr->load(array('id = ?',$post_vars['id']));
-           $Svr->payment_status = $post_vars['payment_status'];
-           $Svr->update();
-           API::success(array('success' => true, 'btn' => $paymentStatusBtn[$post_vars['payment_status']] ?? 'btn-danger', 'text' => $paymentStatus[$post_vars['payment_status']] ?? ''));
+        $province = $custom->province();
+        $arrClass = $custom->arrClass();
+        $paymentStatus = $custom->paymentStatus();
+        $RSvr = new RegisterServices($this->db);
+        $PSvr = new PaymentServices($this->db);
+        $Dsvr = new DistrictServices($this->db);
+        $ritem = $RSvr->load(array('semester = ? AND student_no = ?',$semester,$student_no));
+        $pitem = $PSvr->load(array('semester = ? AND student_no = ?',$semester,$student_no));
+        if($ritem != false && $pitem != false){
+            $district = $Dsvr->load(array('id = ?',$ritem->district_id));
+            $arr = array(
+                'student_no' => $ritem->student_no,
+                'semester' => $ritem->semester,
+                'year' => $ritem->year,
+                'first_name' => $ritem->first_name,
+                'last_name' => $ritem->last_name,
+                'gender' => $custom->gender($ritem->gender),
+                'dob' => date('d-m-Y',strtotime($ritem->dob)),
+                'phone' => $ritem->phone,
+                'village' => $ritem->village,
+                'district' => $district->district_name,
+                'province' => $province[$ritem->province_id],
+                'class' => $arrClass[$ritem->class],
+                'payment_status' => $paymentStatus[$ritem->payment_status],
+                'bill_no' => $pitem->id,
+                'total_amount' => number_format($pitem->total_amount),
+                'created_at' => date('d-m-Y H:i:s',strtotime($pitem->created_at)),
+            );
+            API::success(array('success' => true, 'message' => 'ສຳເລັດ', 'item' => $arr));
+        } else {
+            API::success(array('success' => false, 'message' => 'ບໍ່ພົບຂໍ້ມູນ'));
         }
-        API::success(array('success' => false, 'text' => ''));
+    }
+
+    function storePaymentStatus(){
+        $Svr = new PaymentServices($this->db);
+        $Svr->add();
     }
 }
