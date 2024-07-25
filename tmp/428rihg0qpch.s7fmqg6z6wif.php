@@ -121,7 +121,7 @@
                                                             <td><?= ($row['first_name']) ?> <?= ($row['last_name']) ?></td>
                                                             <td><?= ($arrClass[$row['class']]) ?></td>
                                                             <td><?= ($custom->gender($row['gender'])) ?></td>
-                                                            <td><?= ($row['dob']) ?></td>
+                                                            <td><?= (date('d-m-Y',strtotime($row['dob']))) ?></td>
                                                             <td><?= ($row['village']) ?></td>
                                                             <td><?= ($district) ?></td>
                                                             <td><?= ($province[$row['province_id']] ?? '') ?></td>
