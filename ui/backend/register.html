@@ -235,7 +235,12 @@
                         type:'GET',
                         success:function(data){
                             if(data.success ==true){
-                                console.log(data);
+                                var label = "<option value=''>- ເລືອກເມືອງ -</option>";
+                                var items = data.data;
+                                    $.each(items,(index,item)=>{
+                                        label += "<option value='"+item.id+"'>"+item.district_name+"</option>";
+                                    })
+                                $(".district-id").html(label);
                             }
                         }
                     })

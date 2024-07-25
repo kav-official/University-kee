@@ -93,7 +93,7 @@
                                                     <!--begin::Wizard Step 1-->
                                                     <div class="my-5 step" data-wizard-type="step-content" data-wizard-state="current">
                                                         <div class="form-group row">
-                                                            <label for="product_name" class="col-xl-3 col-lg-3 col-form-label la">ຮູບ</label>
+                                                            <label for="product_name" class="col-xl-2 col-lg-2 col-form-label la">ຮູບ</label>
                                                             <div class="col-lg-9 col-xl-3">
                                                                 <input type="hidden" name="profile_avatar" value="{{@item->profile_avatar ?? ''}}" />
                                                                 <div class="upload-drop-zone dropzone" id="profile-avatar">
@@ -139,7 +139,7 @@
                                                         <div class="form-group row la">
                                                             <label class="col-xl-2 col-lg-2 col-form-label">ແຂວງ</label>
                                                             <div class="col-lg-9 col-xl-9">
-                                                                <select name="province_id" class="form-control">
+                                                                <select name="province_id" class="form-control province-id">
                                                                     {{ @custom->renderArraySelect(@arrProvince,@item->province_id ?? '' )}}
                                                                 </select>
                                                             </div>
@@ -147,7 +147,8 @@
                                                         <div class="form-group row la">
                                                             <label class="col-xl-2 col-lg-2 col-form-label">ເມືອງ</label>
                                                             <div class="col-lg-9 col-xl-9">
-                                                                <input class="form-control form-control-solid form-control-lg" value="{{ @item->district ?? '' }}"  name="district" type="text" />
+                                                                <select name="district_id" class="form-control district-id">
+                                                                </select>
                                                             </div>
                                                         </div>
                                                         <div class="form-group row la">
@@ -237,6 +238,24 @@
 		<include href="backend/inc/script.html" />
 		<script type="text/javascript">
             $(document).ready(function(){
+
+            $(".province-id").on('change',function(){
+                $.ajax({
+                    url:'{{@BASE}}/get-district/'+$(this).val(),
+                    type:'GET',
+                    success:function(data){
+                        if(data.success ==true){
+                            var label = "<option value=''>- ເລືອກເມືອງ -</option>";
+                            var items = data.data;
+                                $.each(items,(index,item)=>{
+                                    label += "<option value='"+item.id+"'>"+item.district_name+"</option>";
+                                })
+                            $(".district-id").html(label);
+                        }
+                    }
+                })
+            })
+
              $('#submit-form').submit(function(event){
                 event.preventDefault();
                 if ($("#submit-form").valid()) {
