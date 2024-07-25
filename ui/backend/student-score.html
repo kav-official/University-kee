@@ -100,9 +100,9 @@
                                                         <th>ຫ້ອງສອນ</th>
                                                         <th>ເພດ</th>
                                                         <th>ວັນເດືອນປີເກີດ</th>
-                                                        <th>ແຂວງ</th>
-                                                        <th>ເມືອງ</th>
                                                         <th>ບ້ານ</th>
+                                                        <th>ເມືອງ</th>
+                                                        <th>ແຂວງ</th>
                                                         <th>ເບີໂທ</th>
                                                         <th>ຄະແນນ</th>
                                                         <th class="text-center">ປ້ອນຄະແນນ</th>
@@ -119,9 +119,9 @@
                                                             <td>{{ @arrClass[@row.class] }}</td>
                                                             <td>{{ @custom->gender(@row.gender) }}</td>
                                                             <td>{{ date('d-m-Y',strtotime(@row.dob)) }}</td>
-                                                            <td>{{ @province[@row.province_id] }}</td>
-                                                            <td>{{ @district }}</td>
                                                             <td>{{ @row.village }}</td>
+                                                            <td>{{ @district }}</td>
+                                                            <td>{{ @province[@row.province_id] }}</td>
                                                             <td>{{ @row.phone }}</td>
                                                             <td class="score-{{ @row.student_no }}">{{ @score->score ?? '-' }}</td>
                                                             <td class="text-center">
