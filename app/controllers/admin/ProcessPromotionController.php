@@ -1,5 +1,5 @@
 <?php
-class StudentGradeController{
+class ProcessPromotionController{
     public $db;
     function __construct(){
         $this->db = DBConfig::config();
@@ -20,9 +20,9 @@ class StudentGradeController{
         $f3->set('province',$custom->province());
         $f3->set('arrClass',$custom->arrClass());
         $f3->set('nav','process');
-        $f3->set('subnav','student-score-grade');
-        $f3->set('strAction', 'ຄິດໄລ່ເກຣດ');
-        $f3->set('strPage', 'ຄິດໄລ່ເກຣດ');
-        echo $tmp->render("backend/student-score-grade.html");
+        $f3->set('subnav','process-promotion');
+        $f3->set('strAction', 'ປະເມີນຜົນການເລື່ອນຊັ້ນ');
+        $f3->set('strPage', 'ນັກສຶກສາ');
+        echo $tmp->render("backend/process-promotion.html");
     }
 }

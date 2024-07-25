@@ -4,10 +4,10 @@
 	<!--begin::Head-->
 	<head><base href="../../../">
 		<meta charset="utf-8" />
-		<title>ນັກສຶກສາ | ຄິດໄລ່ເກຣດ</title>
+		<title>ນັກສຶກສາ | ປະເມີນຜົນການເລື່ອນຊັ້ນ</title>
 		<meta name="description" content="Child datatable from local data" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-		<include href="backend/inc/header.html" />
+		<?php echo $this->render('backend/inc/header.html',NULL,get_defined_vars(),0); ?>
 	</head>
 	<!--end::Head-->
 	<!--begin::Body-->
@@ -16,8 +16,8 @@
 		<!--begin::Header Mobile-->
 		<div id="kt_header_mobile" class="header-mobile bg-primary header-mobile-fixed">
 			<!--begin::Logo-->
-			<a href="{{@BASE}}/">
-				<img alt="Logo" src="{{@BASE}}/ui/backend/assets/media/logos/logo-letter-9.png" class="max-h-30px" />
+			<a href="<?= ($BASE) ?>/">
+				<img alt="Logo" src="<?= ($BASE) ?>/ui/backend/assets/media/logos/logo-letter-9.png" class="max-h-30px" />
 			</a>
 			<!--end::Logo-->
 			<!--begin::Toolbar-->
@@ -50,10 +50,10 @@
 					<!--begin::Header-->
 					<div id="kt_header" class="header flex-column header-fixed">
 						<!--begin::Top-->
-                        <include href="backend/inc/topnav.html" />
+                        <?php echo $this->render('backend/inc/topnav.html',NULL,get_defined_vars(),0); ?>
 						<!--end::Top-->
 						<!--begin::Bottom-->
-						<include href="backend/inc/nav.html" />
+						<?php echo $this->render('backend/inc/nav.html',NULL,get_defined_vars(),0); ?>
 						<!--end::Bottom-->
 					</div>
 					<!--end::Header-->
@@ -84,8 +84,8 @@
 								<div class="card card-custom">
 									<div class="card-header flex-wrap border-0 pt-6 pb-0">
 										<div class="card-title la">
-											<h3 class="card-label">{{@strPage}} ({{ @entrycount }})
-											<span class="d-block text-muted pt-2 font-size-sm">{{@strAction}}</span></h3>
+											<h3 class="card-label"><?= ($strPage) ?> (<?= ($entrycount) ?>)
+											<span class="d-block text-muted pt-2 font-size-sm"><?= ($strAction) ?></span></h3>
 										</div>
 									</div>
 									<div class="card-body">
@@ -100,34 +100,37 @@
                                                         <th>ຫ້ອງສອນ</th>
                                                         <th>ເພດ</th>
                                                         <th>ວັນເດືອນປີເກີດ</th>
-														<th>ບ້ານ</th>
-														<th>ເມືອງ</th>
+                                                        <th>ບ້ານ</th>
+                                                        <th>ເມືອງ</th>
                                                         <th>ແຂວງ</th>
                                                         <th>ເບີໂທ</th>
                                                         <th>ຄະແນນ</th>
                                                         <th>ເກຣດ</th>
+                                                        <th>ປະເມີນຜົນ</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <repeat group="{{ @items }}" value="{{ @row }}" counter="{{ @ctr }}">
-                                                        <set district="{{ @help->getTitle('DistrictServices',['id = ?',@row.district_id],'district_name') }}"></set>
-                                                        <set score="{{ @help->getByOne('ScoreServices',['student_no = ? AND semester = ?',@row.student_no,@row.semester]) }}"></set>
-                                                        <set grade="{{ @custom->calculate_grade(@score->score ?? 'null') }}"></set>
-                                                        <tr id="item-{{@row.id}}">
-                                                            <td>{{ @ctr }}</td>
-                                                            <td>{{ @row.student_no }}</td>
-                                                            <td>{{ @row.first_name }} {{ @row.last_name }}</td>
-                                                            <td>{{ @arrClass[@row.class] }}</td>
-                                                            <td>{{ @row.gender }}</td>
-                                                            <td>{{@row.dob}}</td>
-															<td>{{ @row.village }}</td>
-															<td>{{ @district }}</td>
-                                                            <td>{{ @province[@row.province_id] }}</td>
-                                                            <td>{{ @row.phone }}</td>
-                                                            <td class="score-{{ @row.student_no }}">{{ @score->score ?? '-' }}</td>
-                                                            <td align="center">{{ @grade }}</td>
+                                                    <?php $ctr=0; foreach (($items?:[]) as $row): $ctr++; ?>
+                                                        <?php $district=$help->getTitle('DistrictServices',['id = ?',$row['district_id']],'district_name'); ?>
+                                                        <?php $score=$help->getByOne('ScoreServices',['student_no = ? AND semester = ?',$row['student_no'],$row['semester']]); ?>
+                                                        <?php $grade=$custom->calculate_grade($score->score ?? 'null'); ?>
+                                                        <?php $process=$custom->process_promotion($grade); ?>
+                                                        <tr id="item-<?= ($row['id']) ?>">
+                                                            <td><?= ($ctr) ?></td>
+                                                            <td><?= ($row['student_no']) ?></td>
+                                                            <td><?= ($row['first_name']) ?> <?= ($row['last_name']) ?></td>
+                                                            <td><?= ($arrClass[$row['class']]) ?></td>
+                                                            <td><?= ($row['gender']) ?></td>
+                                                            <td><?= ($row['dob']) ?></td>
+                                                            <td><?= ($row['village']) ?></td>
+                                                            <td><?= ($district) ?></td>
+                                                            <td><?= ($province[$row['province_id']] ?? '') ?></td>
+                                                            <td><?= ($row['phone']) ?></td>
+                                                            <td class="score-<?= ($row['student_no']) ?>"><?= ($score->score ?? '-') ?></td>
+                                                            <td align="center"><?= ($grade) ?></td>
+                                                            <td align="center"><?= ($process) ?></td>
                                                         </tr>
-                                                    </repeat>       
+                                                    <?php endforeach; ?>       
                                                 </tbody>
                                             </table>
                                             <!-- Modal -->
@@ -143,15 +146,15 @@
 					</div>
 					<!--end::Content-->
 					<!--begin::Footer-->
-					<include href="backend/inc/footer.html" />
+					<?php echo $this->render('backend/inc/footer.html',NULL,get_defined_vars(),0); ?>
 					<!--end::Footer-->
 				</div>
 				<!--end::Wrapper-->
 			</div>
 			<!--end::Page-->
 		</div>
-		<include href="backend/inc/panel.html"/>
-		<include href="backend/inc/script.html" />
+		<?php echo $this->render('backend/inc/panel.html',NULL,get_defined_vars(),0); ?>
+		<?php echo $this->render('backend/inc/script.html',NULL,get_defined_vars(),0); ?>
 		<!--end::Page Scripts-->
 	</body>
 	<!--end::Body-->

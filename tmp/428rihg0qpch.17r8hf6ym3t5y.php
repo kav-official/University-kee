@@ -4,7 +4,7 @@
 	<!--begin::Head-->
 	<head><base href="../../../">
 		<meta charset="utf-8" />
-		<title>ຜູ້ໃຊ້ | Joint Pharma</title>
+		<title>ນັກສຶກສາ | ຄິດໄລ່ເກຣດ</title>
 		<meta name="description" content="Child datatable from local data" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 		<?php echo $this->render('backend/inc/header.html',NULL,get_defined_vars(),0); ?>

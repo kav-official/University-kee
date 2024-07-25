@@ -1,6 +1,16 @@
 <?php
 class CustomFunctions{
-  function calculate_grade($score){
+  function process_promotion($grade){
+    if($grade == '-'){
+      return $grade;
+    }
+    $arr = array('A', 'B+', 'B', 'C+', 'C', 'D+', 'D');
+    if(in_array($grade,$arr)){
+      return "ຜ່ານ";
+    }
+    return "ບໍ່ຜ່ານ";
+  }
+    function calculate_grade($score){
     if($score == null){
       return '-';
     }

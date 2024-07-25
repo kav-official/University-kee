@@ -79,7 +79,7 @@
 						<!--begin::Entry-->
 						<div class="d-flex flex-column-fluid">
 							<!--begin::Container-->
-							<div class="container">
+							<div class="container-fluid">
 								<!--begin::Card-->
 								<div class="card card-custom">
 									<div class="card-header flex-wrap border-0 pt-6 pb-0">
@@ -105,25 +105,26 @@
                                                 <thead>
                                                     <tr style="font-family: NotoSerifLao;">
                                                         <th>ສົກຮຽນ</th>
+                                                        <th>ປີຮຽນ</th>
                                                         <th>ລະຫັດນັກສຶກສາ</th>
                                                         <th>ຊື່​ເຕັມ</th>
                                                         <th>ຫ້ອງຮຽນ</th>
                                                         <th>ເພດ</th>
-                                                        <th>ວ/ດ/ປ ເກີດ</th>
+                                                        <th>ວ/ດ/ປ</th>
                                                         <th>ຊົນເຜົ່າ</th>
                                                         <th>ແຂວງ</th>
                                                         <th>ເມືອງ</th>
                                                         <th>ບ້ານ</th>
                                                         <th>ເບີໂທ</th>
-                                                        <th>ສະຖານະຈ່າຍເງີນ</th>
+                                                        <th>ຈ່າຍເງີນ</th>
                                                         <th>ວັນທີລົງບຽນ</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <?php foreach (($items?:[]) as $row): ?>
                                                         <tr id="item-<?= ($row['id']) ?>">
-													
                                                         <td><?= ($row['semester']) ?></td>
+                                                        <td>ປີ <?= ($row['year']) ?></td>
                                                         <td><?= ($row['student_no']) ?></td>
                                                         <td><?= ($row['first_name']) ?> <?= ($row['last_name']) ?></td>
                                                         <td><?= ($arrClass[$row['class']]) ?></td>
@@ -131,12 +132,21 @@
                                                         <td><?= ($row['dob']) ?></td>
                                                         <td><?= ($row['ethnicity']) ?></td>
                                                         <td><?= ($arrProvince[$row['province_id']]) ?></td>
-                                                        <td><?= ($row['district']) ?></td>
+                                                        <td><?= ($row['district_id']) ?></td>
                                                         <td><?= ($row['village']) ?></td>
                                                         <td><?= ($row['phone']) ?></td>
-                                                        <td><?= ($row['payment_status']) ?></td>
-                                                        <td><?= (date('d-m-Y H:i:s',$row['created_at'])) ?></td>
-                                                     
+                                                        <td>
+															<?php if ($row['payment_status']==0): ?>
+																<p class="btn btn-danger">ຍັງບໍ່ຈ່າຍ</p>
+															<?php endif; ?>
+															<?php if ($row['payment_status']==1): ?>
+																<p class="btn btn-warning">ຈ່າຍເຄີ່ງໜື່ງ</p>
+															<?php endif; ?>
+															<?php if ($row['payment_status']==2): ?>
+																<p class="btn btn-success">ຈ່າຍແລ້ວ</p>
+															<?php endif; ?>
+														</td>
+                                                        <td><?= ($row['created_at']) ?></td>
                                                         </tr>
                                                     <?php endforeach; ?>       
                                                     </tbody>
