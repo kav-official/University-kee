@@ -116,8 +116,8 @@
                                                         <th>ເມືອງ</th>
                                                         <th>ບ້ານ</th>
                                                         <th>ເບີໂທ</th>
+														<th>ວັນທີລົງບຽນ</th>
                                                         <th>ຈ່າຍເງີນ</th>
-                                                        <th>ວັນທີລົງບຽນ</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -135,18 +135,18 @@
                                                         <td>{{ @arrDis[@row.district_id] }}</td>
                                                         <td>{{ @row.village }}</td>
                                                         <td>{{ @row.phone }}</td>
-                                                        <td>
+                                                        <td>{{ @row.created_at }}</td>
+														<td>
 															<check if="{{@row.payment_status==0}}">
-																<true><p class="btn btn-danger">ຍັງບໍ່ຈ່າຍ</p></true>
+																<true><p class="btn btn-outline-danger">ຍັງບໍ່ຈ່າຍ</p></true>
 															</check>
 															<check if="{{@row.payment_status==1}}">
-																<true><p class="btn btn-warning">ຈ່າຍເຄີ່ງໜື່ງ</p></true>
+																<true><p class="btn btn-outline-warning">ຈ່າຍເຄີ່ງໜື່ງ</p></true>
 															</check>
 															<check if="{{@row.payment_status==2}}">
-																<true><p class="btn btn-success">ຈ່າຍແລ້ວ</p></true>
+																<true><p class="btn btn-outline-success">ຈ່າຍແລ້ວ</p></true>
 															</check>
 														</td>
-                                                        <td>{{ @row.created_at }}</td>
                                                         </tr>
                                                     </repeat>       
                                                     </tbody>
