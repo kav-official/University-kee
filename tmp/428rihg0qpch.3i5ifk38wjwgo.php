@@ -94,9 +94,14 @@
                                                     <!--begin::Wizard Step 1-->
                                                     <div class="my-5 step" data-wizard-type="step-content" data-wizard-state="current">
                                                         <div class="form-group row la">
-                                                            <label class="col-xl-2 col-lg-2 col-form-label">ສົກຮຽນ</label>
-                                                            <div class="col-lg-9 col-xl-9">
-                                                                <input class="form-control form-control-solid form-control-lg" name="semester" type="text" value="<?= ($item->semester ?? '') ?>"  />
+                                                            <label class="col-xl-2 col-lg-2 col-form-label" style="font-weight: bolder;">ສົກຮຽນ</label>
+                                                            <div class="col-lg-4 col-xl-4">
+                                                                <h3><?= ($semester) ?></h3>
+                                                                <input class="form-control" name="semester" type="hidden" value="<?= ($semester) ?>"  />
+                                                            </div>
+                                                            <label class="col-lg-1 col-form-label" style="font-weight: bolder;">ປີຮຽນ</label>
+                                                            <div class="col-lg-4 col-xl-4">
+                                                                <h3>ນັກສຶກສາປີ 1</h3>
                                                             </div>
                                                         </div>
                                                         <div class="form-group row la">
@@ -144,7 +149,7 @@
                                                         <div class="form-group row la">
                                                             <label class="col-xl-2 col-lg-2 col-form-label">ເມືອງ</label>
                                                             <div class="col-lg-9 col-xl-9">
-                                                                <input class="form-control form-control-solid form-control-lg" value="<?= ($item->district ?? '') ?>"  name="district" type="text" />
+                                                                <input class="form-control form-control-solid form-control-lg" value="<?= ($item->district_id ?? '') ?>"  name="district_id" type="text" />
                                                             </div>
                                                         </div>
                                                         <div class="form-group row la">
@@ -173,34 +178,11 @@
                                                         </div>
                                                       
                                                         <div class="form-group row la">
-                                                            <label class="col-xl-2 col-lg-2 col-form-label">ຫ້ອງຮຽນ</label>
+                                                            <label class="col-xl-2 col-lg-4 col-form-label">ຫ້ອງຮຽນ</label>
                                                             <div class="col-lg-4 col-xl-4">
                                                                 <select name="class" class="form-control class-option">
                                                                     <?= ($custom->renderArraySelect($arrClass,$item->class ?? '' ))."
 " ?>
-                                                                </select>
-                                                            </div>
-                                                            <label class="col-lg-1 col-form-label">ຈຳນວນເງີນ</label>
-                                                            <div class="col-lg-4">
-                                                                <input class="form-control form-control-solid form-control-lg current-fee" value="<?= ($item->fee ?? '') ?>"  name="fee" type="text" />
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="form-group row la">
-                                                            <label class="col-xl-2 col-lg-2 col-form-label">ສະຖານະການຈ່າຍ</label>
-                                                            <div class="col-lg-4 col-xl-4">
-                                                                <select name="payment_status" class="form-control">
-                                                                    <option value="0">ຍັງ</option>
-                                                                    <option value="1">ຈ່າຍກ່ອນເຄີ່ງໜື່ງ</option>
-                                                                    <option value="2">ຈ່າຍແລ້ວ</option>
-                                                                </select>
-                                                            </div>
-
-                                                            <label class="col-lg-1 col-form-label">ຈ່າຍດ້ວຍ</label>
-                                                            <div class="col-lg-4 col-xl-4">
-                                                                <select name="payment_methode" class="form-control">
-                                                                    <option value="1">ເງີນສົດ</option>
-                                                                    <option value="2">ເງີນໂອນ</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -237,7 +219,6 @@
 		<?php echo $this->render('backend/inc/script.html',NULL,get_defined_vars(),0); ?>
 		<script type="text/javascript">
             $(document).ready(function(){
-
                 $(".class-option").on('change',function(){
                     $.ajax({
                         url:'<?= ($BASE) ?>/get-class/fee/'+$(this).val(),
