@@ -98,33 +98,31 @@
                                                         <div class="form-group row la">
                                                             <label class="col-xl-2 col-lg-2 col-form-label">ຊື່​ແທ້</label>
                                                             <div class="col-lg-4">
-                                                                <input class="form-control first-name form-control-solid form-control-lg" name="first_name" type="text" />
+                                                                <input class="form-control first-name form-control-solid form-control-lg" readonly name="first_name" type="text" />
                                                             </div>
                                                              <label class="col-lg-1 col-form-label">ນາມ​ສະ​ກຸນ</label>
                                                             <div class="col-lg-4">
-                                                                <input class="form-control last-name form-control-solid form-control-lg" name="last_name" type="text"/>
+                                                                <input class="form-control last-name form-control-solid form-control-lg" readonly name="last_name" type="text"/>
                                                             </div>
                                                         </div>
                                                         <div class="form-group row la">
                                                             <label class="col-xl-2 col-lg-2 col-form-label">ວັນເດືອນປີເກີດ</label>
                                                             <div class="col-lg-4">
-                                                                <input class="form-control dob form-control-solid form-control-lg" name="first_name" type="text"/>
+                                                                <input class="form-control dob form-control-solid form-control-lg" readonly name="first_name" type="text"/>
                                                             </div>
                                                              <label class="col-lg-1 col-form-label">ປີຮຽນ</label>
                                                             <div class="col-lg-4">
-                                                                <input class="form-control year form-control-solid form-control-lg" name="last_name" type="text"  />
+                                                                <input class="form-control year form-control-solid form-control-lg" readonly name="last_name" type="text"  />
                                                             </div>
                                                         </div>
                                                     </div>
 
-                                                    <form id="submit-form" method="<?= ($method) ?>" action="<?= ($BASE) ?>/register-old">
-                                                        <div class="d-flex text-center border-top pt-10 mt-15">
-                                                            <input type="hidden" name="student_no" class="post-student-no">
-                                                            <div class="text-center">
-                                                                <button type="submit" class="btn btn-success font-weight-bolder px-9 py-4 btn-submit">Submit <i class="fa"></i></button>
-                                                            </div>
+                                                    <div class="text-center border-top pt-10 mt-15">
+                                                        <input type="hidden" name="student_no" class="post-student-no">
+                                                        <div class="text-center">
+                                                            <button type="button" class="btn btn-success font-weight-bolder px-9 py-4 btn-submit">Submit <i class="fa"></i></button>
                                                         </div>
-                                                    </form>
+                                                    </div>
                                                 </div>
                                             </div>
 									</div>
@@ -133,16 +131,10 @@
 							</div>
 							<!--end::Container-->
 						</div>
-						<!--end::Entry-->
 					</div>
-					<!--end::Content-->
-					<!--begin::Footer-->
 					<?php echo $this->render('backend/inc/footer.html',NULL,get_defined_vars(),0); ?>
-					<!--end::Footer-->
 				</div>
-				<!--end::Wrapper-->
 			</div>
-			<!--end::Page-->
 		</div>
         <?php echo $this->render('backend/inc/panel.html',NULL,get_defined_vars(),0); ?>
 		<?php echo $this->render('backend/inc/script.html',NULL,get_defined_vars(),0); ?>
@@ -168,63 +160,41 @@
                     }
                 });
 
-             $('#submit-form').submit(function(event){
-                event.preventDefault();
-                if ($("#submit-form").valid()) {
-                    $.ajax({
-                        type: $("#submit-form").attr("method"),            
-                        url: $("#submit-form").attr("action"), 
-                        data: $("#submit-form").serialize(),             
-                        beforeSend: function() {
-                            $("button.btn-submit").prop('disabled', true);
-                            $('button.btn-submit').css('cursor','not-allowed');
-                            $('button.btn-submit i.fa').addClass( "fa-refresh fa-spin" );
-                        },  
-                        success: function(data) {
-                            if (data.success == true) {
-                                Swal.fire({
-                                    position: 'top-end',
-                                    icon: 'success',
-                                    title: data.message,
-                                    showConfirmButton: false,
-                                    timer: 1500
-                                }).then((result)=>{
-                                    window.location.href="<?= ($BASE) ?>/register";
-                                });
-                            } else {
-                                Swal.fire("Error!", data.message, "error");
-                                $('button.btn-submit i.fa').removeClass( "fa-refresh fa-spin" );
-                                $('button.btn-submit').removeAttr('style');
-                                $("button.btn-submit").prop('disabled', false);
+                $(".btn-submit").click(function(){
+                    if($(".post-student-no").val()==''){
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'ຄຳເຕືອນ',
+                            text:'ກະລຸນາເລືອກລະຫັດນັກສຶືກສາ',
+                            showConfirmButton: true,
+                        })
+                    }else{
+                         Swal.fire({
+                            icon: 'warning',
+                            title: 'ຄຳເຕືອນ',
+                            text:'ກະລຸນາກວດເບີີ່ງຂໍ້ມູນໃຫ້ຖືກຕ້ອງ',
+                            showCancelButton: true,
+                            showConfirmButton: true,
+                        }).then((result)=>{
+                            if (result.isConfirmed) {
+                            $.ajax({
+                                    url:'<?= ($BASE) ?>/update/oldstudent/'+$(".post-student-no").val(),
+                                    type:'POST',
+                                    success:function(data){
+                                        if(data.success == true){
+                                            Swal.fire('ຂໍສະແດງຄວາມຍີນດີ',data.message,'success');
+                                            $(".student-no").val('');
+                                        }else{
+                                            Swal.fire('ຄຳເຕືອນ',data.message,'warning');
+                                            $(".student-no").val('');
+                                        }
+                                    }
+                                })
                             }
-                        },
-                        error: function () {
-                            Swal.fire("Error!", "Error during proccessing!", "error");
-                            $('button.btn-submit i.fa').removeClass( "fa-refresh fa-spin" );
-                            $('button.btn-submit').removeAttr('style');
-                            $("button.btn-submit").prop('disabled', false);
-                        },
-                    });
-                }
-              
+                        });
+                    }
+                })
             });
-            $("#submit-form").validate({
-            rules: {
-                unit_name: {
-                    required: true
-                }
-            },
-            messages: {
-                unit_name: {
-                    required: "Please enter user name.",
-                }
-            },
-            errorPlacement: function(error, element) {
-                error.appendTo(element.closest('div.form-group').find('div.error'));
-            },
-          });
-        });
-		
       </script>
 	</body>
 </html>

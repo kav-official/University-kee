@@ -11,6 +11,15 @@ class RegisterListController extends BaseController
         $this->secur = new CustomSecurity();
         $this->secur->security($this->db);
         $this->custom = new CustomFunctions();
+
+        $disSvr = new DistrictServices($this->db);
+        $arrDis=[];
+        $disItems = $disSvr->getAll([],[]);
+        foreach ($disItems as $value) {
+            $arrDis[$value['id']] = $value['district_name'];
+        }
+
+        $this->f3->set('arrDis',$arrDis);
         $this->f3->set('arrProvince',$this->custom->province());
         $this->f3->set('arrClass',$this->custom->arrClass());
         $this->f3->set('custom',$this->custom);
