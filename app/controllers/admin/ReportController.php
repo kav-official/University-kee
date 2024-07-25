@@ -6,36 +6,62 @@ class ReportController{
         $this->db = DBConfig::config();
         $sec = new CustomSecurity();
         $sec->security($this->db);
-        $this->Svr = new ProductServices($this->db);
     }
 
-	public function byBill(){
-        $f3 = Base::instance();
+	public function score(){
+		$f3  = Base::instance();
 		$tmp = new Template;
-        if($f3->get('GET.start') != null && $f3->get('GET.end') != null){
-            $start = $f3->get('GET.start');
-            $end = $f3->get('GET.end');
-        } else {
-            $start = date('d-m-Y');
-            $end = date('d-m-Y');
-        }
-        $items = $this->db->exec("SELECT * FROM tblorder WHERE (FROM_UNIXTIME(created_at, '%Y-%m-%d') BETWEEN ? AND ?) AND status = ?",array(date('Y-m-d',strtotime($start)),date('Y-m-d',strtotime($end)),1));
-        $total_amount = 0;
-        $entrycount = 0;
-        foreach($items as $row){
-            $total_amount += $row['bonding_fee_amount'];
-            $entrycount += 1;
-        }
-		$f3->set('items', $items);
-		$f3->set('entrycount', $entrycount);
-		$f3->set('total_amount', $total_amount);
-		$f3->set('start', $start);
-		$f3->set('end', $end);
-		$f3->set('nav', 'report');
-		$f3->set('subnav', 'report-bill');
-		$f3->set('strPage', 'ສະຫຼຸບ');
-		$f3->set('strAction', 'ສະຫຼຸບຕາມບິນ');
-		echo($tmp->instance()->render('backend/report-bill.html'));
+        // if($f3->get('GET.start') != null && $f3->get('GET.end') != null){
+        //     $start = $f3->get('GET.start');
+        //     $end = $f3->get('GET.end');
+        // } else {
+        //     $start = date('d-m-Y');
+        //     $end = date('d-m-Y');
+        // }
+        // $items = $this->db->exec("SELECT * FROM tblorder WHERE (FROM_UNIXTIME(created_at, '%Y-%m-%d') BETWEEN ? AND ?) AND status = ?",array(date('Y-m-d',strtotime($start)),date('Y-m-d',strtotime($end)),1));
+        // $total_amount = 0;
+        // $entrycount = 0;
+        // foreach($items as $row){
+        //     $total_amount += $row['bonding_fee_amount'];
+        //     $entrycount += 1;
+        // }
+		// $f3->set('items', $items);
+		// $f3->set('entrycount', $entrycount);
+		// $f3->set('total_amount', $total_amount);
+		// $f3->set('start', $start);
+		// $f3->set('end', $end);
+		$f3->set('nav', 'report-score');
+		$f3->set('subnav', 'report-score');
+		$f3->set('strPage', 'ລາຍງານຄະແນນ');
+		$f3->set('strAction', 'ລາຍງານຄະແນນ');
+		echo($tmp->instance()->render('backend/report-score.html'));
+	}
+	public function payment(){
+		$f3  = Base::instance();
+		$tmp = new Template;
+		$f3->set('nav', 'report-score');
+		$f3->set('subnav', 'report-score');
+		$f3->set('strPage', 'ລາຍງານການຈ່າຍເງີນ');
+		$f3->set('strAction', 'ລາຍງານການຈ່າຍເງີນ');
+		echo($tmp->instance()->render('backend/report-payment.html'));
+	}
+	public function student(){
+		$f3  = Base::instance();
+		$tmp = new Template;
+		$f3->set('nav', 'report-score');
+		$f3->set('subnav', 'report-score');
+		$f3->set('strPage', 'ລາຍງານຂໍ້ມູນນັກສຶກສາ');
+		$f3->set('strAction', 'ລາຍງານຂໍ້ມູນນັກສຶກສາ');
+		echo($tmp->instance()->render('backend/report-student.html'));
+	}
+	public function employee(){
+		$f3  = Base::instance();
+		$tmp = new Template;
+		$f3->set('nav', 'report-score');
+		$f3->set('subnav', 'report-score');
+		$f3->set('strPage', 'ລາຍງານຂໍ້ມູນພະນັກງານ');
+		$f3->set('strAction', 'ລາຍງານຂໍ້ມູນພະນັກງານ');
+		echo($tmp->instance()->render('backend/report-employee.html'));
 	}
 
     function reportbestSale(){

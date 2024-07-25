@@ -4,7 +4,7 @@
 	<!--begin::Head-->
 	<head><base href="../../../">
 		<meta charset="utf-8" />
-		<title>ຜູ້ໃຊ້ | Joint Pharma</title>
+		<title>ນັກສຶກສາ | ຄິດໄລ່ເກຣດ</title>
 		<meta name="description" content="Child datatable from local data" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 		<?php echo $this->render('backend/inc/header.html',NULL,get_defined_vars(),0); ?>
@@ -96,13 +96,14 @@
                                                     <tr style="font-family: NotoSerifLao;">
                                                         <th>ລຳດັບ</th>
                                                         <th>ລະຫັດ</th>
-                                                        <th>ຊື່​ເຕັມ</th>
-                                                        <th>ຫ້ອງສອນ</th>
+                                                        <th>ຊື່​</th>
+                                                        <th>ນາມສະກຸນ</th>
+                                                        <th>ຫ້ອງຮຽນ</th>
                                                         <th>ເພດ</th>
                                                         <th>ວັນເດືອນປີເກີດ</th>
+														<th>ບ້ານ</th>
+														<th>ເມືອງ</th>
                                                         <th>ແຂວງ</th>
-                                                        <th>ເມືອງ</th>
-                                                        <th>ບ້ານ</th>
                                                         <th>ເບີໂທ</th>
                                                         <th>ຄະແນນ</th>
                                                         <th>ເກຣດ</th>
@@ -116,13 +117,14 @@
                                                         <tr id="item-<?= ($row['id']) ?>">
                                                             <td><?= ($ctr) ?></td>
                                                             <td><?= ($row['student_no']) ?></td>
-                                                            <td><?= ($row['first_name']) ?> <?= ($row['last_name']) ?></td>
+                                                            <td><?= ($row['first_name']) ?></td>
+                                                            <td><?= ($row['last_name']) ?></td>
                                                             <td><?= ($arrClass[$row['class']]) ?></td>
-                                                            <td><?= ($row['gender']) ?></td>
-                                                            <td><?= ($row['dob']) ?></td>
+                                                            <td><?= ($custom->gender($row['gender'])) ?></td>
+                                                            <td><?= (date('d-m-Y',strtotime($row['dob']))) ?></td>
+															<td><?= ($row['village']) ?></td>
+															<td><?= ($district) ?></td>
                                                             <td><?= ($province[$row['province_id']]) ?></td>
-                                                            <td><?= ($district) ?></td>
-                                                            <td><?= ($row['village']) ?></td>
                                                             <td><?= ($row['phone']) ?></td>
                                                             <td class="score-<?= ($row['student_no']) ?>"><?= ($score->score ?? '-') ?></td>
                                                             <td align="center"><?= ($grade) ?></td>

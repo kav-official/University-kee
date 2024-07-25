@@ -252,22 +252,22 @@
             new Vue({
                 el:'#app',
                 data:{
-                    id:0,
-                    student_no:'',
-                    full_name:'',
-                    status:0,
-                    total_amount:'',
-                    semester:'',
-                    paymentData:{},
+                    id          : 0,
+                    student_no  : '',
+                    full_name   : '',
+                    status      : 0,
+                    total_amount: '',
+                    semester    : '',
+                    paymentData : {},
                 },
                 methods:{
                     handlePayment:function(id,student_no,full_name,status,amount,semester){
-                        this.id = id;
-                        this.student_no = student_no;
-                        this.full_name = full_name;
-                        this.status = status;
+                        this.id           = id;
+                        this.student_no   = student_no;
+                        this.full_name    = full_name;
+                        this.status       = status;
                         this.total_amount = amount;
-                        this.semester = semester;
+                        this.semester     = semester;
                         $('#paymentStatusModal').modal('show');
                     },
                     handleSubmit:function(){
@@ -289,9 +289,9 @@
                     handlePrint:function(semester,student_no){
                         axios.get('{{ @BASE }}/payment/data/'+semester+'/'+student_no)
                         .then(res => {
-                            var data = res.data;
-                            this.paymentData = data.item;
-                            var self = this;
+                            var data             = res.data;
+                                this.paymentData = data.item;
+                            var self             = this;
                             setTimeout(function(){
                                 self.print();
                             },300)
@@ -313,7 +313,7 @@
                         myWindow.print();
                         myWindow.close();
                     };
-                    $('#paymentStatusModalvvvvvvv').modal('hide');
+                    $('#paymentStatusModal').modal('hide');
                 },
                 }
             })
