@@ -9,27 +9,15 @@ class ReportController{
     }
 
 	public function score(){
-		$f3  = Base::instance();
-		$tmp = new Template;
-        // if($f3->get('GET.start') != null && $f3->get('GET.end') != null){
-        //     $start = $f3->get('GET.start');
-        //     $end = $f3->get('GET.end');
-        // } else {
-        //     $start = date('d-m-Y');
-        //     $end = date('d-m-Y');
-        // }
-        // $items = $this->db->exec("SELECT * FROM tblorder WHERE (FROM_UNIXTIME(created_at, '%Y-%m-%d') BETWEEN ? AND ?) AND status = ?",array(date('Y-m-d',strtotime($start)),date('Y-m-d',strtotime($end)),1));
-        // $total_amount = 0;
-        // $entrycount = 0;
-        // foreach($items as $row){
-        //     $total_amount += $row['bonding_fee_amount'];
-        //     $entrycount += 1;
-        // }
-		// $f3->set('items', $items);
-		// $f3->set('entrycount', $entrycount);
-		// $f3->set('total_amount', $total_amount);
-		// $f3->set('start', $start);
-		// $f3->set('end', $end);
+        $f3     = Base::instance();
+        $tmp    = new Template;
+        $custom = new CustomFunctions();
+
+        $items = $this->db->exec("SELECT tblregister.*,tblscore.score FROM tblregister INNER JOIN tblscore ON(tblregister.student_no=tblscore.student_no)");
+
+        $f3->set('items',$items);
+        $f3->set('entrycount', count($items));
+        $f3->set('arrClass',$custom->arrClass());
 		$f3->set('nav', 'report-score');
 		$f3->set('subnav', 'report-score');
 		$f3->set('strPage', 'ລາຍງານຄະແນນ');
@@ -48,8 +36,12 @@ class ReportController{
 	public function student(){
 		$f3  = Base::instance();
 		$tmp = new Template;
-		$f3->set('nav', 'report-score');
-		$f3->set('subnav', 'report-score');
+
+        // $items = $this->db->exec("SELECT tblregister.*, FROM ");
+
+        // $f3->set('items',$items);
+		$f3->set('nav', 'report-student');
+		$f3->set('subnav', 'report-student');
 		$f3->set('strPage', 'ລາຍງານຂໍ້ມູນນັກສຶກສາ');
 		$f3->set('strAction', 'ລາຍງານຂໍ້ມູນນັກສຶກສາ');
 		echo($tmp->instance()->render('backend/report-student.html'));
