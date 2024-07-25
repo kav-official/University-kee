@@ -4,10 +4,10 @@
 	<!--begin::Head-->
 	<head><base href="../../../">
 		<meta charset="utf-8" />
-		<title>{{ @SITE_NAME }}</title>
+		<title><?= ($SITE_NAME) ?></title>
 		<meta name="description" content="Child datatable from local data" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-		<include href="backend/inc/header.html" />
+		<?php echo $this->render('backend/inc/header.html',NULL,get_defined_vars(),0); ?>
 	</head>
 	<!--end::Head-->
 	<!--begin::Body-->
@@ -16,8 +16,8 @@
 		<!--begin::Header Mobile-->
 		<div id="kt_header_mobile" class="header-mobile bg-primary header-mobile-fixed">
 			<!--begin::Logo-->
-			<a href="{{@BASE}}/admin">
-				<img alt="Logo" src="{{@BASE}}/ui/backend/assets/media/logos/logo-letter-9.png" class="max-h-30px" />
+			<a href="<?= ($BASE) ?>/admin">
+				<img alt="Logo" src="<?= ($BASE) ?>/ui/backend/assets/media/logos/logo-letter-9.png" class="max-h-30px" />
 			</a>
 			<!--end::Logo-->
 			<!--begin::Toolbar-->
@@ -50,10 +50,10 @@
 					<!--begin::Header-->
 					<div id="kt_header" class="header flex-column header-fixed">
 						<!--begin::Top-->
-                        <include href="backend/inc/topnav.html" />
+                        <?php echo $this->render('backend/inc/topnav.html',NULL,get_defined_vars(),0); ?>
 						<!--end::Top-->
 						<!--begin::Bottom-->
-						<include href="backend/inc/nav.html" />
+						<?php echo $this->render('backend/inc/nav.html',NULL,get_defined_vars(),0); ?>
 						<!--end::Bottom-->
 					</div>
 					<!--end::Header-->
@@ -80,7 +80,8 @@
 								<div class="card card-custom" id="app">
 									<div class="card-header flex-wrap border-0 pt-6 pb-0">
 										<div class="card-title la">
-											<h3 class="card-label">{{@strPage}}
+											<h3 class="card-label"><?= ($strPage)."
+" ?>
 										</div>
 									</div>
 									<div class="card-body">
@@ -131,19 +132,19 @@
 							<!--end::Container-->
 						</div>
 					</div>
-					<include href="backend/inc/footer.html" />
+					<?php echo $this->render('backend/inc/footer.html',NULL,get_defined_vars(),0); ?>
 				</div>
 			</div>
 		</div>
-        <include href="backend/inc/panel.html"/>
-		<include href="backend/inc/script.html" />
+        <?php echo $this->render('backend/inc/panel.html',NULL,get_defined_vars(),0); ?>
+		<?php echo $this->render('backend/inc/script.html',NULL,get_defined_vars(),0); ?>
 		<script type="text/javascript">
             $(document).ready(function(){
                 $(".student-no").keydown(function (e) {
                     if (e.keyCode == 13) {
                         $('.post-student-no').val($(this).val())
                         $.ajax({
-                            url:'{{@BASE}}/get-registered/'+$(this).val(),
+                            url:'<?= ($BASE) ?>/get-registered/'+$(this).val(),
                             type:'GET',
                             success:function(data){
                                 if(data.success == true){
@@ -177,7 +178,7 @@
                         }).then((result)=>{
                             if (result.isConfirmed) {
                             $.ajax({
-                                    url:'{{@BASE}}/update/oldstudent/'+$(".post-student-no").val(),
+                                    url:'<?= ($BASE) ?>/update/oldstudent/'+$(".post-student-no").val(),
                                     type:'POST',
                                     success:function(data){
                                         if(data.success == true){

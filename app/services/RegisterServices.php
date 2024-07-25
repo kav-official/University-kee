@@ -27,7 +27,7 @@ class RegisterServices extends BaseServiceReadBean
             $gender      = $this->f3->get('POST.gender');
             $dob         = $this->f3->get('POST.dob');
             $province_id = $this->f3->get('POST.province_id');
-            $district    = $this->f3->get('POST.district');
+            $district_id = $this->f3->get('POST.district_id');
             $village     = $this->f3->get('POST.village');
             $phone       = $this->f3->get('POST.phone');
             $class       = $this->f3->get('POST.class');
@@ -46,14 +46,13 @@ class RegisterServices extends BaseServiceReadBean
                 $this->gender      = $gender;
                 $this->dob         = $dob;
                 $this->province_id = $province_id;
-                $this->district    = $district;
+                $this->district_id = $district_id;
                 $this->village     = $village;
                 $this->phone       = $phone;
                 $this->class       = $class;
                 $this->region      = $region;
                 $this->ethnicity   = $ethnicity;
                 $this->year        = 1;
-                $this->semester    = $semester;
                 $this->save();
                 $this->data = ['success'=> true, 'message'=> '"'.$first_name.'" ບັນທຶກສຳເລັດ'];
             }
@@ -70,7 +69,7 @@ class RegisterServices extends BaseServiceReadBean
            $dob         = $up_row['dob'];
            $gender      = $up_row['gender'];
            $village     = $up_row['village'];
-           $district    = $up_row['district'];
+           $district_id = $up_row['district_id'];
            $province_id = $up_row['province_id'];
            $phone       = $up_row['phone'];
            $class       = $up_row['class'];
@@ -78,28 +77,44 @@ class RegisterServices extends BaseServiceReadBean
            $ethnicity   = $up_row['ethnicity'];
            $semester    = $up_row['semester'];
 
-            $this->Svr              = $this->load(['id = ?',$id]);
-            $this->Svr->student_no  = $student_no;
-            $this->Svr->first_name  = $first_name;
-            $this->Svr->last_name   = $last_name;
-            $this->Svr->dob         = $dob;
-            $this->Svr->gender      = $gender;
-            $this->Svr->village     = $village;
-            $this->Svr->district    = $district;
-            $this->Svr->province_id = $province_id;
-            $this->Svr->phone       = $phone;
-            $this->Svr->class       = $class;
-            $this->Svr->region      = $region;
-            $this->Svr->ethnicity   = $ethnicity;
-            $this->Svr->semester    = $semester;
-            $this->Svr->update(); 
+            $this->load(['id = ?',$id]);
+            $this->student_no  = $student_no;
+            $this->first_name  = $first_name;
+            $this->last_name   = $last_name;
+            $this->dob         = $dob;
+            $this->gender      = $gender;
+            $this->village     = $village;
+            $this->district_id = $district_id;
+            $this->province_id = $province_id;
+            $this->phone       = $phone;
+            $this->class       = $class;
+            $this->region      = $region;
+            $this->ethnicity   = $ethnicity;
+            $this->semester    = $semester;
+            $this->update(); 
 
             $this->data = ['success'=>true,'message' => '"'.$first_name.'" ແກ້ໄຂສຳເລັດແລ້ວ'];
         
         }
         API::success($this->data);
     }
-
+    function addOld(){
+        $Svr  = new ScoreServices($this->db);
+        $item = $this->load(['student_no=? ',$this->f3->get('PARAMS.student_no')]);
+        $check = $Svr->load(['student_no=?',$item->student_no]);
+        if($check){
+            if($check->score <= 35){
+                API::success(['success'=>false,'message' =>'ຄະແນນບໍຮອດຂາດໝ່າຍທີຈະເລື່ອນຊັ້ນ']);
+            }else{
+                $this->year           = $item->year+1;
+                $this->payment_status = 0;
+                $this->update(); 
+                API::success(['success'=>true,'message' =>'ທ່ານໄດ້ເລື່ອນຫ້ອງສຳເລັດແລ້ວ']);
+            }
+        }else{
+            API::success(['success'=>false,'message' =>'ຍັງບໍ່ມີຄະແນນ']);
+        }
+    }
     function oldstudentData(){
         $Svr   = new RegisterServices($this->db);
         $check = $Svr->load(['student_no=?',$this->f3->get('PARAMS.student_no')]);

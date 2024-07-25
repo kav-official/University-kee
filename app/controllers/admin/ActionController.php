@@ -202,4 +202,8 @@ class ActionController
     {
         $this->Svr->oldstudentData();
     }
+    public function storeOldstudent()
+    {
+        $this->Svr->addOld();
+    }
 }

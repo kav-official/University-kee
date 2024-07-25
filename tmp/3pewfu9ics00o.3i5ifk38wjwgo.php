@@ -7,7 +7,7 @@
 		<title>ຜູ້ໃຊ້ | Joint Pharma</title>
 		<meta name="description" content="Child datatable from local data" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-		<include href="backend/inc/header.html" />
+		<?php echo $this->render('backend/inc/header.html',NULL,get_defined_vars(),0); ?>
 	</head>
 	<!--end::Head-->
 	<!--begin::Body-->
@@ -16,8 +16,8 @@
 		<!--begin::Header Mobile-->
 		<div id="kt_header_mobile" class="header-mobile bg-primary header-mobile-fixed">
 			<!--begin::Logo-->
-			<a href="{{@BASE}}/admin">
-				<img alt="Logo" src="{{@BASE}}/ui/backend/assets/media/logos/logo-letter-9.png" class="max-h-30px" />
+			<a href="<?= ($BASE) ?>/admin">
+				<img alt="Logo" src="<?= ($BASE) ?>/ui/backend/assets/media/logos/logo-letter-9.png" class="max-h-30px" />
 			</a>
 			<!--end::Logo-->
 			<!--begin::Toolbar-->
@@ -50,10 +50,10 @@
 					<!--begin::Header-->
 					<div id="kt_header" class="header flex-column header-fixed">
 						<!--begin::Top-->
-                        <include href="backend/inc/topnav.html" />
+                        <?php echo $this->render('backend/inc/topnav.html',NULL,get_defined_vars(),0); ?>
 						<!--end::Top-->
 						<!--begin::Bottom-->
-						<include href="backend/inc/nav.html" />
+						<?php echo $this->render('backend/inc/nav.html',NULL,get_defined_vars(),0); ?>
 						<!--end::Bottom-->
 					</div>
 					<!--end::Header-->
@@ -80,14 +80,15 @@
 								<div class="card card-custom" id="app">
 									<div class="card-header flex-wrap border-0 pt-6 pb-0">
 										<div class="card-title la">
-											<h3 class="card-label">{{@strPage}}
-											<span class="d-block text-muted pt-2 font-size-sm">{{@strAction}}</span></h3>
+											<h3 class="card-label"><?= ($strPage)."
+" ?>
+											<span class="d-block text-muted pt-2 font-size-sm"><?= ($strAction) ?></span></h3>
 										</div>
 									</div>
 									<div class="card-body">
                                       <!--begin::Wizard Form-->
-                                        <form id="submit-form" method="{{@method}}" action="{{@BASE}}/register">
-                                            <input type="hidden" name="id" value="{{@id}}">
+                                        <form id="submit-form" method="<?= ($method) ?>" action="<?= ($BASE) ?>/register">
+                                            <input type="hidden" name="id" value="<?= ($id) ?>">
                                             <div class="row justify-content-center">
                                                 <div class="col-xl-9">
                                                     <!--begin::Wizard Step 1-->
@@ -95,8 +96,8 @@
                                                         <div class="form-group row la">
                                                             <label class="col-xl-2 col-lg-2 col-form-label" style="font-weight: bolder;">ສົກຮຽນ</label>
                                                             <div class="col-lg-4 col-xl-4">
-                                                                <h3>{{ @semester }}</h3>
-                                                                <input class="form-control" name="semester" type="hidden" value="{{ @semester }}"  />
+                                                                <h3><?= ($semester) ?></h3>
+                                                                <input class="form-control" name="semester" type="hidden" value="<?= ($semester) ?>"  />
                                                             </div>
                                                             <label class="col-lg-1 col-form-label" style="font-weight: bolder;">ປີຮຽນ</label>
                                                             <div class="col-lg-4 col-xl-4">
@@ -106,17 +107,17 @@
                                                         <div class="form-group row la">
                                                             <label class="col-xl-2 col-lg-2 col-form-label">ລະຫັດນັກສຶກສາ</label>
                                                             <div class="col-lg-9 col-xl-9">
-                                                                <input class="form-control form-control-solid form-control-lg" name="student_no" type="text" value="{{@item->student_no ?? ''}}"  />
+                                                                <input class="form-control form-control-solid form-control-lg" name="student_no" type="text" value="<?= ($item->student_no ?? '') ?>"  />
                                                             </div>
                                                         </div>
                                                         <div class="form-group row la">
                                                             <label class="col-xl-2 col-lg-2 col-form-label">ຊື່​ແທ້</label>
                                                             <div class="col-lg-4">
-                                                                <input class="form-control form-control-solid form-control-lg" name="first_name" type="text" value="{{@item->first_name ?? ''}}"  />
+                                                                <input class="form-control form-control-solid form-control-lg" name="first_name" type="text" value="<?= ($item->first_name ?? '') ?>"  />
                                                             </div>
                                                              <label class="col-lg-1 col-form-label">ນາມ​ສະ​ກຸນ</label>
                                                             <div class="col-lg-4">
-                                                                <input class="form-control form-control-solid form-control-lg" name="last_name" type="text" value="{{@item->last_name ?? ''}}"  />
+                                                                <input class="form-control form-control-solid form-control-lg" name="last_name" type="text" value="<?= ($item->last_name ?? '') ?>"  />
                                                             </div>
                                                         </div>
                                                         <div class="form-group row la">
@@ -133,45 +134,46 @@
                                                         <div class="form-group row la">
                                                             <label class="col-xl-2 col-lg-2 col-form-label">ວັນເດືອນປີເກີດ</label>
                                                             <div class="col-lg-9 col-xl-9">
-                                                                <input class="form-control form-control-solid form-control-lg" value="{{ @item->dob ?? '' }}"  name="dob" type="date" />
+                                                                <input class="form-control form-control-solid form-control-lg" value="<?= ($item->dob ?? '') ?>"  name="dob" type="date" />
                                                             </div>
                                                         </div>
                                                         <div class="form-group row la">
                                                             <label class="col-xl-2 col-lg-2 col-form-label">ແຂວງ</label>
                                                             <div class="col-lg-9 col-xl-9">
                                                                 <select name="province_id" class="form-control">
-                                                                    {{ @custom->renderArraySelect(@arrProvince,@item->province_id ?? '' )}}
+                                                                    <?= ($custom->renderArraySelect($arrProvince,$item->province_id ?? '' ))."
+" ?>
                                                                 </select>
                                                             </div>
                                                         </div>
                                                         <div class="form-group row la">
                                                             <label class="col-xl-2 col-lg-2 col-form-label">ເມືອງ</label>
                                                             <div class="col-lg-9 col-xl-9">
-                                                                <input class="form-control form-control-solid form-control-lg" value="{{ @item->district_id ?? '' }}"  name="district_id" type="text" />
+                                                                <input class="form-control form-control-solid form-control-lg" value="<?= ($item->district_id ?? '') ?>"  name="district_id" type="text" />
                                                             </div>
                                                         </div>
                                                         <div class="form-group row la">
                                                             <label class="col-xl-2 col-lg-2 col-form-label">ບ້ານ</label>
                                                             <div class="col-lg-9 col-xl-9">
-                                                                <input class="form-control form-control-solid form-control-lg" value="{{ @item->village ?? '' }}"  name="village" type="text" />
+                                                                <input class="form-control form-control-solid form-control-lg" value="<?= ($item->village ?? '') ?>"  name="village" type="text" />
                                                             </div>
                                                         </div>
                                                         <div class="form-group row la">
                                                             <label class="col-xl-2 col-lg-2 col-form-label">ເບີໂທ</label>
                                                             <div class="col-lg-9 col-xl-9">
-                                                                <input class="form-control form-control-solid form-control-lg" value="{{ @item->phone ?? '' }}"  name="phone" type="text" />
+                                                                <input class="form-control form-control-solid form-control-lg" value="<?= ($item->phone ?? '') ?>"  name="phone" type="text" />
                                                             </div>
                                                         </div>
                                                         <div class="form-group row la">
                                                             <label class="col-xl-2 col-lg-2 col-form-label">ສາສະໜາ</label>
                                                             <div class="col-lg-9 col-xl-9">
-                                                                <input class="form-control form-control-solid form-control-lg" value="{{ @item->region ?? '' }}"  name="region" type="text" />
+                                                                <input class="form-control form-control-solid form-control-lg" value="<?= ($item->region ?? '') ?>"  name="region" type="text" />
                                                             </div>
                                                         </div>
                                                         <div class="form-group row la">
                                                             <label class="col-xl-2 col-lg-2 col-form-label">ຊົນເຜົ່າ</label>
                                                             <div class="col-lg-9 col-xl-9">
-                                                                <input class="form-control form-control-solid form-control-lg" value="{{ @item->ethnicity ?? '' }}"  name="ethnicity" type="text" />
+                                                                <input class="form-control form-control-solid form-control-lg" value="<?= ($item->ethnicity ?? '') ?>"  name="ethnicity" type="text" />
                                                             </div>
                                                         </div>
                                                       
@@ -179,7 +181,8 @@
                                                             <label class="col-xl-2 col-lg-4 col-form-label">ຫ້ອງຮຽນ</label>
                                                             <div class="col-lg-4 col-xl-4">
                                                                 <select name="class" class="form-control class-option">
-                                                                    {{ @custom->renderArraySelect(@arrClass,@item->class ?? '' )}}
+                                                                    <?= ($custom->renderArraySelect($arrClass,$item->class ?? '' ))."
+" ?>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -188,7 +191,7 @@
                                                     <div class="d-flex justify-content-between border-top pt-10 mt-15">
                                                         <div class="mr-2"></div>
                                                         <div>
-                                                            <a href="{{@BASE}}/register" class="btn btn-default font-weight-bolder px-9 py-4">Cancel <i class="fa"></i></a>
+                                                            <a href="<?= ($BASE) ?>/register" class="btn btn-default font-weight-bolder px-9 py-4">Cancel <i class="fa"></i></a>
                                                             <button type="submit" class="btn btn-success font-weight-bolder px-9 py-4 btn-submit">Submit <i class="fa"></i></button>
                                                         </div>
                                                     </div>
@@ -205,20 +208,20 @@
 					</div>
 					<!--end::Content-->
 					<!--begin::Footer-->
-					<include href="backend/inc/footer.html" />
+					<?php echo $this->render('backend/inc/footer.html',NULL,get_defined_vars(),0); ?>
 					<!--end::Footer-->
 				</div>
 				<!--end::Wrapper-->
 			</div>
 			<!--end::Page-->
 		</div>
-        <include href="backend/inc/panel.html"/>
-		<include href="backend/inc/script.html" />
+        <?php echo $this->render('backend/inc/panel.html',NULL,get_defined_vars(),0); ?>
+		<?php echo $this->render('backend/inc/script.html',NULL,get_defined_vars(),0); ?>
 		<script type="text/javascript">
             $(document).ready(function(){
                 $(".class-option").on('change',function(){
                     $.ajax({
-                        url:'{{@BASE}}/get-class/fee/'+$(this).val(),
+                        url:'<?= ($BASE) ?>/get-class/fee/'+$(this).val(),
                         type:'GET',
                         success:function(data){
                             if(data.success ==true){
@@ -249,7 +252,7 @@
                                     showConfirmButton: false,
                                     timer: 1500
                                 }).then((result)=>{
-                                    window.location.href="{{@BASE}}/register";
+                                    window.location.href="<?= ($BASE) ?>/register";
                                 });
                             } else {
                                 Swal.fire("Error!", data.message, "error");
