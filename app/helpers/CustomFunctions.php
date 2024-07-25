@@ -37,10 +37,25 @@ class CustomFunctions{
   function gender($gender){
     $arr = array(
       'M' => 'ຊາຍ',
-      'F' => 'ຍິງ',
-      'O' => 'ອື່ນໆ',
+      'F' => 'ຍິງ'
     );
     return $arr[$gender] ?? '-';
+  }
+  function paymentStatus(){
+    $arr = array(
+      0 => 'ຍັງບໍ່ຈ່າຍ',
+      1 => 'ຈ່າຍເຄີ່ງໜື່ງ',
+      2 =>'ຈ່າຍແລ້ວ'
+    );
+    return $arr;
+  }
+  function paymentStatusBtn(){
+    $arr = array(
+      0 => 'btn-danger',
+      1 => 'btn-warning',
+      2 =>'btn-success'
+    );
+    return $arr;
   }
   function semester(){
     $semester = date('Y').'-'.((int)date('Y')+1);
