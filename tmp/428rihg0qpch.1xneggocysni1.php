@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 	<!--begin::Head-->
 	<head><base href="../../../">
 		<meta charset="utf-8" />
-		<title>ນັກສຶກສາ | ປະເມີນຜົນການເລື່ອນຊັ້ນ</title>
+		<title>Local Data | Keenthemes</title>
 		<meta name="description" content="Child datatable from local data" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 		<?php echo $this->render('backend/inc/header.html',NULL,get_defined_vars(),0); ?>
@@ -27,7 +26,7 @@
 				</button>
 				<button class="btn p-0 ml-2" id="kt_header_mobile_topbar_toggle">
 					<span class="svg-icon svg-icon-xl">
-						<!--begin::Svg Icon | path:assets/media/svg/icons/General/user.svg-->
+						<!--begin::Svg Icon | path:assets/media/svg/icons/General/category.svg-->
 						<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 							<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 								<polygon points="0 0 24 0 24 24 0 24" />
@@ -87,54 +86,49 @@
 											<h3 class="card-label"><?= ($strPage) ?> (<?= ($entrycount) ?>)
 											<span class="d-block text-muted pt-2 font-size-sm"><?= ($strAction) ?></span></h3>
 										</div>
+										<div class="card-toolbar">
+											<!--begin::Dropdown-->
+											<div class="dropdown dropdown-inline mr-2 la">
+												<a href="<?= ($BASE) ?>/fee/edit" class="btn btn-light-primary font-weight-bolder">
+												<span class="svg-icon svg-icon-md">
+													<i class="fa fa-plus"></i>
+												</span>ເພີ່ມໃໝ່</a>
+											</div>
+											<!--end::Dropdown-->
+										</div>
 									</div>
 									<div class="card-body">
-										<!--begin: Datatable-->
-                                        <div class="table-responsive-xl" id="app">
-                                            <table class="table">
-                                                <thead>
-                                                    <tr style="font-family: NotoSerifLao;">
-                                                        <th>ລຳດັບ</th>
-                                                        <th>ລະຫັດ</th>
-                                                        <th>ຊື່​ເຕັມ</th>
-                                                        <th>ຫ້ອງສອນ</th>
-                                                        <th>ເພດ</th>
-                                                        <th>ວັນເດືອນປີເກີດ</th>
-                                                        <th>ບ້ານ</th>
-                                                        <th>ເມືອງ</th>
-                                                        <th>ແຂວງ</th>
-                                                        <th>ເບີໂທ</th>
-                                                        <th>ຄະແນນ</th>
-                                                        <th>ເກຣດ</th>
-                                                        <th>ປະເມີນຜົນ</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <?php $ctr=0; foreach (($items?:[]) as $row): $ctr++; ?>
-                                                        <?php $district=$help->getTitle('DistrictServices',['id = ?',$row['district_id']],'district_name'); ?>
-                                                        <?php $score=$help->getByOne('ScoreServices',['student_no = ? AND semester = ?',$row['student_no'],$row['semester']]); ?>
-                                                        <?php $grade=$custom->calculate_grade($score->score ?? 'null'); ?>
-                                                        <?php $process=$custom->process_promotion($grade); ?>
-                                                        <tr id="item-<?= ($row['id']) ?>">
-                                                            <td><?= ($ctr) ?></td>
-                                                            <td><?= ($row['student_no']) ?></td>
-                                                            <td><?= ($row['first_name']) ?> <?= ($row['last_name']) ?></td>
-                                                            <td><?= ($arrClass[$row['class']]) ?></td>
-                                                            <td><?= ($custom->gender($row['gender'])) ?></td>
-                                                            <td><?= ($row['dob']) ?></td>
-                                                            <td><?= ($row['village']) ?></td>
-                                                            <td><?= ($district) ?></td>
-                                                            <td><?= ($province[$row['province_id']] ?? '') ?></td>
-                                                            <td><?= ($row['phone']) ?></td>
-                                                            <td class="score-<?= ($row['student_no']) ?>"><?= ($score->score ?? '-') ?></td>
-                                                            <td align="center"><?= ($grade) ?></td>
-                                                            <td align="center"><?= ($process) ?></td>
-                                                        </tr>
-                                                    <?php endforeach; ?>       
-                                                </tbody>
-                                            </table>
-                                            <!-- Modal -->
-                                          </div>
+										<form class="form-horizontal" method="put" id="order-form">
+											<div class="table-responsive-xl">
+												<table class="table">
+													<thead>
+														<tr style="font-family: NotoSerifLao;">
+															<th>ລຳດັບ</th>
+															<th>ຫ້ອງຮຽນ</th>
+															<th>ຈຳນວນເງີນ</th>
+															<th>ວັນທີ່ສ້າງ</th>
+															<th class="text-center" colspan="2">ຈັດການ</th>
+														</tr>
+													</thead>
+													<tbody>
+														<?php $ctr=0; foreach (($items?:[]) as $row): $ctr++; ?>
+															<tr id="item-<?= ($row['id']) ?>">
+																<td><?= ($ctr) ?></td>
+																<td><?= ($arrClass[$row['class']]) ?></td>
+																<td><?= (number_format($row['price'])) ?></td>
+																<td><?= ($row['created_at']) ?></td>
+																<td class="text-center">
+																	<div class="btn-group action-tooltip">
+																		<a class="btn-white btn btn-sm" data-toggle="tooltip" data-placement="top" href="<?= ($BASE) ?>/fee/edit/<?= ($row['id']) ?>" title="Delete"><i class="fa fa-edit"></i></a>
+																		<button class="btn-white btn btn-sm ajax-delete" data-toggle="tooltip" data-placement="top" id="<?= ($row['id']) ?>" url="<?= ($BASE) ?>/fee" title="Delete"><i class="fa fa-trash"></i></button>
+																	</div>
+																</td>
+															</tr>
+														<?php endforeach; ?>  
+													</tbody>
+												</table>
+											</div>
+										</form>
 										<!--end: Datatable-->
 									</div>
 								</div>
@@ -153,8 +147,51 @@
 			</div>
 			<!--end::Page-->
 		</div>
+		<!--end::Main-->
+		<!--begin::Global Theme Bundle(used by all pages)-->
 		<?php echo $this->render('backend/inc/panel.html',NULL,get_defined_vars(),0); ?>
 		<?php echo $this->render('backend/inc/script.html',NULL,get_defined_vars(),0); ?>
+		<script type="text/javascript">
+			$(document).ready(function(){
+			  $('#order-form').submit(function(e){
+				var form = $(e.target);
+				if(form.is("#order-form")){ // check if this is the form that you want (delete this check to apply this to all forms)
+				  e.preventDefault();
+					$.ajax({
+					  type: form.attr("method"),              
+					  url: '<?= ($BASE) ?>/admin/category/order-num',                     
+					  data: form.serialize(), // serializes the form's elements.  
+					  enctype: 'multipart/form-data',           
+					  beforeSend: function()
+					  {
+						$("button.btn-submit").prop('disabled', true);
+						$('button.btn-submit').css('cursor','not-allowed');
+						$('button.btn-submit i.fa').addClass( "fa-refresh fa-spin" );
+					  },  
+					  success: function(data)
+					  {
+						if(data.success == true)
+						{
+							Swal.fire("ສຳເລັດ", data.message, "success");
+						  setTimeout(function(){ window.location.reload(); }, 1000);
+						} else {
+							Swal.fire("ຜິດພາດ", "ກະລຸນາລອງໃໝ່", "error");
+						  $('button.btn-submit i.fa').removeClass( "fa-refresh fa-spin" );
+						  $('button.btn-submit').removeAttr('style');
+						  $("button.btn-submit").prop('disabled', false);
+						}
+					  },
+					  error: function (){
+						Swal.fire("ຜິດພາດ", "ກະລຸນາລອງໃໝ່", "error");
+						$('button.btn-submit i.fa').removeClass( "fa-refresh fa-spin" );
+						$('button.btn-submit').removeAttr('style');
+						$("button.btn-submit").prop('disabled', false);
+					  },
+				  });
+				}
+			  });
+			});
+		  </script>
 		<!--end::Page Scripts-->
 	</body>
 	<!--end::Body-->

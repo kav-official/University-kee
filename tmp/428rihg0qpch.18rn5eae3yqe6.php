@@ -117,7 +117,7 @@
                                                             <td><?= ($row['student_no']) ?></td>
                                                             <td><?= ($row['first_name']) ?> <?= ($row['last_name']) ?></td>
                                                             <td><?= ($arrClass[$row['class']]) ?></td>
-                                                            <td><?= ($row['gender']) ?></td>
+                                                            <td><?= ($custom->gender($row['gender'])) ?></td>
                                                             <td><?= ($row['dob']) ?></td>
                                                             <td><?= ($province[$row['province_id']]) ?></td>
                                                             <td><?= ($district) ?></td>

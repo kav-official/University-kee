@@ -34,6 +34,14 @@ class CustomFunctions{
     }
     return "-";
   }
+  function gender($gender){
+    $arr = array(
+      'M' => 'ຊາຍ',
+      'F' => 'ຍິງ',
+      'O' => 'ອື່ນໆ',
+    );
+    return $arr[$gender] ?? '-';
+  }
   function semester(){
     $semester = date('Y').'-'.((int)date('Y')+1);
     return $semester;

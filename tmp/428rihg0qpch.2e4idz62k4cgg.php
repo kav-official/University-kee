@@ -87,6 +87,24 @@
 											<h3 class="card-label"><?= ($strPage) ?> (<?= ($entrycount) ?>)
 											<span class="d-block text-muted pt-2 font-size-sm"><?= ($strAction) ?></span></h3>
 										</div>
+										<div class="card-toolbar">
+											<!--begin::Dropdown-->
+											<div class="dropdown dropdown-inline mr-2 la">
+												<a href="<?= ($BASE) ?>/user/edit" class="btn btn-light-primary font-weight-bolder">
+												<span class="svg-icon svg-icon-md">
+													<!--begin::Svg Icon | path:assets/media/svg/icons/Design/PenAndRuller.svg-->
+													<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+														<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+															<rect x="0" y="0" width="24" height="24" />
+															<path d="M3,16 L5,16 C5.55228475,16 6,15.5522847 6,15 C6,14.4477153 5.55228475,14 5,14 L3,14 L3,12 L5,12 C5.55228475,12 6,11.5522847 6,11 C6,10.4477153 5.55228475,10 5,10 L3,10 L3,8 L5,8 C5.55228475,8 6,7.55228475 6,7 C6,6.44771525 5.55228475,6 5,6 L3,6 L3,4 C3,3.44771525 3.44771525,3 4,3 L10,3 C10.5522847,3 11,3.44771525 11,4 L11,19 C11,19.5522847 10.5522847,20 10,20 L4,20 C3.44771525,20 3,19.5522847 3,19 L3,16 Z" fill="#000000" opacity="0.3" />
+															<path d="M16,3 L19,3 C20.1045695,3 21,3.8954305 21,5 L21,15.2485298 C21,15.7329761 20.8241635,16.200956 20.5051534,16.565539 L17.8762883,19.5699562 C17.6944473,19.7777745 17.378566,19.7988332 17.1707477,19.6169922 C17.1540423,19.602375 17.1383289,19.5866616 17.1237117,19.5699562 L14.4948466,16.565539 C14.1758365,16.200956 14,15.7329761 14,15.2485298 L14,5 C14,3.8954305 14.8954305,3 16,3 Z" fill="#000000" />
+														</g>
+													</svg>
+													<!--end::Svg Icon-->
+												</span>ເພີ່ມໃໝ່</a>
+											</div>
+											<!--end::Dropdown-->
+										</div>
 									</div>
 									<div class="card-body">
 										<!--begin: Datatable-->
@@ -94,9 +112,8 @@
                                             <table class="table">
                                                 <thead>
                                                     <tr style="font-family: NotoSerifLao;">
-                                                        <th>ສົກຮຽນ</th>
-                                                        <th>ປີຮຽນ</th>
-                                                        <th>ຊື່​ນັກສຶກສາ</th>
+                                                        <th >ຮູບ</th>
+                                                        <th>ຊື່​ເຕັມ</th>
                                                         <th>ຫ້ອງສອນ</th>
                                                         <th>ເພດ</th>
                                                         <th>ວັນເດືອນປີເກີດ</th>
@@ -104,6 +121,8 @@
                                                         <th>ເມືອງ</th>
                                                         <th>ບ້ານ</th>
                                                         <th>ເບີໂທ</th>
+                                                        <th>ອີ​ເມວ</th>
+                                                        <th>ຕຳແໜ່ງ</th>
                                                         <th>ວັນທີສ້າງ</th>
                                                         <th class="text-center">ຈັດການ</th>
                                                     </tr>
@@ -111,31 +130,37 @@
                                                 <tbody>
                                                     <?php foreach (($items?:[]) as $row): ?>
                                                         <tr id="item-<?= ($row['id']) ?>">
-                                                        <td><?= ($row['semester']) ?></td>
-                                                        <td><?= ($row['year']) ?></td>
-                                                        <td><?= ($row['first_name']) ?> <?= ($row['last_name']) ?></td>
-                                                        <td><?= ($arrClass[$row['class']]) ?></td>
-                                                        <td>
-															<?php if ($row['gender'] == 'M'): ?>
-																ເພດຊາຍ
-															<?php endif; ?>
-															<?php if ($row['gender'] == 'F'): ?>
-																ເພດຍີງ
-															<?php endif; ?>
-															<?php if ($row['gender'] == 'O'): ?>
-																ອື່ນໆ...
+														<td>
+															<?php if ($row['profile_avatar'] != ''): ?>
+															  
+																<div class="lightBoxGallery"><a href="<?= ($row['profile_avatar']) ?>"><img src="<?= ($row['profile_avatar']) ?>" width="100" class="img-thumbnail"></a></div>
+															  
+															  <?php else: ?><div class="lightBoxGallery"><img src="<?= ($BASE) ?>/uploads/user/empty.jpg" width="100" class="img-thumbnail"></a></div>
 															<?php endif; ?>
 														</td>
+                                                        <td><?= ($row['first_name']) ?> <?= ($row['last_name']) ?></td>
+                                                        <td><?= ($arrClass[$row['class']]) ?></td>
+                                                        <td><?= ($row['gender']) ?></td>
                                                         <td><?= ($row['dob']) ?></td>
                                                         <td><?= ($arrProvince[$row['province_id']]) ?></td>
-                                                        <td><?= ($row['district_id']) ?></td>
+                                                        <td><?= ($row['district']) ?></td>
                                                         <td><?= ($row['village']) ?></td>
                                                         <td><?= ($row['phone']) ?></td>
-                                                        <td><?= ($row['created_at']) ?></td>
+                                                        <td><?= ($row['email']) ?></td>
+                                                        <td><?= ($row['role']) ?></td>
+                                                        <td><?= (date('d-m-Y H:i:s',$row['created_at'])) ?></td>
                                                         <td class="text-center">
                                                             <div class="btn-group action-tooltip">
-                                                                <a class="btn-white btn btn-sm" data-toggle="tooltip" data-placement="top" href="<?= ($BASE) ?>/student/edit/<?= ($row['id']) ?>" title="Delete"><i class="fa fa-edit"></i></a>
-                                                                <button class="btn-white btn btn-sm ajax-delete" data-toggle="tooltip" data-placement="top" id="<?= ($row['id']) ?>" url="<?= ($BASE) ?>/student" title="Delete"><i class="fa fa-trash"></i></button>
+                                                                <a class="btn-white btn btn-sm" data-toggle="tooltip" data-placement="top" href="<?= ($BASE) ?>/user/edit/<?= ($row['id']) ?>" title="Delete"><i class="fa fa-edit"></i></a>
+                                                                <button class="btn-white btn btn-sm ajax-delete" data-toggle="tooltip" data-placement="top" id="<?= ($row['id']) ?>" url="<?= ($BASE) ?>/user" title="Delete"><i class="fa fa-trash"></i></button>
+																<?php if ($row['active']== '1'): ?>
+																	
+																		<a href="javascript:void(0)" class="btn btn-icon btn-light btn-hover-success btn-sm" id="access-<?= ($row['id']) ?>" v-on:click="getStatus(<?= ($row['id']) ?>,<?= ($row['active']) ?>)"><i class="fas fa-toggle-on text-success"></i></a>
+																	
+																	<?php else: ?>
+																		<a href="javascript:void(0)" class="btn btn-icon btn-light btn-hover-success btn-sm" id="access-<?= ($row['id']) ?>" v-on:click="getStatus(<?= ($row['id']) ?>,<?= ($row['active']) ?>)"><i class="fas fa-toggle-off"></i></a>
+																	
+																<?php endif; ?>
                                                             </div>
                                                         </td>
                                                         </tr>
@@ -146,36 +171,36 @@
 															<td colspan="6" class="footable-visible text-right">
 																<div class="d-flex justify-content-between align-items-center flex-wrap">
 																	<div class="d-flex flex-wrap py-2 mr-3 text-right">
-																		<a class="btn btn-icon btn-sm btn-light mr-2 my-1" href="<?= ($BASE) ?>/student?pg=1&limit=<?= ($limit) ?>" aria-label="Previous">
+																		<a class="btn btn-icon btn-sm btn-light mr-2 my-1" href="<?= ($BASE) ?>/user?pg=1&limit=<?= ($limit) ?>" aria-label="Previous">
 																			<span aria-hidden="true">&laquo;</span>
 																			<span class="sr-only">Previous</span>
 																		</a>
 																		
-																		<a class="btn btn-icon btn-sm btn-light mr-2 my-1 <?= ($singlePrevious['class'] ?? '') ?>" href="<?= ($BASE) ?>/student?pg=<?= ($singlePrevious['pg'] ?? '') ?>&limit=<?= ($limit) ?>">&#8249;</a>
+																		<a class="btn btn-icon btn-sm btn-light mr-2 my-1 <?= ($singlePrevious['class'] ?? '') ?>" href="<?= ($BASE) ?>/user?pg=<?= ($singlePrevious['pg'] ?? '') ?>&limit=<?= ($limit) ?>">&#8249;</a>
 												
 																		<?php if (count($PreviousStart)>0): ?>
 																			
-																				<a class="btn btn-icon btn-sm btn-light mr-2 my-1 <?= ($PreviousStart['class'] ?? '') ?>" href="<?= ($BASE) ?>/student?pg=<?= ($PreviousStart['pg'] ?? '') ?>&limit=<?= ($limit) ?>"><?= ($PreviousStart['pg']) ?></a>
+																				<a class="btn btn-icon btn-sm btn-light mr-2 my-1 <?= ($PreviousStart['class'] ?? '') ?>" href="<?= ($BASE) ?>/user?pg=<?= ($PreviousStart['pg'] ?? '') ?>&limit=<?= ($limit) ?>"><?= ($PreviousStart['pg']) ?></a>
 																				<a class="btn btn-icon btn-sm btn-light mr-2 my-1" href="#">...</a>
 																			
 																		<?php endif; ?>
 												
 																		<?php foreach (($arrPagination?:[]) as $paginationRow): ?>
-																			<a class="btn btn-icon btn-sm btn-light mr-2 my-1 <?= ($paginationRow['class'] ?? '') ?>" href="<?= ($BASE) ?>/student?pg=<?= ($paginationRow['pg'] ?? '') ?>&limit=<?= ($limit) ?>"><?= ($paginationRow['pg']) ?></a>
+																			<a class="btn btn-icon btn-sm btn-light mr-2 my-1 <?= ($paginationRow['class'] ?? '') ?>" href="<?= ($BASE) ?>/user?pg=<?= ($paginationRow['pg'] ?? '') ?>&limit=<?= ($limit) ?>"><?= ($paginationRow['pg']) ?></a>
 																		<?php endforeach; ?>
 												
 																		<?php if (count($singleNexPage)>0): ?>
 																			
 																				<a class="btn btn-icon btn-sm btn-light mr-2 my-1" href="#">...</a>
-																				<a class="btn btn-icon btn-sm btn-light mr-2 my-1 <?= ($doubleNexPage['class'] ?? '') ?>" href="<?= ($BASE) ?>/student?pg=<?= ($doubleNexPage['pg'] ?? '') ?>&limit=<?= ($limit) ?>"><?= ($doubleNexPage['pg']) ?></a>
-																				<a class="btn btn-icon btn-sm btn-light mr-2 my-1 <?= ($singleNexPage['class'] ?? '') ?>" href="<?= ($BASE) ?>/student?pg=<?= ($singleNexPage['pg'] ?? '') ?>&limit=<?= ($limit) ?>">&#8250;</a>
+																				<a class="btn btn-icon btn-sm btn-light mr-2 my-1 <?= ($doubleNexPage['class'] ?? '') ?>" href="<?= ($BASE) ?>/user?pg=<?= ($doubleNexPage['pg'] ?? '') ?>&limit=<?= ($limit) ?>"><?= ($doubleNexPage['pg']) ?></a>
+																				<a class="btn btn-icon btn-sm btn-light mr-2 my-1 <?= ($singleNexPage['class'] ?? '') ?>" href="<?= ($BASE) ?>/user?pg=<?= ($singleNexPage['pg'] ?? '') ?>&limit=<?= ($limit) ?>">&#8250;</a>
 																			
 																			<?php else: ?>
-																				<a class="btn btn-icon btn-sm btn-light mr-2 my-1 <?= ($singleNexPage['class'] ?? '') ?>" href="<?= ($BASE) ?>/student?pg=<?= ($singleNexPage['pg'] ?? '') ?>&limit=<?= ($limit) ?>">&#8250;</a>
+																				<a class="btn btn-icon btn-sm btn-light mr-2 my-1 <?= ($singleNexPage['class'] ?? '') ?>" href="<?= ($BASE) ?>/user?pg=<?= ($singleNexPage['pg'] ?? '') ?>&limit=<?= ($limit) ?>">&#8250;</a>
 																			
 																		<?php endif; ?>
 												
-																		<a class="btn btn-icon btn-sm btn-light mr-2 my-1 <?= ($doubleNexPage['class'] ?? '') ?>" href="<?= ($BASE) ?>/student?pg=<?= ($doubleNexPage['pg'] ?? '') ?>&limit=<?= ($limit) ?>" aria-label="Next">
+																		<a class="btn btn-icon btn-sm btn-light mr-2 my-1 <?= ($doubleNexPage['class'] ?? '') ?>" href="<?= ($BASE) ?>/user?pg=<?= ($doubleNexPage['pg'] ?? '') ?>&limit=<?= ($limit) ?>" aria-label="Next">
 																			<span aria-hidden="true">&raquo;</span>
 																			<span class="sr-only">Next</span>
 																		</a>
@@ -216,7 +241,7 @@
 				methods:{
 					getStatus:function(id,status)
 					{
-						axios.put(this.baseUrl+'student/publish-status/'+id+'/'+status)
+						axios.put(this.baseUrl+'user/publish-status/'+id+'/'+status)
 						.then(respone=>{
 							var data = respone.data;
 							if(data.success == true){

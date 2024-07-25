@@ -15,6 +15,7 @@ class StudentScoreController{
         $items = $this->db->exec("SELECT * FROM tblregister WHERE semester = ? ORDER BY student_no",array($custom->semester()));
         $f3->set('items',$items);
         $f3->set('help',$help);
+        $f3->set('custom',$custom);
         $f3->set('entrycount',count($items));
         $f3->set('province',$custom->province());
         $f3->set('arrClass',$custom->arrClass());

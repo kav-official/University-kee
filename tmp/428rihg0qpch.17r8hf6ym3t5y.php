@@ -100,9 +100,9 @@
                                                         <th>ຫ້ອງສອນ</th>
                                                         <th>ເພດ</th>
                                                         <th>ວັນເດືອນປີເກີດ</th>
+														<th>ບ້ານ</th>
+														<th>ເມືອງ</th>
                                                         <th>ແຂວງ</th>
-                                                        <th>ເມືອງ</th>
-                                                        <th>ບ້ານ</th>
                                                         <th>ເບີໂທ</th>
                                                         <th>ຄະແນນ</th>
                                                         <th>ເກຣດ</th>
@@ -118,11 +118,11 @@
                                                             <td><?= ($row['student_no']) ?></td>
                                                             <td><?= ($row['first_name']) ?> <?= ($row['last_name']) ?></td>
                                                             <td><?= ($arrClass[$row['class']]) ?></td>
-                                                            <td><?= ($row['gender']) ?></td>
+                                                            <td><?= ($custom->gender($row['gender'])) ?></td>
                                                             <td><?= ($row['dob']) ?></td>
+															<td><?= ($row['village']) ?></td>
+															<td><?= ($district) ?></td>
                                                             <td><?= ($province[$row['province_id']]) ?></td>
-                                                            <td><?= ($district) ?></td>
-                                                            <td><?= ($row['village']) ?></td>
                                                             <td><?= ($row['phone']) ?></td>
                                                             <td class="score-<?= ($row['student_no']) ?>"><?= ($score->score ?? '-') ?></td>
                                                             <td align="center"><?= ($grade) ?></td>
