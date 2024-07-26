@@ -27,10 +27,78 @@ class ReportController{
 	public function payment(){
 		$f3  = Base::instance();
 		$tmp = new Template;
+        $custom = new CustomFunctions();
+        $help = new HelpFunctions();
+        $semester = "2020-2021";
+        $class_id = $f3->get('GET.class_id');
+        $semesters = $this->db->exec("SELECT semester FROM tblregister GROUP BY semester ORDER BY semester");
+        $arrSemester = array();
+        foreach($semesters as $semesterRow){
+            $semester = $semesterRow['semester'];
+            $arrSemester[$semesterRow['semester']] = $semesterRow['semester'];
+        }
+        $f3->set('arrSemester',$arrSemester);
+        $f3->set('semester',$semester);
+        $f3->set('class_id',$class_id);
+        if($f3->get('GET.semester') != null){
+            $semester = $f3->get('GET.semester');
+        }
+        $arrField = array();
+        $arrValue = array();
+
+        $arrField[] = " semester = ? ";
+        $arrValue[] = $semester;
+        if($class_id != null){
+            $arrField[] = " class = ? ";
+            $arrValue[] = $class_id;
+        }
+        $strField = implode("AND",$arrField);
+        $items = $this->db->exec("SELECT * FROM tblregister WHERE ".$strField,$arrValue);
+        $total_amount = 0;
+        $PSvr = new PaymentServices($this->db);
+        $DSvr = new DistrictServices($this->db);
+        $arrClass = $custom->arrClass();
+        $province = $custom->province();
+        $paymentStatus = $custom->paymentStatus();
+        $paymentStatusBtn = $custom->paymentStatusBtn();
+        $data = array();
+        $entrycount = 0;
+        foreach($items as $row){
+            $district = $help->getTitle('DistrictServices',['id = ?',$row['district_id']],'district_name');
+            $payment = $PSvr->load(array('semester = ? AND student_no = ?',$row['semester'],$row['student_no']));
+            $amount = 0;
+            if($payment){
+                $amount = $payment->total_amount;
+            }
+            $data[] = array(
+                'id' => $row['id'],
+                'semester' => $row['semester'],
+                'student_no' => $row['student_no'],
+                'first_name' => $row['first_name'],
+                'last_name' => $row['last_name'],
+                'class' => $arrClass[$row['class']] ?? '-',
+                'gender' => $custom->gender($row['gender']),
+                'dob' => date('d-m-Y',strtotime($row['dob'])),
+                'village' => $row['village'],
+                'district' => $district,
+                'province' => $province[$row['province_id']] ?? '=',
+                'phone' => $row['phone'],
+                'status' => $paymentStatus[$row['payment_status']] ?? '-',
+                'btn' => $paymentStatusBtn[$row['payment_status']] ?? '',
+                'amount' => $amount,
+            );
+            $total_amount += $amount;
+            $entrycount += 1;
+        }
+        $f3->set('total_amount',$total_amount);
+        $f3->set('data',$data);
+        $f3->set('entrycount',$entrycount);
+        $f3->set('custom',$custom);
+        $f3->set('arrClass',$arrClass);
 		$f3->set('nav', 'report-score');
 		$f3->set('subnav', 'report-score');
-		$f3->set('strPage', 'ລາຍງານການຈ່າຍເງີນ');
-		$f3->set('strAction', 'ລາຍງານການຈ່າຍເງີນ');
+		$f3->set('strPage', 'ລາຍງານ');
+		$f3->set('strAction', 'ລາຍງານການຈ່າຍຄ່າເທີມ');
 		echo($tmp->instance()->render('backend/report-payment.html'));
 	}
 	public function student(){
