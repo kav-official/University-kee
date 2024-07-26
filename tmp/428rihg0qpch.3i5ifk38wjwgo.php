@@ -127,7 +127,6 @@
                                                                     <option value="">- Select Gender -</option>
                                                                     <option value="M">ເພດຊາຍ</option>
                                                                     <option value="F">ເພດຍີງ</option>
-                                                                    <option value="O">ອື່ນໆ</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -140,7 +139,7 @@
                                                         <div class="form-group row la">
                                                             <label class="col-xl-2 col-lg-2 col-form-label">ແຂວງ</label>
                                                             <div class="col-lg-9 col-xl-9">
-                                                                <select name="province_id" class="form-control">
+                                                                <select name="province_id" class="form-control province-id">
                                                                     <?= ($custom->renderArraySelect($arrProvince,$item->province_id ?? '' ))."
 " ?>
                                                                 </select>
@@ -149,7 +148,8 @@
                                                         <div class="form-group row la">
                                                             <label class="col-xl-2 col-lg-2 col-form-label">ເມືອງ</label>
                                                             <div class="col-lg-9 col-xl-9">
-                                                                <input class="form-control form-control-solid form-control-lg" value="<?= ($item->district_id ?? '') ?>"  name="district_id" type="text" />
+                                                                <select name="district_id" class="form-control district-id">
+                                                                </select>
                                                             </div>
                                                         </div>
                                                         <div class="form-group row la">
@@ -226,6 +226,23 @@
                         success:function(data){
                             if(data.success ==true){
                                 $('.current-fee').val(data.data)
+                            }
+                        }
+                    })
+                })
+
+                $(".province-id").on('change',function(){
+                    $.ajax({
+                        url:'<?= ($BASE) ?>/get-district/'+$(this).val(),
+                        type:'GET',
+                        success:function(data){
+                            if(data.success ==true){
+                                var label = "<option value=''>- ເລືອກເມືອງ -</option>";
+                                var items = data.data;
+                                    $.each(items,(index,item)=>{
+                                        label += "<option value='"+item.id+"'>"+item.district_name+"</option>";
+                                    })
+                                $(".district-id").html(label);
                             }
                         }
                     })

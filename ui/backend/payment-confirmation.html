@@ -91,6 +91,13 @@
 									<div class="card-body">
 										<!--begin: Datatable-->
                                         <div class="table-responsive-xl" id="app">
+                                            <div class="row">
+                                                <div class="col-md-3 mb-2">
+                                                    <select name="class_id" class="form-control" v-on:change="handleClass($event.target.value)">
+                                                        {{ @custom->renderArraySelect(@arrClass,@class_id) }}
+                                                    </select>
+                                                </div>
+                                            </div>
                                             <table class="table">
                                                 <thead>
                                                     <tr style="font-family: NotoSerifLao;">
@@ -101,7 +108,7 @@
                                                         <th>ນາມສະກຸນ</th>
                                                         <th>ຫ້ອງຮຽນ</th>
                                                         <th>ເພດ</th>
-                                                        <th>ວ/ດ/ປ</th>
+                                                        <th>ວັນເດືອນປີເກີດ</th>
                                                         <th>ຊົນເຜົ່າ</th>
                                                         <th>ບ້ານ</th>
                                                         <th>ເມືອງ</th>
@@ -261,6 +268,9 @@
                     paymentData : {},
                 },
                 methods:{
+                    handleClass:function(id){
+                        window.location.href='{{ @BASE }}/payment-confirmation?class_id='+id;
+                    },
                     handlePayment:function(id,student_no,full_name,status,amount,semester){
                         this.id           = id;
                         this.student_no   = student_no;
