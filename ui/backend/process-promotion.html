@@ -166,7 +166,7 @@
 		<include href="backend/inc/script.html" />
 		<script>
 			$(document).on('change','#class-id',function(){
-				window.location.href='{{ @BASE }}/calculate-grade?class_id='+$(this).val();
+				window.location.href='{{ @BASE }}/process-promotion?class_id='+$(this).val();
 			})
 		</script>
 		<!--end::Page Scripts-->
