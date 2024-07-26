@@ -115,7 +115,7 @@
                                                         <th>ແຂວງ</th>
                                                         <th>ເບີໂທ</th>
                                                         <th>ວັນທີລົງບຽນ</th>
-                                                        <th width="150">ສະຖານະ</th>
+                                                        <th width="160">ສະຖານະ</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -139,7 +139,7 @@
                                                             <td>{{ @row.phone }}</td>
                                                             <td>{{ @row.created_at }}</td>
                                                             <td class="payment-status-{{ @row.id }}">
-                                                                <button class="btn btn-inline {{ @paymentStatusBtn[@row.payment_status] }}" 
+                                                                <button class="btn btn-inline btn-payment-status {{ @paymentStatusBtn[@row.payment_status] }}" 
                                                                         v-on:click="handlePayment('{{ @row.id }}','{{ @row.student_no}}','{{ @row.first_name}} {{ @row.last_name }}','{{ @row.payment_status }}','{{ @amount > 0 ? number_format(@amount) : "" }}','{{ @row.semester }}')">{{ @paymentStatus[@row.payment_status] ?? '-' }}</button>
                                                                 <button class="btn btn-info" v-on:click="handlePrint('{{ @row.semester }}','{{ @row.student_no }}')"><i class="fa fa-print" aria-hidden="true"></i></button>
                                                             </td>
@@ -285,9 +285,9 @@
                         .then(res => {
                             var data = res.data;
                             if(data.success){
-                                var btn = $('.payment-status-'+this.id).find('button');
+                                var btn = $('.payment-status-'+this.id).find('.btn-payment-status');
                                 btn.removeClass();
-                                btn.addClass('btn btn-inline '+data.btn);
+                                btn.addClass('btn btn-inline btn-payment-status '+data.btn);
                                 btn.text(data.text);
                                 $('#paymentStatusModal').modal('hide');
                                 Swal.fire('ສຳເລັດ!',data.message,'success');
