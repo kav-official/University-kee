@@ -79,7 +79,7 @@
 						<!--begin::Entry-->
 						<div class="d-flex flex-column-fluid">
 							<!--begin::Container-->
-							<div class="container">
+							<div class="container-fluid">
 								<!--begin::Card-->
 								<div class="card card-custom">
 									<div class="card-header flex-wrap border-0 pt-6 pb-0">
@@ -91,6 +91,13 @@
 									<div class="card-body">
 										<!--begin: Datatable-->
                                         <div class="table-responsive-xl" id="app">
+											<div class="row">
+                                                <div class="col-md-3 mb-2">
+                                                    <select name="class_id" class="form-control" id="class-id">
+                                                        {{ @custom->renderArraySelect(@arrClass,@class_id) }}
+                                                    </select>
+                                                </div>
+                                            </div>
                                             <table class="table">
                                                 <thead>
                                                     <tr style="font-family: NotoSerifLao;">
@@ -154,6 +161,11 @@
 		</div>
 		<include href="backend/inc/panel.html"/>
 		<include href="backend/inc/script.html" />
+		<script>
+			$(document).on('change','#class-id',function(){
+				window.location.href='{{ @BASE }}/calculate-grade?class_id='+$(this).val();
+			})
+		</script>
 		<!--end::Page Scripts-->
 	</body>
 	<!--end::Body-->

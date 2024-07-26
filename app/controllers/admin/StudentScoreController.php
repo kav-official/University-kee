@@ -12,8 +12,10 @@ class StudentScoreController{
         $tmp = new Template;
         $custom = new CustomFunctions();
         $help = new HelpFunctions();
-        $items = $this->db->exec("SELECT * FROM tblregister WHERE semester = ? ORDER BY student_no",array($custom->semester()));
+        $class_id = $f3->get('GET.class_id') ?? 1;
+        $items = $this->db->exec("SELECT * FROM tblregister WHERE semester = ? AND class = ? ORDER BY student_no",array($custom->semester(),$class_id));
         $f3->set('items',$items);
+        $f3->set('class_id',$class_id);
         $f3->set('help',$help);
         $f3->set('custom',$custom);
         $f3->set('entrycount',count($items));
