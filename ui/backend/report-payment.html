@@ -119,9 +119,6 @@
                                                             <th>ຫ້ອງຮຽນ</th>
                                                             <th>ເພດ</th>
                                                             <th>ວັນເດືອນປີເກີດ</th>
-                                                            <th>ບ້ານ</th>
-                                                            <th>ເມືອງ</th>
-                                                            <th>ແຂວງ</th>
                                                             <th>ເບີໂທ</th>
                                                             <th>ໝາຍເຫດ</th>
                                                             <th>ລວມ</th>
@@ -137,16 +134,13 @@
                                                                 <td>{{ @@row.class }}</td>
                                                                 <td>{{ @row.gender }}</td>
                                                                 <td>{{ @row.dob }}</td>
-                                                                <td>{{ @row.village }}</td>
-                                                                <td>{{ @row.district }}</td>
-                                                                <td>{{ @row.province }}</td>
                                                                 <td>{{ @row.phone }}</td>
                                                                 <td><span class="btn {{ @row.btn }}">{{ @row.status }}</span></td>
                                                                 <td align="right">{{ number_format(@row.amount) }}</td>
                                                             </tr>
                                                         </repeat>
                                                         <tr>
-                                                            <td colspan="12" align="right">
+                                                            <td colspan="9" align="right">
                                                                 <strong>ລວມທັງໝົດ</strong>
                                                             </td>
                                                             <td align="right">

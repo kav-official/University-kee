@@ -85,6 +85,15 @@ class CustomFunctions{
     );
     return $arr;
   }
+  function arrYear(){
+    $arr = array(
+      1  => "ປີ 1",
+      2  => "ປີ 2",
+      3  => "ປີ 3",
+      4  => "ປີ 4"
+    );
+    return $arr;
+  }
   function province(){
     $arr = array(
       1  => "ກຳແພງນະຄອນ",

@@ -78,51 +78,63 @@
 							<div class="container">
 								<!--begin::Card-->
 								<div class="card card-custom">
-									<div class="card-header flex-wrap border-0 pt-6 pb-0">
-										<div class="card-title la">
+									<!-- <div class="card-header flex-wrap border-0 pt-6 pb-0"> -->
+										<!-- <div class="card-title la">
 											<h1 class="card-label" style="font-size: 35px;">{{@strPage}} {{ @arrClass[@employee->class] }}</h1>
 										</div>
 										<div class="card-title la">
 											<h1 class="card-label" style="font-size: 35px;">ອາຈານປະຈຳຫ້ອງ: {{ @employee->first_name }} {{ @employee->last_name }}</h1>
-										</div>
-									</div>
+										</div> -->
+									<!-- </div> -->
 									<div class="card-body">
-                                        <div class="form-group row la">
-                                            <label for="class" class="col-sm-2 col-form-label">ຈຳນວນນັກສຶກສາ {{ @entrycount }} ຄົນ</label>
-                                        </div>
-                                        <table class="table">
-                                            <thead>
-                                                <tr style="font-family: NotoSerifLao;">
-                                                    <th>ລຳດັບ</th>
-                                                    <th>ລະຫັດນັກສຶກສາ</th>
-                                                    <th>ຊື່​ເຕັມ</th>
-                                                    <th>ເພດ</th>
-                                                    <th>ວ/ດ/ປ</th>
-                                                    <th>ຊົນເຜົ່າ</th>
-                                                    <th>ບ້ານ</th>
-                                                    <th>ເມືອງ</th>
-                                                    <th>ແຂວງ</th>
-                                                    <th>ເບີໂທ</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <repeat group="{{ @items }}" counter="{{ @ctr }}" value="{{ @row }}">
-                                                    <tr id="item-{{ @row.id  }}">
-                                                        <td>{{@ctr}}</td>
-                                                        <td>{{ @row.student_no }}</td>
-                                                        <td>{{ @row.first_name }} {{ @row.last_name }}</td>
-                                                        <td>{{ @row.gender == 'M' ? 'ຊາຍ':'ຍິງ' }}</td>
-                                                        <td>{{ @row.dob }}</td>
-                                                        <td>{{ @row.ethnicity }}</td>
-                                                        <td>{{ @row.village }}</td>
-                                                        <td>{{ @arrDis[@row.district_id] }}</td>
-                                                        <td>{{ @arrProvince[@row.province_id] }}</td>
-                                                        <td>{{ @row.phone }}</td>
-                                                       
-                                                    </tr>
-                                                </repeat>  
-                                            </tbody>
-                                        </table>
+										<div class="coll-lg-6">
+											<div class="card card-custom">
+												<div class="card-header">
+													<div class="card-title">
+														<span class="card-icon">
+															<i class="flaticon2-gear text-primary"></i>
+														</span>
+														<h3 class="card-label la">ຊັ້ນຮຽນ EN1</h3>
+													</div>
+												</div>
+												<div class="card-footer d-flex">
+													<a href="#" class="btn btn-light-primary font-weight-bold mr-2 la"><h1>ຫ້ອງຮຽນ EN1/1</h1></a>
+													<a href="#" class="btn btn-light-primary font-weight-bold la"><h1>ຫ້ອງຮຽນ EN1/2</h1></a>
+												</div>
+											</div>
+										</div>
+										<div class="coll-lg-6">
+											<div class="card card-custom">
+												<div class="card-header">
+													<div class="card-title">
+														<span class="card-icon">
+															<i class="flaticon2-gear text-primary"></i>
+														</span>
+														<h3 class="card-label la">ຊັ້ນຮຽນ EN2</h3>
+													</div>
+												</div>
+												<div class="card-footer d-flex">
+													<a href="#" class="btn btn-light-primary font-weight-bold mr-2 la"><h1>ຫ້ອງຮຽນ EN2/1</h1></a>
+													<a href="#" class="btn btn-light-primary font-weight-bold la"><h1>ຫ້ອງຮຽນ EN2/2</h1></a>
+												</div>
+											</div>
+										</div>
+										<div class="coll-lg-6">
+											<div class="card card-custom">
+												<div class="card-header">
+													<div class="card-title">
+														<span class="card-icon">
+															<i class="flaticon2-gear text-primary"></i>
+														</span>
+														<h3 class="card-label la">ຊັ້ນຮຽນ EN3</h3>
+													</div>
+												</div>
+												<div class="card-footer d-flex">
+													<a href="#" class="btn btn-light-primary font-weight-bold mr-2 la"><h1>ຫ້ອງຮຽນ EN3/1</h1></a>
+													<a href="#" class="btn btn-light-primary font-weight-bold la"><h1>ຫ້ອງຮຽນ EN3/2</h1></a>
+												</div>
+											</div>
+										</div>
 									</div>
 								</div>
 								<!--end::Card-->

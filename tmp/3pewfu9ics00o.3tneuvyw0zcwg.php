@@ -211,7 +211,7 @@
                         </div>
                     </li>
 
-                    <li class="menu-item menu-item-submenu menu-item-rel <?= ($nav == 'report-score' ? 'menu-item-here' : '') ?> la"  data-menu-toggle="hover" aria-haspopup="true">
+                    <li class="menu-item menu-item-submenu menu-item-rel <?= ($nav == 'report' ? 'menu-item-here' : '') ?> la"  data-menu-toggle="hover" aria-haspopup="true">
                         <a href="javascript:;" class="menu-link menu-toggle">
                             <span class="menu-text">ລາຍງານ</span>
                             <span class="menu-desc">ລາຍງານຕ່າງໆ</span>
