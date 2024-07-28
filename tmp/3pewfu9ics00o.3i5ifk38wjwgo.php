@@ -127,7 +127,6 @@
                                                                     <option value="">- Select Gender -</option>
                                                                     <option value="M">ເພດຊາຍ</option>
                                                                     <option value="F">ເພດຍີງ</option>
-                                                                    <option value="O">ອື່ນໆ</option>
                                                                 </select>
                                                             </div>
                                                         </div>
