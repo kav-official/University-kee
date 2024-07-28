@@ -122,7 +122,7 @@
                                                     <repeat group="{{ @items }}" value="{{ @row }}">
                                                         <set district="{{ @help->getTitle('DistrictServices',['id = ?',@row.district_id],'district_name') }}"></set>
                                                         <set amount="{{ @help->getByOne('PaymentServices',['semester = ? AND student_no = ?',@row.semester,@row.student_no]) }}"></set>
-                                                        <set amount="{{ @amount->total_amount ?? 0 }}"></set>
+                                                        <set amount="{{ @amount->total_amount ?? @fee->price }}"></set>
                                                         <tr id="item-{{@row.id}}">
                                                             <td>{{ @row.semester }}</td>
                                                             <td>ປີ {{ @row.year }}</td>

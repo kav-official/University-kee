@@ -129,6 +129,7 @@
                                                 </thead>
                                                 <tbody>
                                                     <?php foreach (($items?:[]) as $row): ?>
+														<?php $district=$help->getTitle('DistrictServices',['id = ?',$row['district_id']],'district_name'); ?>
                                                         <tr id="item-<?= ($row['id']) ?>">
 														<td>
 															<?php if ($row['profile_avatar'] != ''): ?>
@@ -143,7 +144,7 @@
                                                         <td><?= ($row['gender']) ?></td>
                                                         <td><?= ($row['dob']) ?></td>
                                                         <td><?= ($arrProvince[$row['province_id']]) ?></td>
-                                                        <td><?= ($row['district']) ?></td>
+                                                        <td><?= ($district) ?></td>
                                                         <td><?= ($row['village']) ?></td>
                                                         <td><?= ($row['phone']) ?></td>
                                                         <td><?= ($row['email']) ?></td>
