@@ -107,7 +107,7 @@ class CustomFunctions{
     );
     return $arr;
   }
-  function arrYear(){
+  function year(){
     $arr = array(
       1  => "ປີ 1",
       2  => "ປີ 2",
