@@ -138,6 +138,11 @@
                                                                 <div class="btn-group action-tooltip">
                                                                     <button class="btn-primary btn btn-sm" data-toggle="tooltip" 
                                                                     v-on:click="addScore('<?= ($row['student_no']) ?>','<?= ($row['first_name']) ?>','<?= ($row['last_name']) ?>','<?= ($row['class']) ?>','<?= ($arrClass[$row['class']]) ?>','<?= ($row['semester']) ?>')"><i class="fa fa-graduation-cap" aria-hidden="true"></i></button>
+                                                                    <?php if ($LOGON_USER_ROLE == 'admin'): ?>
+                                                                        
+                                                                            <a href="<?= ($BASE) ?>/student/score/<?= ($row['student_no']) ?>" class="btn btn-info"><i class="fa fa-eye"></i></a>
+                                                                        
+                                                                    <?php endif; ?>
                                                                 </div>
                                                             </td>
                                                         </tr>

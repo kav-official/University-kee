@@ -137,6 +137,11 @@
                                                                 <div class="btn-group action-tooltip">
                                                                     <button class="btn-primary btn btn-sm" data-toggle="tooltip" 
                                                                     v-on:click="addScore('{{ @row.student_no }}','{{ @row.first_name }}','{{ @row.last_name }}','{{ @row.class }}','{{ @arrClass[@row.class] }}','{{ @row.semester }}')"><i class="fa fa-graduation-cap" aria-hidden="true"></i></button>
+                                                                    <check if="{{ @LOGON_USER_ROLE == 'admin' }}">
+                                                                        <true>
+                                                                            <a href="{{ @BASE }}/student-score/detail/{{ @row.student_no }}/{{ @row.class }}" class="btn btn-info"><i class="fa fa-eye"></i></a>
+                                                                        </true>
+                                                                    </check>
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -155,6 +160,7 @@
                                                         </div>
                                                         <div class="modal-body">
                                                             <form id="score-form">
+                                                                <input type="hidden" name="subject_id" value="{{ @LOGON_USER_SUBJECT_ID }}">
                                                                 <div class="row">
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">

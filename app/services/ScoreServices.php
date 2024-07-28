@@ -8,6 +8,7 @@ class ScoreServices extends BaseServiceReadBean{
 
     function add(){
         $f3         = Base::instance();
+        $subject_id = $f3->get('POST.subject_id');
         $student_no = $f3->get('POST.student_no');
         $class_id   = $f3->get('POST.class_id');
         $semester   = $f3->get('POST.semester');
@@ -17,6 +18,7 @@ class ScoreServices extends BaseServiceReadBean{
         }
         $check = $this->load(array('student_no = ? AND semester = ?',$student_no,$semester));
         if($check){
+            $check->subject_id = $subject_id;
             $check->student_no = $student_no;
             $check->class_id   = $class_id;
             $check->semester   = $semester;
@@ -25,6 +27,7 @@ class ScoreServices extends BaseServiceReadBean{
             $message = 'ແກ້ໄຂສຳເລັດແລ້ວ';
         } else {
             $this->reset();
+            $this->subject_id         = $subject_id;
             $this->student_no         = $student_no;
             $this->class_id           = $class_id;
             $this->semester           = $semester;
