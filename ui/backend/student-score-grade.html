@@ -93,8 +93,13 @@
                                         <div class="table-responsive-xl" id="app">
 											<div class="row">
                                                 <div class="col-md-3 mb-2">
-                                                    <select name="class_id" class="form-control" id="class-id">
+                                                    <select name="class_id" class="form-control class-id" v-on:change="handleClass()">
                                                         {{ @custom->renderArraySelect(@arrClass,@class_id) }}
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-3 mb-2">
+                                                    <select name="year" class="form-control year-id la-normal" v-on:change="handleClass()">
+                                                        {{ @custom->renderArraySelect(@arrYear,@year) }}
                                                     </select>
                                                 </div>
                                             </div>
@@ -162,8 +167,10 @@
 		<include href="backend/inc/panel.html"/>
 		<include href="backend/inc/script.html" />
 		<script>
-			$(document).on('change','#class-id',function(){
-				window.location.href='{{ @BASE }}/calculate-grade?class_id='+$(this).val();
+			$(document).on('change','.class-id,.year-id',function(){
+				var class_id = $('.class-id').val();
+				var year = $('.year-id').val();
+				window.location.href='{{ @BASE }}/calculate-grade?class_id='+class_id+'&year='+year;
 			})
 		</script>
 		<!--end::Page Scripts-->

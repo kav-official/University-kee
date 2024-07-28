@@ -93,8 +93,14 @@
                                         <div class="table-responsive-xl" id="app">
                                             <div class="row">
                                                 <div class="col-md-3 mb-2">
-                                                    <select name="class_id" class="form-control" v-on:change="handleClass($event.target.value)">
+                                                    <select name="class_id" class="form-control class-id" v-on:change="handleClass()">
                                                         <?= ($custom->renderArraySelect($arrClass,$class_id))."
+" ?>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-3 mb-2">
+                                                    <select name="year" class="form-control year-id la-normal" v-on:change="handleClass()">
+                                                        <?= ($custom->renderArraySelect($arrYear,$year))."
 " ?>
                                                     </select>
                                                 </div>
@@ -249,8 +255,10 @@
                     score:'',
 				},
 				methods:{
-                    handleClass:function(id){
-                        window.location.href='<?= ($BASE) ?>/student-score?class_id='+id;
+                    handleClass:function(){
+                        var class_id = $('.class-id').val();
+                        var year = $('.year-id').val();
+                        window.location.href='<?= ($BASE) ?>/student-score?class_id='+class_id+'&year='+year;
                     },
                     handleSubmit:function(){
                         axios.post('<?= ($BASE) ?>/student-score',$('#score-form').serialize())
