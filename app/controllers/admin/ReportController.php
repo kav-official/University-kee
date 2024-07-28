@@ -70,6 +70,7 @@ class ReportController{
         $help        = new HelpFunctions();
         $semester    = "2020-2021";
         $class_id    = $f3->get('GET.class_id');
+        $year    = $f3->get('GET.year');
         $semesters   = $this->db->exec("SELECT semester FROM tblregister GROUP BY semester ORDER BY semester");
         $arrSemester = array();
         foreach($semesters as $semesterRow){
@@ -79,6 +80,7 @@ class ReportController{
         $f3->set('arrSemester',$arrSemester);
         $f3->set('semester',$semester);
         $f3->set('class_id',$class_id);
+        $f3->set('year',$year);
         if($f3->get('GET.semester') != null){
             $semester = $f3->get('GET.semester');
         }
@@ -91,12 +93,17 @@ class ReportController{
             $arrField[] = " class = ? ";
             $arrValue[] = $class_id;
         }
+        if($year != null){
+            $arrField[] = " year = ? ";
+            $arrValue[] = $year;
+        }
         $strField         = implode("AND",$arrField);
         $items            = $this->db->exec("SELECT * FROM tblregister WHERE ".$strField,$arrValue);
         $total_amount     = 0;
         $PSvr             = new PaymentServices($this->db);
         $DSvr             = new DistrictServices($this->db);
-        $arrClass         = $custom->arrClass();
+        $arrClass         = $custom->classes();
+        $arrYear          = $custom->year();
         $province         = $custom->province();
         $paymentStatus    = $custom->paymentStatus();
         $paymentStatusBtn = $custom->paymentStatusBtn();
@@ -134,6 +141,7 @@ class ReportController{
         $f3->set('entrycount',$entrycount);
         $f3->set('custom',$custom);
         $f3->set('arrClass',$arrClass);
+        $f3->set('arrYear',$arrYear);
 		$f3->set('nav', 'report');
 		$f3->set('subnav', 'report-payment');
 		$f3->set('strPage', 'ລາຍງານ');
