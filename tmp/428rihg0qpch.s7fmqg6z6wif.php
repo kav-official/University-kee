@@ -167,7 +167,7 @@
 		<?php echo $this->render('backend/inc/script.html',NULL,get_defined_vars(),0); ?>
 		<script>
 			$(document).on('change','#class-id',function(){
-				window.location.href='<?= ($BASE) ?>/calculate-grade?class_id='+$(this).val();
+				window.location.href='<?= ($BASE) ?>/process-promotion?class_id='+$(this).val();
 			})
 		</script>
 		<!--end::Page Scripts-->
