@@ -46,10 +46,10 @@ class ReportController{
         $f3->set('items',$items);
         $f3->set('year',$year);
         $f3->set('entrycount', count($items));
-        $f3->set('arrClass',$custom->arrClass());
+        $f3->set('arrClass',$custom->classes());
         $f3->set('arrProvince',$custom->province());
-        $f3->set('arrSubject',$custom->arrSubject());
-        $f3->set('arrYear',$custom->arrYear());
+        $f3->set('arrSubject',$custom->subject());
+        $f3->set('arrYear',$custom->year());
 		$f3->set('custom', $custom);
 		$f3->set('nav', 'report');
 		$f3->set('subnav', 'report-score');

@@ -96,7 +96,7 @@ class CustomFunctions{
     $arr = array(1 => 'ບໍລິສັດ', 2 => 'ສັງກັດໃນບໍລິສັດ', 3 => 'ບໍ່ສັງກັດໃນບໍລິສັດ	');
     return $arr;
   }
-  function arrClass(){
+  function classes(){
     $arr = array(
       1  => "EN1/1",
       2  => "EN1/2",
