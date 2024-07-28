@@ -20,7 +20,7 @@ class StudentGradeController{
         $f3->set('custom',$custom);
         $f3->set('entrycount',count($items));
         $f3->set('province',$custom->province());
-        $f3->set('arrClass',$custom->arrClass());
+        $f3->set('arrClass',$custom->classes());
         $f3->set('nav','process');
         $f3->set('subnav','student-score-grade');
         $f3->set('strAction', 'ຄິດໄລ່ເກຣດ');

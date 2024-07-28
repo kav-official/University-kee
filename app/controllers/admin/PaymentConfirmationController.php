@@ -23,7 +23,7 @@ class PaymentConfirmationController{
         $f3->set('custom',$custom);
         $f3->set('entrycount',count($items));
         $f3->set('province',$custom->province());
-        $f3->set('arrClass',$custom->arrClass());
+        $f3->set('arrClass',$custom->classes());
         $f3->set('paymentStatus',$custom->paymentStatus());
         $f3->set('paymentStatusBtn',$custom->paymentStatusBtn());
         $f3->set('nav','payment-confirmation');
@@ -39,7 +39,7 @@ class PaymentConfirmationController{
         $student_no = $f3->get('PARAMS.student_no');
         $custom = new CustomFunctions();
         $province = $custom->province();
-        $arrClass = $custom->arrClass();
+        $arrClass = $custom->classes();
         $paymentStatus = $custom->paymentStatus();
         $RSvr = new RegisterServices($this->db);
         $PSvr = new PaymentServices($this->db);

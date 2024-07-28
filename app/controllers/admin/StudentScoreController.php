@@ -20,7 +20,7 @@ class StudentScoreController{
         $f3->set('custom',$custom);
         $f3->set('entrycount',count($items));
         $f3->set('province',$custom->province());
-        $f3->set('arrClass',$custom->arrClass());
+        $f3->set('arrClass',$custom->classes());
         $f3->set('arrSubject',$custom->subject());
         $f3->set('nav','student-score');
         $f3->set('subnav','student-score');

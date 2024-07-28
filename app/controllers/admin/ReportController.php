@@ -9,11 +9,12 @@ class ReportController{
     }
 
 	public function score(){
-        $f3       = Base::instance();
-        $tmp      = new Template;
-        $custom   = new CustomFunctions();
-        $year     = 1;
-        $class_id = $f3->get('GET.class_id');
+        $f3         = Base::instance();
+        $tmp        = new Template;
+        $custom     = new CustomFunctions();
+        $year       = 1;
+        $subject_id = $f3->get('GET.subject_id');
+        $class_id   = $f3->get('GET.class_id');
 
         $f3->set('class_id',$class_id);
         if($f3->get('GET.year') != null){
@@ -26,6 +27,10 @@ class ReportController{
         if($class_id != null){
             $arrField[] = " tblregister.class = ? ";
             $arrValue[] = $class_id;
+        }
+        if($subject_id != null){
+            $arrField[] = " tblscore.subject_id = ? ";
+            $arrValue[] = $subject_id;
         }
         if($year != null){
             $arrField[] = " tblregister.year = ? ";
@@ -44,6 +49,7 @@ class ReportController{
 
         $f3->set('arrDis',$arrDis);
         $f3->set('items',$items);
+        $f3->set('subject_id',$subject_id);
         $f3->set('year',$year);
         $f3->set('entrycount', count($items));
         $f3->set('arrClass',$custom->classes());

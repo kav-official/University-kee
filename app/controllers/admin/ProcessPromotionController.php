@@ -20,7 +20,7 @@ class ProcessPromotionController{
         $f3->set('custom',$custom);
         $f3->set('entrycount',count($items));
         $f3->set('province',$custom->province());
-        $f3->set('arrClass',$custom->arrClass());
+        $f3->set('arrClass',$custom->classes());
         $f3->set('nav','process');
         $f3->set('subnav','process-promotion');
         $f3->set('strAction', 'ປະເມີນຜົນການເລື່ອນຊັ້ນ');

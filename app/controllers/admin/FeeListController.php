@@ -11,7 +11,7 @@ class FeeListController extends BaseController
         $this->secur = new CustomSecurity();
         $this->secur->security($this->db);
         $this->custom = new CustomFunctions();
-        $this->f3->set('arrClass',$this->custom->arrClass());
+        $this->f3->set('arrClass',$this->custom->classes());
 	    parent::__construct('FeeServices', 'backend/fee-list.html', 'fee', 'fee-list', 'ຈັດການຂໍ້ມູນຄ່າທຳນຽມ','','',$this->f3->get('ITEM_PER_PAGE'));
     }
 }

@@ -21,7 +21,7 @@ class StudentListController extends BaseController
 
         $this->f3->set('arrDis',$arrDis);
         $this->f3->set('arrProvince',$this->custom->province());
-        $this->f3->set('arrClass',$this->custom->arrClass());
+        $this->f3->set('arrClass',$this->custom->classes());
         $this->f3->set('custom',$this->custom);
 	    parent::__construct('RegisterServices', 'backend/student-list.html', 'student', 'student-list', 'ຈັດການຂໍ້ມູນນັກສຶກສາ','','',$this->f3->get('ITEM_PER_PAGE'));
     }

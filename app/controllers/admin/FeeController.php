@@ -10,7 +10,7 @@ class FeeController extends ActionController {
         $this->secur = new CustomSecurity();
         $this->secur->security($this->db);
         $this->custom = new CustomFunctions();
-        $this->f3->set('arrClass',$this->custom->arrClass());
+        $this->f3->set('arrClass',$this->custom->classes());
         $this->f3->set('custom',$this->custom);
 	    parent::__construct('FeeServices', 'backend/fee.html', 'fee', 'fee', 'ຈັດການຂໍ້ມູນຄ່າທຳນຽມ');
     }

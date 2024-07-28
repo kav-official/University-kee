@@ -10,8 +10,8 @@ class UserListController extends BaseController{
         $sec->security($this->db);
         
         $f3->set('arrProvince',$custom->province());
-        $f3->set('arrClass',$custom->arrClass());
-        $f3->set('arrSubject',$custom->arrSubject());
+        $f3->set('arrClass',$custom->classes());
+        $f3->set('arrSubject',$custom->subject());
         $f3->set('custom',$custom);
         $f3->set('help',$help);
 	    parent::__construct('UsersServices','backend/user-list.html', 'user', 'user-list', 'ຈັດການຂໍ້ມູນພະນັກງານ', '', '', $f3->get('ITEM_PER_PAGE'));

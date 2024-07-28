@@ -90,14 +90,22 @@
                                         <div class="table-responsive-xl" id="app">
                                              <form>
                                                 <div class="row">
-                                                    <div class="col-md-3 mb-2">
+                                                    <div class="col-md-2 mb-2">
                                                         <select name="year" class="form-control la">
+															<option value="">- ເລືອກປີ -</option>
                                                              {{ @custom->renderArraySelect(@arrYear,@year) }}
                                                         </select>
                                                     </div>
-                                                    <div class="col-md-3 mb-2">
+                                                    <div class="col-md-2 mb-2">
                                                         <select name="class_id" class="form-control">
+															<option value="">- ເລືອກຫ້ອງ -</option>
                                                             {{ @custom->renderArraySelect(@arrClass,@class_id) }}
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-2 mb-2">
+                                                        <select name="subject_id" class="form-control la">
+															<option value="">- ເລືອກວິຊາ -</option>
+                                                            {{ @custom->renderArraySelect(@arrSubject,@subject_id) }}
                                                         </select>
                                                     </div>
                                                     <div class="col-md-3 mb-2">
