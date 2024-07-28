@@ -18,7 +18,7 @@ class ScoreServices extends BaseServiceReadBean{
         if((string)$score > 100){
             API::success(array('success' => false, 'message' => 'ການປ້ອນຄະແນນບໍ່ຖືກຕ້ອງ'));
         }
-        $check = $this->load(array('student_no = ? AND semester = ?',$student_no,$semester));
+        $check = $this->load(array('student_no = ? AND semester = ? AND subject_id =?',$student_no,$semester,$subject_id));
         if($check){
             $check->subject_id = $subject_id;
             $check->student_no = $student_no;

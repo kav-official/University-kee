@@ -104,12 +104,7 @@
                                                                 <h3>ນັກສຶກສາປີ 1</h3>
                                                             </div>
                                                         </div>
-                                                        <div class="form-group row la">
-                                                            <label class="col-xl-2 col-lg-2 col-form-label">ລະຫັດນັກສຶກສາ</label>
-                                                            <div class="col-lg-9 col-xl-9">
-                                                                <input class="form-control form-control-solid form-control-lg" name="student_no" type="text" value="<?= ($item->student_no ?? '') ?>"  />
-                                                            </div>
-                                                        </div>
+                                                    
                                                         <div class="form-group row la">
                                                             <label class="col-xl-2 col-lg-2 col-form-label">ຊື່​ແທ້</label>
                                                             <div class="col-lg-4">

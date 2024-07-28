@@ -93,8 +93,14 @@
                                         <div class="table-responsive-xl" id="app">
                                             <div class="row">
                                                 <div class="col-md-3 mb-2">
-                                                    <select name="class_id" class="form-control" v-on:change="handleClass($event.target.value)">
+                                                    <select name="class_id" class="form-control class-id" v-on:change="handleClass()">
                                                         <?= ($custom->renderArraySelect($arrClass,$class_id))."
+" ?>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-3 mb-2">
+                                                    <select name="year" class="form-control year-id la-normal" v-on:change="handleClass()">
+                                                        <?= ($custom->renderArraySelect($arrYear,$year))."
 " ?>
                                                     </select>
                                                 </div>
@@ -136,8 +142,17 @@
                                                             <td class="score-<?= ($row['student_no']) ?>"><?= ($score->score ?? '-') ?></td>
                                                             <td class="text-center">
                                                                 <div class="btn-group action-tooltip">
-                                                                    <button class="btn-primary btn btn-sm" data-toggle="tooltip" 
-                                                                    v-on:click="addScore('<?= ($row['student_no']) ?>','<?= ($row['first_name']) ?>','<?= ($row['last_name']) ?>','<?= ($row['class']) ?>','<?= ($arrClass[$row['class']]) ?>','<?= ($row['semester']) ?>')"><i class="fa fa-graduation-cap" aria-hidden="true"></i></button>
+                                                                    <?php if ($LOGON_USER_ROLE == 'staff'): ?>
+                                                                        
+                                                                            <button class="btn-primary btn btn-sm" data-toggle="tooltip" 
+                                                                            v-on:click="addScore('<?= ($row['student_no']) ?>','<?= ($row['first_name']) ?>','<?= ($row['last_name']) ?>','<?= ($row['class']) ?>','<?= ($arrClass[$row['class']]) ?>','<?= ($row['semester']) ?>','<?= ($row['year']) ?>')"><i class="fa fa-graduation-cap" aria-hidden="true"></i></button>
+                                                                        
+                                                                    <?php endif; ?>
+                                                                    <?php if ($LOGON_USER_ROLE == 'admin'): ?>
+                                                                        
+                                                                            <a href="<?= ($BASE) ?>/student-score/detail/<?= ($row['student_no']) ?>/<?= ($row['class']) ?>/<?= ($row['year']) ?>" class="btn btn-info"><i class="fa fa-eye"></i></a>
+                                                                        
+                                                                    <?php endif; ?>
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -149,13 +164,15 @@
                                                 <div class="modal-dialog modal-xl" role="document">
                                                     <div class="modal-content" style="font-family: NotoSerifLao;">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title la" id="scoreModalLabel">ເພີ່ມຄະແນນ</h5>
+                                                            <h5 class="modal-title la" id="scoreModalLabel">ເພີ່ມຄະແນນ ວິຊາ - <?= ($arrSubject[$LOGON_USER_SUBJECT_ID] ?? '') ?></h5>
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
                                                             <form id="score-form">
+                                                                <input type="hidden" name="subject_id" value="<?= ($LOGON_USER_SUBJECT_ID) ?>">
+                                                                <input type="hidden" name="year" v-model="year">
                                                                 <div class="row">
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">
@@ -238,11 +255,14 @@
                     class_id:'',
                     class_no:'',
                     semester:'',
+                    year:'',
                     score:'',
 				},
 				methods:{
-                    handleClass:function(id){
-                        window.location.href='<?= ($BASE) ?>/student-score?class_id='+id;
+                    handleClass:function(){
+                        var class_id = $('.class-id').val();
+                        var year = $('.year-id').val();
+                        window.location.href='<?= ($BASE) ?>/student-score?class_id='+class_id+'&year='+year;
                     },
                     handleSubmit:function(){
                         axios.post('<?= ($BASE) ?>/student-score',$('#score-form').serialize())
@@ -257,7 +277,7 @@
                             }
                         })
                     },
-                    addScore:function(student_no,first_name,last_name,class_id,class_no,semester){
+                    addScore:function(student_no,first_name,last_name,class_id,class_no,semester,year){
                         var score = $('.score-'+student_no).text();
                         this.student_no = student_no;
                         this.first_name = first_name;
@@ -265,6 +285,7 @@
                         this.class_id = class_id;
                         this.class_no = class_no;
                         this.semester = semester;
+                        this.year = year;
                         this.score = score != '-' ? score : '';
                         $('#scoreModal').modal('show');
                     }

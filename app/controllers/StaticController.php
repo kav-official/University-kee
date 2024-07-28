@@ -3,8 +3,6 @@ class StaticController{
   public $db;
   function __construct(){
     $this->db = DBConfig::config();
-    $secur = new CustomSecurity();
-    $secur->fSecurity($this->db);
   }
   public function index(){
     $f3 = Base::instance();

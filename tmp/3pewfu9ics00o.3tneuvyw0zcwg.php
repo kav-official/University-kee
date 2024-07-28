@@ -7,6 +7,7 @@
             <div id="kt_header_menu" class="header-menu header-menu-left header-menu-mobile header-menu-layout-default">
                 <!--begin::Header Nav-->
                 <ul class="menu-nav">
+                    
                     <li class="menu-item menu-item-open  menu-item-submenu menu-item-rel menu-item-open <?= ($nav == 'home' ? 'menu-item-here' : '') ?>" data-menu-toggle="hover" aria-haspopup="true">
                         <a href="<?= ($BASE) ?>/" class="menu-link">
                             <span class="menu-text la">ໜ້າຫຼັກ</span>
@@ -14,7 +15,8 @@
                             <i class="menu-arrow"></i>
                         </a>
                     </li>
-
+                    <?php if ($LOGON_USER_ROLE == 'admin'): ?>
+                    
                     <li class="menu-item menu-item-submenu menu-item-rel <?= ($nav == 'student' ? 'menu-item-here' : '') ?> || <?= ($nav == 'fee' ? 'menu-item-here' : '') ?> || <?= ($nav == 'user' ? 'menu-item-here' : '') ?> la"  data-menu-toggle="hover" aria-haspopup="true">
                         <a href="javascript:;" class="menu-link menu-toggle">
                             <span class="menu-text">ຈັດການຂໍ້ມູນພື້ນຖານ</span>
@@ -73,8 +75,11 @@
                                 </li>
                             </ul>
                         </div>
-                    </li>
-
+                    </li>    
+                    
+                    <?php endif; ?>
+                    <?php if ($LOGON_USER_ROLE == 'admin'): ?>
+                    
                     <li class="menu-item menu-item-submenu menu-item-rel <?= ($nav == 'register' ? 'menu-item-here' : '') ?> || <?= ($nav == 'register-old' ? 'menu-item-here' : '') ?> la"  data-menu-toggle="hover" aria-haspopup="true">
                         <a href="javascript:;" class="menu-link menu-toggle">
                             <span class="menu-text">ລົງທະບຽນ</span>
@@ -114,8 +119,10 @@
                             </ul>
                         </div>
                     </li>
-
-                    <li class="menu-item menu-item-submenu menu-item-rel <?= ($nav == 'order' ? 'menu-item-here' : '') ?> la"  data-menu-toggle="hover" aria-haspopup="true">
+                    
+                    <?php endif; ?>
+                    
+                    <li class="menu-item menu-item-submenu menu-item-rel <?= ($nav == 'process' ? 'menu-item-here' : '') ?> la"  data-menu-toggle="hover" aria-haspopup="true">
                         <a href="javascript:;" class="menu-link menu-toggle">
                             <span class="menu-text">ປະເມີນຜົນ</span>
                             <span class="menu-desc">ປະເມີນຜົນນັກສຶກສາ</span>
@@ -174,7 +181,8 @@
                             </ul>
                         </div>
                     </li>
-
+                    <?php if ($LOGON_USER_ROLE == 'admin'): ?>
+                    
                      <li class="menu-item menu-item-submenu menu-item-rel <?= ($nav == 'class' ? 'menu-item-here' : '') ?> la"  data-menu-toggle="hover" aria-haspopup="true">
                         <a href="<?= ($BASE) ?>/class" class="menu-link">
                             <span class="menu-text">ຫ້ອງຮຽນ</span>
@@ -286,7 +294,8 @@
                             </ul>
                         </div>
                     </li>
-
+                    
+                    <?php endif; ?>
                 </ul>
                 <!--end::Header Nav-->
             </div>

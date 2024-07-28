@@ -32,17 +32,17 @@ class StudentScoreController{
         echo $tmp->render("backend/student-score.html");
     }
     function scoreDetail(){
-        $f3 = Base::instance();
-        $tmp = new Template;
-        $custom = new CustomFunctions();
-        $help = new HelpFunctions();
-        $Svr = new RegisterServices($this->db);
+        $f3         = Base::instance();
+        $tmp        = new Template;
+        $custom     = new CustomFunctions();
+        $help       = new HelpFunctions();
+        $Svr        = new RegisterServices($this->db);
         $student_no = $f3->get('PARAMS.student_no');
-        $class_id = $f3->get('PARAMS.class_id');
-        $year = $f3->get('PARAMS.year');
-        $student = $Svr->load(array('student_no = ? AND year = ?',$student_no,$year));
-        $items = $this->db->exec("SELECT * FROM tblscore WHERE student_no = ? AND year = ? AND class_id = ?",array($student_no,$year,$class_id));
-        $scoreData = array();
+        $class_id   = $f3->get('PARAMS.class_id');
+        $year       = $f3->get('PARAMS.year');
+        $student    = $Svr->load(array('student_no = ? AND year = ?',$student_no,$year));
+        $items      = $this->db->exec("SELECT * FROM tblscore WHERE student_no = ? AND class_id = ?",array($student_no,$class_id));
+        $scoreData  = array();
         foreach($items as $row){
             $scoreData[$row['subject_id']] = $row['score'];
         }

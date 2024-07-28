@@ -23,10 +23,7 @@ class StudentGradeController{
         $f3->set('entrycount',count($items));
         $f3->set('province',$custom->province());
         $f3->set('arrClass',$custom->classes());
-<<<<<<< HEAD
         $f3->set('arrYear',$custom->year());
-=======
->>>>>>> 3b74d2acce3230de9904435a757cb0eee77de1a7
         $f3->set('nav','process');
         $f3->set('subnav','student-score-grade');
         $f3->set('strAction', 'ຄິດໄລ່ເກຣດ');

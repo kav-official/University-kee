@@ -21,7 +21,7 @@ class RegisterServices extends BaseServiceReadBean
         {
             $id          = $this->f3->get('POST.id');
             $semester    = $this->f3->get('POST.semester');
-            $student_no  = $this->f3->get('POST.student_no');
+            // $student_no  = $this->f3->get('POST.student_no');
             $first_name  = $this->f3->get('POST.first_name');
             $last_name   = $this->f3->get('POST.last_name');
             $gender      = $this->f3->get('POST.gender');
@@ -35,6 +35,19 @@ class RegisterServices extends BaseServiceReadBean
             $region      = $this->f3->get('POST.region');
             $ethnicity   = $this->f3->get('POST.ethnicity');
             $semester    = $this->f3->get('POST.semester');
+
+            $file_content = file_get_contents("uploads/student-no.txt");
+            $split = explode(" ", $file_content);
+            if(date('Y') > $split[1]) 
+            {
+                $handle = fopen('uploads/student-no.txt','w');
+                fwrite($handle,"1 ".date('Y'));
+                $student_no = "STD-".substr(date('Y'),0) . '-1';
+            } else {
+                $handle = fopen('uploads/student-no.txt','w');
+                fwrite($handle,($split[0]+1)." ".$split[1]);
+                $student_no = "STD-".substr($split[1],-2) . '-'.$split[0];
+            }
 
             $check = $this->load(['semester=? AND student_no=?',$semester,$student_no]);
             if($check){
@@ -65,7 +78,7 @@ class RegisterServices extends BaseServiceReadBean
            $data = $this->f3->get('BODY');
            parse_str($data,$up_row);
            $id          = $up_row['id'];
-           $student_no  = $up_row['student_no'];
+        //    $student_no  = $up_row['student_no'];
            $first_name  = $up_row['first_name'];
            $last_name   = $up_row['last_name'];
            $dob         = $up_row['dob'];
@@ -81,7 +94,7 @@ class RegisterServices extends BaseServiceReadBean
            $semester    = $up_row['semester'];
 
             $this->load(['id = ?',$id]);
-            $this->student_no  = $student_no;
+            // $this->student_no  = $student_no;
             $this->first_name  = $first_name;
             $this->last_name   = $last_name;
             $this->dob         = $dob;
