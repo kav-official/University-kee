@@ -11,7 +11,7 @@ class RegisterOldController extends ActionController {
         $this->secur->security($this->db);
         $this->custom = new CustomFunctions();
         $this->f3->set('arrProvince',$this->custom->province());
-        $this->f3->set('arrClass',$this->custom->arrClass());
+        $this->f3->set('arrClass',$this->custom->classes());
         $this->f3->set('custom',$this->custom);
 	    parent::__construct('RegisterServices', 'backend/register-old.html', 'register-old', 'register-old', 'ລົງທະບຽນນັກສຶກສາເກົ່າ');
     }

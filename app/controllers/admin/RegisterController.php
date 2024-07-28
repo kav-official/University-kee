@@ -13,7 +13,7 @@ class RegisterController extends ActionController {
         $this->help = new HelpFunctions();
        
         $this->f3->set('arrProvince',$this->custom->province());
-        $this->f3->set('arrClass',$this->custom->arrClass());
+        $this->f3->set('arrClass',$this->custom->classes());
         $this->f3->set('semester',$this->custom->semester());
         $this->f3->set('custom',$this->custom);
 	    parent::__construct('RegisterServices', 'backend/register.html', 'register', 'register', 'ລົງທະບຽນນັກສຶກສາໃໝ່');

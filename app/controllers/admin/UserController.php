@@ -8,9 +8,9 @@ class UserController extends ActionController{
         $help = new HelpFunctions();
         $sec = new CustomSecurity();
         $sec->security($this->db);
-        $f3->set('arrSubject',$custom->arrSubject());
+        $f3->set('arrSubject',$custom->subject());
         $f3->set('arrProvince',$custom->province());
-        $f3->set('arrClass',$custom->arrClass());
+        $f3->set('arrClass',$custom->classes());
         $f3->set('custom',$custom);
         $f3->set('help',$help);
         parent::__construct('UsersServices','backend/user.html', 'user', 'user', 'ຈັດການຂໍ້ມູນພະນັກງານ');
