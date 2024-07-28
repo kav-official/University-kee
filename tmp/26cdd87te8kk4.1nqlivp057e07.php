@@ -66,75 +66,14 @@
 								<!--begin::Dashboard-->
 								<!--begin::Row-->
 								<div class="row mt-0 mt-lg-3">
-									<div class="col-xl-4">
+									<div class="col-xl-9">
 										<!--begin::Mixed Widget 17-->
 										<div class="card card-custom gutter-b card-stretch">
 											<!--begin::Header-->
 											<div class="card-header border-0 pt-5">
 												<div class="card-title font-weight-bolder">
-													<div class="card-label">Weekly Sales Stats
-													<div class="font-size-sm text-muted mt-2">890,344 Sales</div></div>
-												</div>
-												<div class="card-toolbar">
-													<div class="dropdown dropdown-inline">
-														<a href="#" class="btn btn-clean btn-sm btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-															<i class="ki ki-bold-more-hor"></i>
-														</a>
-														<div class="dropdown-menu dropdown-menu-md dropdown-menu-right">
-															<!--begin::Naviigation-->
-															<ul class="navi">
-																<li class="navi-header font-weight-bold py-5">
-																	<span class="font-size-lg">Add New:</span>
-																	<i class="flaticon2-information icon-md text-muted" data-toggle="tooltip" data-placement="right" title="Click to learn more..."></i>
-																</li>
-																<li class="navi-separator mb-3 opacity-70"></li>
-																<li class="navi-item">
-																	<a href="#" class="navi-link">
-																		<span class="navi-icon">
-																			<i class="flaticon2-shopping-cart-1"></i>
-																		</span>
-																		<span class="navi-text">Order</span>
-																	</a>
-																</li>
-																<li class="navi-item">
-																	<a href="#" class="navi-link">
-																		<span class="navi-icon">
-																			<i class="navi-icon flaticon2-calendar-8"></i>
-																		</span>
-																		<span class="navi-text">Members</span>
-																		<span class="navi-label">
-																			<span class="label label-light-danger label-rounded font-weight-bold">3</span>
-																		</span>
-																	</a>
-																</li>
-																<li class="navi-item">
-																	<a href="#" class="navi-link">
-																		<span class="navi-icon">
-																			<i class="navi-icon flaticon2-telegram-logo"></i>
-																		</span>
-																		<span class="navi-text">Project</span>
-																	</a>
-																</li>
-																<li class="navi-item">
-																	<a href="#" class="navi-link">
-																		<span class="navi-icon">
-																			<i class="navi-icon flaticon2-new-email"></i>
-																		</span>
-																		<span class="navi-text">Record</span>
-																		<span class="navi-label">
-																			<span class="label label-light-success label-rounded font-weight-bold">5</span>
-																		</span>
-																	</a>
-																</li>
-																<li class="navi-separator mt-3 opacity-70"></li>
-																<li class="navi-footer pt-5 pb-4">
-																	<a class="btn btn-light-primary font-weight-bolder btn-sm" href="#">More options</a>
-																	<a class="btn btn-clean font-weight-bold btn-sm d-none" href="#" data-toggle="tooltip" data-placement="right" title="Click to learn more...">Learn more</a>
-																</li>
-															</ul>
-															<!--end::Naviigation-->
-														</div>
-													</div>
+													<div class="card-label la">ວິທະຍາໄລນານາຊາດ
+													<div class="font-size-sm text-muted mt-2"> ສົກສືກສາ 2023-2024</div></div>
 												</div>
 											</div>
 											<!--end::Header-->
@@ -165,8 +104,7 @@
 																<!--end::Symbol-->
 																<!--begin::Title-->
 																<div>
-																	<div class="font-size-h4 text-dark-75 font-weight-bolder">$2,034</div>
-																	<div class="font-size-sm text-muted font-weight-bold mt-1">Author Sales</div>
+																	<div class="font-size-h4 text-dark-75 font-weight-bolder la">ອາຈານສອນທັງໝົດ 18</div>
 																</div>
 																<!--end::Title-->
 															</div>
@@ -194,8 +132,7 @@
 																<!--end::Symbol-->
 																<!--begin::Title-->
 																<div>
-																	<div class="font-size-h4 text-dark-75 font-weight-bolder">$706</div>
-																	<div class="font-size-sm text-muted font-weight-bold mt-1">Commision</div>
+																	<div class="font-size-h4 text-dark-75 font-weight-bolder la">ນັກສຶກສາທັງໝົດ 800</div>
 																</div>
 																<!--end::Title-->
 															</div>
@@ -225,8 +162,7 @@
 																<!--end::Symbol-->
 																<!--begin::Title-->
 																<div>
-																	<div class="font-size-h4 text-dark-75 font-weight-bolder">$49</div>
-																	<div class="font-size-sm text-muted font-weight-bold mt-1">Average Bid</div>
+																	<div class="font-size-h4 text-dark-75 font-weight-bolder la">ຫ້ອງຮຽນທັງໝົດ 9</div>
 																</div>
 																<!--end::Title-->
 															</div>
@@ -254,8 +190,7 @@
 																<!--end::Symbol-->
 																<!--begin::Title-->
 																<div>
-																	<div class="font-size-h4 text-dark-75 font-weight-bolder">$5.8M</div>
-																	<div class="font-size-sm text-muted font-weight-bold mt-1">All Time Sales</div>
+																	<div class="font-size-h4 text-dark-75 font-weight-bolder la">ວິຊາຮຽນທັງໝົດ 5</div>
 																</div>
 																<!--end::Title-->
 															</div>
@@ -263,219 +198,9 @@
 														<!--end::Item-->
 													</div>
 												</div>
-												<!--end::Items-->
-												<!--begin::Chart-->
 												<div id="kt_mixed_widget_17_chart" class="card-rounded-bottom" data-color="primary" style="height: 200px"></div>
-												<!--end::Chart-->
 											</div>
-											<!--end::Body-->
 										</div>
-										<!--end::Mixed Widget 17-->
-									</div>
-									<div class="col-xl-4">
-										<!--begin::List Widget 9-->
-										<div class="card card-custom gutter-b card-stretch">
-											<!--begin::Header-->
-											<div class="card-header align-items-center border-0 mt-4">
-												<h3 class="card-title align-items-start flex-column">
-													<span class="font-weight-bolder text-dark">My Activity</span>
-													<span class="text-muted mt-3 font-weight-bold font-size-sm">890,344 Sales</span>
-												</h3>
-												<div class="card-toolbar">
-													<div class="dropdown dropdown-inline">
-														<a href="#" class="btn btn-clean btn-hover-light-primary btn-sm btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-															<i class="ki ki-bold-more-hor"></i>
-														</a>
-														<div class="dropdown-menu dropdown-menu-md dropdown-menu-right">
-															<!--begin::Navigation-->
-															<ul class="navi navi-hover">
-																<li class="navi-header font-weight-bold py-4">
-																	<span class="font-size-lg">Choose Label:</span>
-																	<i class="flaticon2-information icon-md text-muted" data-toggle="tooltip" data-placement="right" title="Click to learn more..."></i>
-																</li>
-																<li class="navi-separator mb-3 opacity-70"></li>
-																<li class="navi-item">
-																	<a href="#" class="navi-link">
-																		<span class="navi-text">
-																			<span class="label label-xl label-inline label-light-success">Customer</span>
-																		</span>
-																	</a>
-																</li>
-																<li class="navi-item">
-																	<a href="#" class="navi-link">
-																		<span class="navi-text">
-																			<span class="label label-xl label-inline label-light-danger">Partner</span>
-																		</span>
-																	</a>
-																</li>
-																<li class="navi-item">
-																	<a href="#" class="navi-link">
-																		<span class="navi-text">
-																			<span class="label label-xl label-inline label-light-warning">Suplier</span>
-																		</span>
-																	</a>
-																</li>
-																<li class="navi-item">
-																	<a href="#" class="navi-link">
-																		<span class="navi-text">
-																			<span class="label label-xl label-inline label-light-primary">Member</span>
-																		</span>
-																	</a>
-																</li>
-																<li class="navi-item">
-																	<a href="#" class="navi-link">
-																		<span class="navi-text">
-																			<span class="label label-xl label-inline label-light-dark">Staff</span>
-																		</span>
-																	</a>
-																</li>
-																<li class="navi-separator mt-3 opacity-70"></li>
-																<li class="navi-footer py-4">
-																	<a class="btn btn-clean font-weight-bold btn-sm" href="#">
-																	<i class="ki ki-plus icon-sm"></i>Add new</a>
-																</li>
-															</ul>
-															<!--end::Navigation-->
-														</div>
-													</div>
-												</div>
-											</div>
-											<!--end::Header-->
-											<!--begin::Body-->
-											<div class="card-body pt-4">
-												<!--begin::Timeline-->
-												<div class="timeline timeline-6 mt-3">
-													<!--begin::Item-->
-													<div class="timeline-item align-items-start">
-														<!--begin::Label-->
-														<div class="timeline-label font-weight-bolder text-dark-75 font-size-lg">08:42</div>
-														<!--end::Label-->
-														<!--begin::Badge-->
-														<div class="timeline-badge">
-															<i class="fa fa-genderless text-warning icon-xl"></i>
-														</div>
-														<!--end::Badge-->
-														<!--begin::Text-->
-														<div class="font-weight-mormal font-size-lg timeline-content text-muted pl-3">Outlines keep you honest. And keep structure</div>
-														<!--end::Text-->
-													</div>
-													<!--end::Item-->
-													<!--begin::Item-->
-													<div class="timeline-item align-items-start">
-														<!--begin::Label-->
-														<div class="timeline-label font-weight-bolder text-dark-75 font-size-lg">10:00</div>
-														<!--end::Label-->
-														<!--begin::Badge-->
-														<div class="timeline-badge">
-															<i class="fa fa-genderless text-success icon-xl"></i>
-														</div>
-														<!--end::Badge-->
-														<!--begin::Content-->
-														<div class="timeline-content d-flex">
-															<span class="font-weight-bolder text-dark-75 pl-3 font-size-lg">AEOL meeting</span>
-														</div>
-														<!--end::Content-->
-													</div>
-													<!--end::Item-->
-													<!--begin::Item-->
-													<div class="timeline-item align-items-start">
-														<!--begin::Label-->
-														<div class="timeline-label font-weight-bolder text-dark-75 font-size-lg">14:37</div>
-														<!--end::Label-->
-														<!--begin::Badge-->
-														<div class="timeline-badge">
-															<i class="fa fa-genderless text-danger icon-xl"></i>
-														</div>
-														<!--end::Badge-->
-														<!--begin::Desc-->
-														<div class="timeline-content font-weight-bolder font-size-lg text-dark-75 pl-3">Make deposit
-														<a href="#" class="text-primary">USD 700</a>. to ESL</div>
-														<!--end::Desc-->
-													</div>
-													<!--end::Item-->
-													<!--begin::Item-->
-													<div class="timeline-item align-items-start">
-														<!--begin::Label-->
-														<div class="timeline-label font-weight-bolder text-dark-75 font-size-lg">16:50</div>
-														<!--end::Label-->
-														<!--begin::Badge-->
-														<div class="timeline-badge">
-															<i class="fa fa-genderless text-primary icon-xl"></i>
-														</div>
-														<!--end::Badge-->
-														<!--begin::Text-->
-														<div class="timeline-content font-weight-mormal font-size-lg text-muted pl-3">Indulging in poorly driving and keep structure keep great</div>
-														<!--end::Text-->
-													</div>
-													<!--end::Item-->
-													<!--begin::Item-->
-													<div class="timeline-item align-items-start">
-														<!--begin::Label-->
-														<div class="timeline-label font-weight-bolder text-dark-75 font-size-lg">21:03</div>
-														<!--end::Label-->
-														<!--begin::Badge-->
-														<div class="timeline-badge">
-															<i class="fa fa-genderless text-danger icon-xl"></i>
-														</div>
-														<!--end::Badge-->
-														<!--begin::Desc-->
-														<div class="timeline-content font-weight-bolder text-dark-75 pl-3 font-size-lg">New order placed
-														<a href="#" class="text-primary">#XF-2356</a>.</div>
-														<!--end::Desc-->
-													</div>
-													<!--end::Item-->
-													<!--begin::Item-->
-													<div class="timeline-item align-items-start">
-														<!--begin::Label-->
-														<div class="timeline-label font-weight-bolder text-dark-75 font-size-lg">23:07</div>
-														<!--end::Label-->
-														<!--begin::Badge-->
-														<div class="timeline-badge">
-															<i class="fa fa-genderless text-info icon-xl"></i>
-														</div>
-														<!--end::Badge-->
-														<!--begin::Text-->
-														<div class="timeline-content font-weight-mormal font-size-lg text-muted pl-3">Outlines keep and you honest. Indulging in poorly driving</div>
-														<!--end::Text-->
-													</div>
-													<!--end::Item-->
-													<!--begin::Item-->
-													<div class="timeline-item align-items-start">
-														<!--begin::Label-->
-														<div class="timeline-label font-weight-bolder text-dark-75 font-size-lg">16:50</div>
-														<!--end::Label-->
-														<!--begin::Badge-->
-														<div class="timeline-badge">
-															<i class="fa fa-genderless text-primary icon-xl"></i>
-														</div>
-														<!--end::Badge-->
-														<!--begin::Text-->
-														<div class="timeline-content font-weight-mormal font-size-lg text-muted pl-3">Indulging in poorly driving and keep structure keep great</div>
-														<!--end::Text-->
-													</div>
-													<!--end::Item-->
-													<!--begin::Item-->
-													<div class="timeline-item align-items-start">
-														<!--begin::Label-->
-														<div class="timeline-label font-weight-bolder text-dark-75 font-size-lg">21:03</div>
-														<!--end::Label-->
-														<!--begin::Badge-->
-														<div class="timeline-badge">
-															<i class="fa fa-genderless text-danger icon-xl"></i>
-														</div>
-														<!--end::Badge-->
-														<!--begin::Desc-->
-														<div class="timeline-content font-weight-bolder font-size-lg text-dark-75 pl-3">New order placed
-														<a href="#" class="text-primary">#XF-2356</a>.</div>
-														<!--end::Desc-->
-													</div>
-													<!--end::Item-->
-												</div>
-												<!--end::Timeline-->
-											</div>
-											<!--end: Card Body-->
-										</div>
-										<!--end: List Widget 9-->
 									</div>
 								</div>
 							</div>
