@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 28, 2024 at 09:49 AM
+-- Generation Time: Jul 28, 2024 at 04:21 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -1189,7 +1189,20 @@ INSERT INTO `tblaccesslog` (`id`, `user_id`, `type`, `ip_address`, `login_succes
 (1536, 7, 'admin', '::1', 1, 1722143903),
 (1537, 7, 'admin', '::1', 1, 1722145615),
 (1538, 14, 'staff', '::1', 1, 1722152041),
-(1539, 7, 'admin', '::1', 1, 1722152905);
+(1539, 7, 'admin', '::1', 1, 1722152905),
+(1540, 7, 'admin', '::1', 1, 1722172642),
+(1541, 14, 'admin', '::1', 1, 1722174233),
+(1542, 7, 'admin', '::1', 1, 1722174685),
+(1543, 14, 'admin', '::1', 1, 1722174732),
+(1544, 7, 'admin', '::1', 1, 1722174788),
+(1545, 14, 'admin', '::1', 1, 1722175382),
+(1546, 13, 'admin', '::1', 1, 1722175426),
+(1547, 7, 'admin', '::1', 1, 1722175457),
+(1548, 13, 'admin', '::1', 1, 1722175735),
+(1549, 14, 'admin', '::1', 1, 1722175819),
+(1550, 7, 'admin', '::1', 1, 1722175852),
+(1551, 14, 'admin', '::1', 1, 1722175920),
+(1552, 7, 'admin', '::1', 1, 1722176401);
 
 -- --------------------------------------------------------
 
@@ -1407,7 +1420,9 @@ CREATE TABLE `tblpayment` (
 INSERT INTO `tblpayment` (`id`, `semester`, `year`, `student_no`, `total_amount`, `payment_status`, `created_at`) VALUES
 (1, '2024-2025', 0, 'STD001', 2000000, 2, '2024-07-25 12:53:29'),
 (2, '2024-2025', 0, 'STD005', 2500000, 2, '2024-07-28 11:58:24'),
-(3, '2024-2025', 0, 'STD002', 2500000, 2, '2024-07-28 13:40:45');
+(3, '2024-2025', 0, 'STD002', 2500000, 2, '2024-07-28 13:40:45'),
+(4, '2024-2025', 0, 'STD-24-1', 1900000, 2, '2024-07-28 20:32:40'),
+(5, '2024-2025', 0, 'STD-24-2', 1900000, 2, '2024-07-28 20:32:45');
 
 -- --------------------------------------------------------
 
@@ -1442,10 +1457,8 @@ CREATE TABLE `tblregister` (
 --
 
 INSERT INTO `tblregister` (`id`, `semester`, `year`, `student_no`, `first_name`, `last_name`, `gender`, `dob`, `phone`, `province_id`, `district_id`, `village`, `region`, `ethnicity`, `class`, `fee`, `payment_status`, `payment_methode`, `created_at`) VALUES
-(4, '2024-2025', 2, 'STD001', 'Gillian', 'Velasquez', 'F', '2011-10-01', '+1 (939) 758-9476', 2, 1, 'Aut delectus odit q', 'Nisi labore anim ess', 'Temporibus sint nemo', '6', 3000000.00, 0, 1, '2024-07-24 14:34:40'),
-(11, '2024-2025', 1, 'STD004', 'Mark', 'Cardenas', 'M', '2008-01-28', '+1 (777) 521-4281', 11, 2, 'Praesentium exercita', 'Atque error eiusmod ', 'Aperiam excepturi te', '3', NULL, 0, 0, '2024-07-25 10:35:01'),
-(12, '2024-2025', 2, 'STD005', 'John', 'Daniel', 'M', '2024-07-28', '2096531400', 1, 1, 'ພະຂາວ', 'test', 'tester', '2', NULL, 2, 0, '2024-07-28 11:53:59'),
-(13, '2024-2025', 2, 'STD002', 'Hop', 'Mcbride', 'M', '1996-01-23', '+1 (563) 699-1118', 7, 19, 'Vero ea tenetur occa', 'Minima et quas natus', 'Nam duis nemo deleni', '2', NULL, 0, 0, '2024-07-28 13:34:54');
+(1, '2024-2025', 1, 'STD-24-1', 'ka', 'law', 'M', '2024-07-28', '02096531400', 1, 1, 'HoyHong', 'Impedit autem dolor', 'Chanthaburi', '1', NULL, 2, 0, '2024-07-28 20:31:26'),
+(2, '2024-2025', 1, 'STD-24-2', 'AB', 'Duffy', 'F', '2024-07-03', '02096531400', 17, 134, 'HoyHong', 'Impedit autem dolor', 'Chanthaburi', '1', NULL, 2, 0, '2024-07-28 20:32:00');
 
 -- --------------------------------------------------------
 
@@ -1469,10 +1482,10 @@ CREATE TABLE `tblscore` (
 --
 
 INSERT INTO `tblscore` (`id`, `student_no`, `class_id`, `subject_id`, `semester`, `score`, `created_by_user_id`, `created_at`) VALUES
-(1, 'NO121', 1, 0, '2024-2025', 90, 1, '2024-07-24 10:06:46'),
-(2, 'STD001', 6, 0, '2024-2025', 60, 7, '2024-07-25 03:08:42'),
-(3, 'STD005', 2, 1, '2024-2025', 80, 7, '2024-07-28 04:56:09'),
-(4, 'STD002', 2, 2, '2024-2025', 90, 7, '2024-07-28 06:35:28');
+(9, 'STD-24-1', 1, 9, '2024-2025', 91, 13, '2024-07-28 14:09:56'),
+(10, 'STD-24-2', 1, 9, '2024-2025', 82, 13, '2024-07-28 14:10:00'),
+(11, 'STD-24-1', 1, 1, '2024-2025', 95, 14, '2024-07-28 14:10:26'),
+(12, 'STD-24-2', 1, 1, '2024-2025', 96, 14, '2024-07-28 14:10:32');
 
 -- --------------------------------------------------------
 
@@ -1507,10 +1520,9 @@ CREATE TABLE `tbluser` (
 --
 
 INSERT INTO `tbluser` (`id`, `first_name`, `last_name`, `email`, `gender`, `dob`, `province_id`, `district_id`, `village`, `phone`, `class`, `subject_id`, `password`, `role`, `profile_avatar`, `created_at`, `updated_at`, `active`, `login_date`) VALUES
-(1, 'Xiong', 'Cha', 'chaxiong@fullstacksys.com', 'M', NULL, 3, '', '', '', 2, 0, '$2y$12$MGKgsVb3.u0QT7G6riEfr.Fa.Oyjp8oREbhmBMFSxamKmUbBhBRUm', 'admin', 'https://jointpharmalaos.com/uploads/user-images/52213cb20efb8a034.png', 1649661475, 1624406429, 1, 1699328764),
-(7, 'ka', 'law', 'ka@gmail.com', 'M', '2024-07-25', 4, 'Accusantium est vel', 'sak20', '2096531400', 1, 2, '$2y$12$skPaqK6EhhSHXmMfI/iL2uVfeqRfhkgEjw3aYk6r1YKgHyuPYAuYm', 'admin', 'http://localhost/university/kees/uploads/staff/0a9e4f60a553085c5.png', 1721884120, 1631153672, 1, 1722152905),
-(13, 'AB', 'BB', 'katrade1997@gmail.com', 'M', '2024-07-02', 5, 'Quos autem suscipit ', 'HoyHong', '02096531400', 3, 0, '$2y$12$t/blXELFSF0eaPzYY4S0MuwH7.npc1BJfqCNxJehFr5sIYrPqbvKi', 'staff', 'http://localhost/university/kees/uploads/staff/33cf49cb0f6df4364.png', 1721714795, 0, 1, 1721714795),
-(14, 'kee', 'kees', 'kee@gmail.com', 'M', '2024-07-28', 3, '', 'ພະຂາວ', '3121286800', 2, 0, '$2y$12$seinxmHM0sNqBz1XY4wlEuy0jfvDNupWhpZUHMiOsCdc/R3PQFeeG', 'staff', '', 1722142797, 0, 1, 1722152041);
+(7, 'admin', 'admin', 'admin@gmail.com', 'M', '2024-07-25', 3, '14', 'sak20', '2096531400', 1, 2, '$2y$12$/r2uglF2FMYTpq2j/V2jqeSCJ0QnRcVAZXsy64rMpx5uuqirn/af6', 'admin', 'http://localhost/university/kees/uploads/staff/0a9e4f60a553085c5.png', 1722175245, 1631153672, 1, 1722176401),
+(13, 'lecture 2', 'teacher', 'lecture2@gmail.com', 'F', '2024-07-02', 3, '15', 'HoyHong', '02096531400', 1, 9, '$2y$12$yu.LXZROrELq12b6P8AqvOsNvsBVTrgG6HsZdM4b8Mh3KLDIN4B4.', 'staff', 'http://localhost/university/kees/uploads/staff/33cf49cb0f6df4364.png', 1722175339, 0, 1, 1722175735),
+(14, 'lecture 1', 'teacher', 'lecture1@gmail.com', 'M', '2024-07-28', 5, '53', 'ພະຂາວ', '3121286800', 1, 1, '$2y$12$Ef9Z/TSRyEIt13u68f/rOOakw3ohSGucX6k30G02o1YEgxFz7/fS2', 'staff', '', 1722175300, 0, 1, 1722175920);
 
 --
 -- Indexes for dumped tables
@@ -1567,7 +1579,7 @@ ALTER TABLE `tbluser`
 -- AUTO_INCREMENT for table `tblaccesslog`
 --
 ALTER TABLE `tblaccesslog`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1540;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1553;
 
 --
 -- AUTO_INCREMENT for table `tbldistrict`
@@ -1585,19 +1597,19 @@ ALTER TABLE `tblfee`
 -- AUTO_INCREMENT for table `tblpayment`
 --
 ALTER TABLE `tblpayment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tblregister`
 --
 ALTER TABLE `tblregister`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tblscore`
 --
 ALTER TABLE `tblscore`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `tbluser`
