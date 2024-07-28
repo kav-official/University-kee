@@ -92,21 +92,7 @@
                                                 <div class="col-xl-9">
                                                     <!--begin::Wizard Step 1-->
                                                     <div class="my-5 step" data-wizard-type="step-content" data-wizard-state="current">
-                                                        <div class="form-group row">
-                                                            <label for="product_name" class="col-xl-2 col-lg-2 col-form-label la">ຮູບ</label>
-                                                            <div class="col-lg-9 col-xl-3">
-                                                                <input type="hidden" name="profile_avatar" value="{{@item->profile_avatar ?? ''}}" />
-                                                                <div class="upload-drop-zone dropzone" id="profile-avatar">
-                                                                    <check if="{{@item->profile_avatar ?? '' != ''}}">
-                                                                        <true>
-                                                                            <img src="{{ @item->profile_avatar }}" alt="{{@item->first_name}}" class="img-fluid" width="50">
-                                                                            <input type="hidden" name="profile_avatar" value="{{@item->profile_avatar ?? ''}}" />
-                                                                        </true>
-                                                                    </check>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
+                                            
                                                         <div class="form-group row la">
                                                             <label class="col-xl-2 col-lg-2 col-form-label">ຊື່​ແທ້</label>
                                                             <div class="col-lg-9 col-xl-9">
@@ -126,7 +112,6 @@
                                                                     <option value="">- Select Gender -</option>
                                                                     <option value="M">ເພດຊາຍ</option>
                                                                     <option value="F">ເພດຍີງ</option>
-                                                                    <option value="O">ອື່ນໆ</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -168,8 +153,8 @@
                                                             <div class="col-lg-9 col-xl-9">
                                                                <select name="role" class="form-control">
                                                                 <option value="">-Select-</option>
-                                                                <option value="admin">Admin</option>
-                                                                <option value="staff">Staff</option>
+                                                                <option value="admin">ແອດມິນ</option>
+                                                                <option value="staff">ອາຈານສອນ</option>
                                                                </select>
                                                             </div>
                                                         </div>
@@ -178,6 +163,14 @@
                                                             <div class="col-lg-9 col-xl-9">
                                                                 <select name="class" class="form-control">
                                                                     {{ @custom->renderArraySelect(@arrClass,@item->class ?? '' )}}
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row la">
+                                                            <label class="col-xl-2 col-lg-2 col-form-label">ວິຊາສອນ</label>
+                                                            <div class="col-lg-9 col-xl-9">
+                                                                <select name="subject_id" class="form-control">
+                                                                    {{ @custom->renderArraySelect(@arrSubject,@item->subject_id ?? '' )}}
                                                                 </select>
                                                             </div>
                                                         </div>

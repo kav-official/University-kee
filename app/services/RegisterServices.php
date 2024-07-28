@@ -31,6 +31,7 @@ class RegisterServices extends BaseServiceReadBean
             $village     = $this->f3->get('POST.village');
             $phone       = $this->f3->get('POST.phone');
             $class       = $this->f3->get('POST.class');
+            $subject_id  = $this->f3->get('POST.subject_id');
             $region      = $this->f3->get('POST.region');
             $ethnicity   = $this->f3->get('POST.ethnicity');
             $semester    = $this->f3->get('POST.semester');
@@ -50,6 +51,7 @@ class RegisterServices extends BaseServiceReadBean
                 $this->village     = $village;
                 $this->phone       = $phone;
                 $this->class       = $class;
+                $this->subject_id  = $subject_id;
                 $this->region      = $region;
                 $this->ethnicity   = $ethnicity;
                 $this->year        = 1;
@@ -73,6 +75,7 @@ class RegisterServices extends BaseServiceReadBean
            $province_id = $up_row['province_id'];
            $phone       = $up_row['phone'];
            $class       = $up_row['class'];
+           $subject_id  = $up_row['subject_id'];
            $region      = $up_row['region'];
            $ethnicity   = $up_row['ethnicity'];
            $semester    = $up_row['semester'];
@@ -88,6 +91,7 @@ class RegisterServices extends BaseServiceReadBean
             $this->province_id = $province_id;
             $this->phone       = $phone;
             $this->class       = $class;
+            $this->subject_id  = $subject_id;
             $this->region      = $region;
             $this->ethnicity   = $ethnicity;
             $this->semester    = $semester;

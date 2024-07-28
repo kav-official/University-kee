@@ -127,7 +127,6 @@
                                                                     <option value="">- Select Gender -</option>
                                                                     <option value="M">ເພດຊາຍ</option>
                                                                     <option value="F">ເພດຍີງ</option>
-                                                                    <option value="O">ອື່ນໆ</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -238,7 +237,12 @@
                         type:'GET',
                         success:function(data){
                             if(data.success ==true){
-                                console.log(data);
+                                var label = "<option value=''>- ເລືອກເມືອງ -</option>";
+                                var items = data.data;
+                                    $.each(items,(index,item)=>{
+                                        label += "<option value='"+item.id+"'>"+item.district_name+"</option>";
+                                    })
+                                $(".district-id").html(label);
                             }
                         }
                     })
