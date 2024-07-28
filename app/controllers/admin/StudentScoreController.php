@@ -21,11 +21,42 @@ class StudentScoreController{
         $f3->set('entrycount',count($items));
         $f3->set('province',$custom->province());
         $f3->set('arrClass',$custom->arrClass());
+        $f3->set('arrSubject',$custom->subject());
         $f3->set('nav','student-score');
         $f3->set('subnav','student-score');
         $f3->set('strAction', 'ໃຫ້ຄະແນນນັກສຶກສາ');
         $f3->set('strPage', 'ນັກສຶກສາ');
         echo $tmp->render("backend/student-score.html");
+    }
+    function scoreDetail(){
+        $f3 = Base::instance();
+        $tmp = new Template;
+        $custom = new CustomFunctions();
+        $help = new HelpFunctions();
+        $Svr = new RegisterServices($this->db);
+        $student_no = $f3->get('PARAMS.student_no');
+        $class_id = $f3->get('PARAMS.class_id');
+        $year = $f3->get('PARAMS.year');
+        $student = $Svr->load(array('student_no = ? AND year = ?',$student_no,$year));
+        $items = $this->db->exec("SELECT * FROM tblscore WHERE student_no = ? AND year = ? AND class_id = ?",array($student_no,$year,$class_id));
+        $scoreData = array();
+        foreach($items as $row){
+            $scoreData[$row['subject_id']] = $row['score'];
+        }
+        $f3->set('scoreData',$scoreData);
+        $f3->set('class_id',$class_id);
+        $f3->set('year',$year);
+        $f3->set('student',$student);
+        $f3->set('custom',$custom);
+        $f3->set('entrycount',count($items));
+        $f3->set('province',$custom->province());
+        $f3->set('arrClass',$custom->arrClass());
+        $f3->set('arrSubject',$custom->subject());
+        $f3->set('nav','student-score');
+        $f3->set('subnav','student-score');
+        $f3->set('strAction', 'ລາຍອຽດຄະແນນ');
+        $f3->set('strPage', 'ນັກສຶກສາ');
+        echo $tmp->render("backend/student-score-detail.html");
     }
     function score(){
         $f3 = Base::instance();

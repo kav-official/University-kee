@@ -41,7 +41,7 @@ class CustomFunctions{
     );
     return $arr[$gender] ?? '-';
   }
-  function arrSubject(){
+  function subject(){
     $arr = array(
       1  => 'ພາສາອັງກິດທົ່ວໄປ',
       2  => 'ພາສາອັງກິດທົ່ວໄປ 2',
@@ -107,7 +107,7 @@ class CustomFunctions{
     );
     return $arr;
   }
-  function arrYear(){
+  function year(){
     $arr = array(
       1  => "ປີ 1",
       2  => "ປີ 2",
