@@ -107,13 +107,17 @@ class RegisterServices extends BaseServiceReadBean
         $item = $this->load(['student_no=? ',$this->f3->get('PARAMS.student_no')]);
         $check = $Svr->load(['student_no=?',$item->student_no]);
         if($check){
-            if($check->score <= 35){
-                API::success(['success'=>false,'message' =>'ຄະແນນບໍຮອດຂາດໝ່າຍທີຈະເລື່ອນຊັ້ນ']);
+            if($item->payment_status == 0){
+                API::success(['success'=>false,'message' =>'ຍັງບໍ່ທັນໄດ້ຈ່າຍຄ່າເທີມ']);
             }else{
-                $this->year           = $item->year+1;
-                $this->payment_status = 0;
-                $this->update(); 
-                API::success(['success'=>true,'message' =>'ທ່ານໄດ້ເລື່ອນຫ້ອງສຳເລັດແລ້ວ']);
+                if($check->score <= 35){
+                    API::success(['success'=>false,'message' =>'ຄະແນນບໍຮອດຂາດໝ່າຍທີຈະເລື່ອນຊັ້ນ']);
+                }else{
+                    $this->year           = $item->year+1;
+                    $this->payment_status = 0;
+                    $this->update(); 
+                    API::success(['success'=>true,'message' =>'ທ່ານໄດ້ເລື່ອນຫ້ອງສຳເລັດແລ້ວ']);
+                }
             }
         }else{
             API::success(['success'=>false,'message' =>'ຍັງບໍ່ມີຄະແນນ']);

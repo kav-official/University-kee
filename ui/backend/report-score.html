@@ -66,9 +66,6 @@
 								<div class="d-flex align-items-center flex-wrap mr-1">
 									<!--begin::Page Heading-->
 									<div class="d-flex align-items-baseline flex-wrap mr-5">
-										<!--begin::Page Title-->
-										
-										<!--end::Breadcrumb-->
 									</div>
 									<!--end::Page Heading-->
 								</div>
@@ -87,59 +84,129 @@
 											<h3 class="card-label">{{@strPage}} ({{ @entrycount }})
 											<span class="d-block text-muted pt-2 font-size-sm">{{@strAction}}</span></h3>
 										</div>
-										<div class="card-toolbar">
-											<!--begin::Dropdown-->
-											<div class="dropdown dropdown-inline mr-2 la">
-												<a href="#"class="btn btn-light-primary font-weight-bolder">
-                                                    <span class="svg-icon svg-icon-md">
-                                                        <i class="fa fa-download"></i>
-                                                    </span>ລາຍງານ Excell
-                                                </a>
-											</div>
-											<div class="dropdown dropdown-inline mr-2 la">
-												<a href="#"class="btn btn-light-primary font-weight-bolder">
-                                                    <span class="svg-icon svg-icon-md">
-                                                        <i class="fa fa-download"></i>
-                                                    </span>ລາຍງານ PDF
-                                                </a>
-											</div>
-											<!--end::Dropdown-->
-										</div>
 									</div>
 									<div class="card-body">
 										<!--begin: Datatable-->
-                                        <div class="table-responsive-xl" id="print-bill">
-                                            <table class="table">
-                                                <thead>
-                                                    <tr style="font-family: NotoSerifLao;">
-                                                        <th>ລະຫັດນັກສຶກສາ</th>
-                                                        <th>ຊື່​ເຕັມ</th>
-                                                        <th>ເພດ</th>
-                                                        <th>ຄະແນນ</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <repeat group="{{@items}}" value="{{@row}}">
-                                                        <tr id="item-{{@row.id}}">
-                                                            <td>{{ @row.student_no }}</td>
-                                                            <td>{{ @row.first_name}} {{@row.last_name }}</td>
-                                                            <td>{{ @row.gender == 'M' ? 'ຊາຍ':'ຍິງ' }}</td>
-                                                            <td>{{ @row.score }}</td>
-                                                        </tr>
-                                                    </repeat>       
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                        <div class="table-responsive-xl" id="app">
+                                             <form>
+                                                <div class="row">
+                                                    <div class="col-md-3 mb-2">
+                                                        <select name="year" class="form-control la">
+                                                             {{ @custom->renderArraySelect(@arrYear,@year) }}
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-3 mb-2">
+                                                        <select name="class_id" class="form-control">
+                                                            {{ @custom->renderArraySelect(@arrClass,@class_id) }}
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-3 mb-2">
+                                                        <button class="btn btn-primary la-normal">ຕົກລົງ</button>
+                                                    </div>
+                                                    <div class="col-md-3 mb-2 text-right">
+                                                        <button class="btn btn-info" onclick="PrintDiv('print-report')"><i class="fa fa-print"></i></button>
+                                                        <button type="button" onclick="exportTableToExcel('print-table', 'excel-data')" class="btn btn-primary"><i class="fa fa-file-excel" aria-hidden="true"></i></button>
+                                                    </div>
+
+                                                </div>
+                                            </form>
+											<div id="print-report">
+												<table class="table" id="print-table">
+													<thead>
+														<tr style="font-family: NotoSerifLao;">
+															<th>ລະຫັດນັກສຶກສາ</th>
+															<th>ປີຮຽນ</th>
+															<th>ຫ້ອງຮຽນ</th>
+															<th>ວິຊາ</th>
+															<th>ຊື່​ເຕັມ</th>
+															<th>ເພດ</th>
+															<th>ຄະແນນ</th>
+														</tr>
+													</thead>
+													<tbody>
+														<repeat group="{{@items}}" value="{{@row}}">
+															<tr id="item-{{@row.id}}">
+																<td>{{ @row.student_no }}</td>
+																<td>{{ @row.year }}</td>
+																<td>{{ @arrClass[@row.class] }}</td>
+																<td>{{ @arrSubject[@row.subject_id] ?? '' }}</td>
+																<td>{{ @row.first_name}} {{@row.last_name }}</td>
+																<td>{{ @row.gender  == 'M' ? 'ຊາຍ':'ຍິງ' }}</td>
+																<td>{{ @row.score }}</td>
+															</tr>
+														</repeat>       
+														</tbody>
+												</table>
+											</div>
+                                          </div>
+										<!--end: Datatable-->
 									</div>
 								</div>
+								<!--end::Card-->
 							</div>
+							<!--end::Container-->
 						</div>
+						<!--end::Entry-->
 					</div>
+					<!--end::Content-->
+					<!--begin::Footer-->
 					<include href="backend/inc/footer.html" />
+					<!--end::Footer-->
 				</div>
+				<!--end::Wrapper-->
 			</div>
+			<!--end::Page-->
 		</div>
 		<include href="backend/inc/panel.html"/>
 		<include href="backend/inc/script.html" />
+		<!--end::Page Scripts-->
+		<script>
+			$(document).on('change','#class-id',function(){
+				window.location.href='{{ @BASE }}/calculate-grade?class_id='+$(this).val();
+			})
+            function PrintDiv(id) {
+                var data=document.getElementById(id).innerHTML;
+                var myWindow = window.open('', 'ພີມໃບບິນ', '');
+                //var myWindow = window.open('', 'my div', 'height=700,width=800');
+                myWindow.document.write('<html><head><title>ພີມໃບບິນ</title>');
+                var htmlToPrint = '' + '<style type="text/css">' + 'table {' + 'font-family: "Phetsarath OT"; margin-top:7px;' +'}'+'table th {' + 'font-family: "Phetsarath OT";' +'}' + '#print-table {border-collapse: collapse;width: 100%;}#print-table td, #print-table th {border: 1px solid #000000;padding: 8px;}#print-table th { padding-top: 12px;padding-bottom: 12px;text-align: left;}.text-center{text-align: center;}</style>';
+                /*optional stylesheet*/ //myWindow.document.write('<link rel="stylesheet" href="main.css" type="text/css" />');
+                myWindow.document.write('</head><body >');
+                myWindow.document.write(data);
+                myWindow.document.write('</body></html>');
+                myWindow.document.write(htmlToPrint);
+                myWindow.document.close(); // necessary for IE >= 1
+                myWindow.onload=function(){ // necessary if the div contain images
+                    myWindow.focus(); // necessary for IE >= 10
+                    myWindow.print();
+                    myWindow.close();
+                };
+            }
+            function exportTableToExcel(tableID, filename = ''){
+            var downloadLink;
+            var dataType = 'application/vnd.ms-excel';
+            var tableSelect = document.getElementById(tableID);
+            var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+            // Specify file name
+            filename = filename?filename+'.xls':'excel_data.xls';
+            // Create download link element
+            downloadLink = document.createElement("a");
+            document.body.appendChild(downloadLink);
+            if(navigator.msSaveOrOpenBlob){
+                var blob = new Blob(['\ufeff', tableHTML], {
+                    type: dataType
+                });
+                navigator.msSaveOrOpenBlob( blob, filename);
+            }else{
+                // Create a link to the file
+                downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+                // Setting the file name
+                downloadLink.download = filename;
+                //triggering the function
+                downloadLink.click();
+            }
+        }
+		</script>
 	</body>
+	<!--end::Body-->
 </html>

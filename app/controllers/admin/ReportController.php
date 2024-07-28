@@ -9,15 +9,48 @@ class ReportController{
     }
 
 	public function score(){
-        $f3     = Base::instance();
-        $tmp    = new Template;
-        $custom = new CustomFunctions();
+        $f3       = Base::instance();
+        $tmp      = new Template;
+        $custom   = new CustomFunctions();
+        $year     = 1;
+        $class_id = $f3->get('GET.class_id');
 
-        $items = $this->db->exec("SELECT tblregister.*,tblscore.score FROM tblregister INNER JOIN tblscore ON(tblregister.student_no=tblscore.student_no)");
+        $f3->set('class_id',$class_id);
+        if($f3->get('GET.year') != null){
+            $year = $f3->get('GET.year');
+        }
+        
+        $arrField = array();
+        $arrValue = array();
 
+        if($class_id != null){
+            $arrField[] = " tblregister.class = ? ";
+            $arrValue[] = $class_id;
+        }
+        if($year != null){
+            $arrField[] = " tblregister.year = ? ";
+            $arrValue[] = $year;
+        }
+   
+        $strField = implode("AND",$arrField);
+        $items    = $this->db->exec("SELECT tblregister.*,tblscore.score,tblscore.subject_id FROM tblregister INNER JOIN tblscore ON (tblregister.student_no=tblscore.student_no) WHERE ".$strField,$arrValue);
+
+        $disSvr = new DistrictServices($this->db);
+        $arrDis=[];
+        $disItems = $disSvr->getAll([],[]);
+        foreach ($disItems as $value) {
+            $arrDis[$value['id']] = $value['district_name'];
+        }
+
+        $f3->set('arrDis',$arrDis);
         $f3->set('items',$items);
+        $f3->set('year',$year);
         $f3->set('entrycount', count($items));
         $f3->set('arrClass',$custom->arrClass());
+        $f3->set('arrProvince',$custom->province());
+        $f3->set('arrSubject',$custom->arrSubject());
+        $f3->set('arrYear',$custom->arrYear());
+		$f3->set('custom', $custom);
 		$f3->set('nav', 'report');
 		$f3->set('subnav', 'report-score');
 		$f3->set('strPage', 'ລາຍງານຄະແນນ');
