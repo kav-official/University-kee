@@ -93,7 +93,7 @@
 																	</div>
 																</div>
 																<div>
-																	<div class="font-size-h4 text-dark-75 font-weight-bolder la">ອາຈານສອນທັງໝົດ 18</div>
+																	<div class="font-size-h4 text-dark-75 font-weight-bolder la">ອາຈານສອນທັງໝົດ 11</div>
 																</div>
 															</div>
 														</div>
@@ -114,7 +114,7 @@
 																	</div>
 																</div>
 																<div>
-																	<div class="font-size-h4 text-dark-75 font-weight-bolder la">ນັກສຶກສາທັງໝົດ 800</div>
+																	<div class="font-size-h4 text-dark-75 font-weight-bolder la">ນັກສຶກສາທັງໝົດ 350</div>
 																</div>
 															</div>
 														</div>

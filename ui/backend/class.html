@@ -80,7 +80,7 @@
 								<div class="card card-custom">
 									<!-- <div class="card-header flex-wrap border-0 pt-6 pb-0"> -->
 										<!-- <div class="card-title la">
-											<h1 class="card-label" style="font-size: 35px;">{{@strPage}} {{ @arrClass[@employee->class] }}</h1>
+											<h1 class="card-label" style="font-size: 35px;">{{@strPage}} {{ @arrClass[@employee->class] ?? ''}}</h1>
 										</div>
 										<div class="card-title la">
 											<h1 class="card-label" style="font-size: 35px;">ອາຈານປະຈຳຫ້ອງ: {{ @employee->first_name }} {{ @employee->last_name }}</h1>
@@ -156,64 +156,6 @@
 		<!--begin::Global Theme Bundle(used by all pages)-->
 		<include href="backend/inc/panel.html" />
 		<include href="backend/inc/script.html" />
-        <script type="text/javascript">
-            $(document).ready(function(){
-             $('#submit-form').submit(function(event){
-                event.preventDefault();
-                if ($("#submit-form").valid()) {
-                    $.ajax({
-                        type: $("#submit-form").attr("method"),            
-                        url: $("#submit-form").attr("action"), 
-                        data: $("#submit-form").serialize(),             
-                        beforeSend: function() {
-                            $("button.btn-submit").prop('disabled', true);
-                            $('button.btn-submit').css('cursor','not-allowed');
-                            $('button.btn-submit i.fa').addClass( "fa-refresh fa-spin" );
-                        },  
-                        success: function(data) {
-                            if (data.success == true) {
-                                Swal.fire({
-                                    position: 'top-end',
-                                    icon: 'success',
-                                    title: data.message,
-                                    showConfirmButton: false,
-                                    timer: 1500
-                                }).then((result)=>{
-                                    window.location.href="{{ @BASE }}/fee";
-                                });
-                            } else {
-                                Swal.fire("Error!", data.message, "error");
-                                $('button.btn-submit i.fa').removeClass( "fa-refresh fa-spin" );
-                                $('button.btn-submit').removeAttr('style');
-                                $("button.btn-submit").prop('disabled', false);
-                            }
-                        },
-                        error: function () {
-                            Swal.fire("Error!", "Error during proccessing!000", "error");
-                            $('button.btn-submit i.fa').removeClass( "fa-refresh fa-spin" );
-                            $('button.btn-submit').removeAttr('style');
-                            $("button.btn-submit").prop('disabled', false);
-                        },
-                    });
-                }
-            });
-            $("#submit-form").validate({
-            rules: {
-                category_name: {
-                    required: true
-                }
-            },
-            messages: {
-                category_name: {
-                    required: "Please enter user name.",
-                }
-            },
-            errorPlacement: function(error, element) {
-                error.appendTo(element.closest('div.form-group').find('div.error'));
-            },
-          });
-        });
-      </script>
 	</body>
 	<!--end::Body-->
 </html>

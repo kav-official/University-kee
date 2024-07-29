@@ -15,7 +15,7 @@ class ClassController{
         $disSvr = new DistrictServices($this->db);
 
         $employee = $Svr->getByOne(['id=?',$f3->get('LOGON_USER_ID')]);
-        $items    = $this->db->exec("SELECT tblregister.* FROM tblregister INNER JOIN tbluser ON (tbluser.class=tblregister.class) WHERE tblregister.semester = ? ORDER BY student_no",array($custom->semester()));
+        // $items    = $this->db->exec("SELECT tblregister.* FROM tblregister INNER JOIN tbluser ON (tbluser.class=tblregister.class) WHERE tblregister.semester = ? ORDER BY student_no",array($custom->semester()));
         
         $disSvr = new DistrictServices($this->db);
         $arrDis=[];
@@ -24,11 +24,11 @@ class ClassController{
             $arrDis[$value['id']] = $value['district_name'];
         }
 
-        $f3->set('items',$items);
+        // $f3->set('items',$items);
         $f3->set('employee',$employee);
         $f3->set('help',$help);
         $f3->set('custom',$custom);
-        $f3->set('entrycount',count($items));
+        // $f3->set('entrycount',count($items));
         $f3->set('arrProvince',$custom->province());
         $f3->set('arrClass',$custom->classes());
         $f3->set('arrDis',$arrDis);
