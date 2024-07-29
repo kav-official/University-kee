@@ -22,15 +22,21 @@ class FeeServices extends BaseServiceReadBean
             $id          = $this->f3->get('POST.id');
             $class       = $this->f3->get('POST.class');
             $price       = $this->f3->get('POST.price');
-            $this->class = $class;
-            $this->price = $price;
-            $this->save();
-            $this->data = ['success'=>true,'message' =>'ເພີ່ມສຳເລັດແລ້ວ'];
+
+            $check = $this->load(['class = ?',$class]);
+            if($check){
+                $this->data = ['success'=>false,'message' => 'ລາຄາຫ້ອງນີ້ຖືກກຳນົດແລ້ວ'];
+            }else{
+                $this->class = $class;
+                $this->price = $price;
+                $this->save();
+                $this->data = ['success'=>true,'message' =>'ເພີ່ມສຳເລັດແລ້ວ'];
+            }
         }
         
         if ($_SERVER['REQUEST_METHOD'] == 'PUT')
         {
-           $data            = $this->f3->get('BODY');
+           $data = $this->f3->get('BODY');
            parse_str($data,$up_row);
            $id    = $up_row['id'];
            $class = $up_row['class'] ?? '';

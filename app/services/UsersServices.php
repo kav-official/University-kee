@@ -34,7 +34,13 @@ class UsersServices extends BaseServiceReadBean
             $email            = $this->f3->get('POST.email');
 
             if ($password == $confirm_password) {
-                // $this->profile_avatar = $profile_avatar;
+                if($role == 'admin'){
+                    $class      = 0;
+                    $subject_id = 0;
+                }else{
+                    $class      = $class;
+                    $subject_id = $subject_id;
+                }
                 $this->first_name  = $first_name;
                 $this->last_name   = $last_name;
                 $this->gender      = $gender;
@@ -63,8 +69,16 @@ class UsersServices extends BaseServiceReadBean
         {
            $data = $this->f3->get('BODY');
            parse_str($data,$up_row);
+
+           if($up_row['role'] == 'admin'){
+                $class      = 0;
+                $subject_id = 0;
+            }else{
+                $class      = $up_row['class'];
+                $subject_id = $up_row['subject_id'];
+            }
+
            $id               = $up_row['id'];
-        //    $profile_avatar   = $up_row['profile_avatar'];
            $first_name       = $up_row['first_name'];
            $last_name        = $up_row['last_name'];
            $dob              = $up_row['dob'];
@@ -74,8 +88,8 @@ class UsersServices extends BaseServiceReadBean
            $province_id      = $up_row['province_id'];
            $phone            = $up_row['phone'];
            $role             = $up_row['role'];
-           $class            = $up_row['class'];
-           $subject_id       = $up_row['subject_id'];
+           $class            = $class;
+           $subject_id       = $subject_id;
            $password         = $up_row['password'];
            $confirm_password = $up_row['confirm_password'];
            $email            = $up_row['email'];

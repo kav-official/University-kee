@@ -141,7 +141,12 @@
                                                         <td>{{@row.village}}</td>
                                                         <td>{{@row.phone}}</td>
                                                         <td>{{@row.email}}</td>
-                                                        <td>{{@row.role}}</td>
+                                                        <td>
+															<check if="{{@row.role == 'admin'}}">
+																<true>ແອດມິນ</true>
+																<false>ອາຈານສອນ</false>
+															</check>
+														</td>
                                                         <td>{{date('d-m-Y H:i:s',@row.created_at)}}</td>
                                                         <td class="text-center">
                                                             <div class="btn-group action-tooltip">

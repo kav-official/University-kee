@@ -31,7 +31,7 @@ class RegisterServices extends BaseServiceReadBean
             $village     = $this->f3->get('POST.village');
             $phone       = $this->f3->get('POST.phone');
             $class       = $this->f3->get('POST.class');
-            $subject_id  = $this->f3->get('POST.subject_id');
+            // $subject_id  = $this->f3->get('POST.subject_id');
             $region      = $this->f3->get('POST.region');
             $ethnicity   = $this->f3->get('POST.ethnicity');
             $semester    = $this->f3->get('POST.semester');
@@ -42,11 +42,11 @@ class RegisterServices extends BaseServiceReadBean
             {
                 $handle = fopen('uploads/student-no.txt','w');
                 fwrite($handle,"1 ".date('Y'));
-                $student_no = "STD-".substr(date('Y'),0) . '-1';
+                $student_no = "STD".substr(date('Y'),0) . '-1';
             } else {
                 $handle = fopen('uploads/student-no.txt','w');
                 fwrite($handle,($split[0]+1)." ".$split[1]);
-                $student_no = "STD-".substr($split[1],-2) . '-'.$split[0];
+                $student_no = "STD".substr($split[1],-2).$split[0];
             }
 
             $check = $this->load(['semester=? AND student_no=?',$semester,$student_no]);
@@ -64,7 +64,7 @@ class RegisterServices extends BaseServiceReadBean
                 $this->village     = $village;
                 $this->phone       = $phone;
                 $this->class       = $class;
-                $this->subject_id  = $subject_id;
+                // $this->subject_id  = $subject_id;
                 $this->region      = $region;
                 $this->ethnicity   = $ethnicity;
                 $this->year        = 1;
@@ -88,7 +88,7 @@ class RegisterServices extends BaseServiceReadBean
            $province_id = $up_row['province_id'];
            $phone       = $up_row['phone'];
            $class       = $up_row['class'];
-           $subject_id  = $up_row['subject_id'];
+        //    $subject_id  = $up_row['subject_id'];
            $region      = $up_row['region'];
            $ethnicity   = $up_row['ethnicity'];
            $semester    = $up_row['semester'];
@@ -104,7 +104,7 @@ class RegisterServices extends BaseServiceReadBean
             $this->province_id = $province_id;
             $this->phone       = $phone;
             $this->class       = $class;
-            $this->subject_id  = $subject_id;
+            // $this->subject_id  = $subject_id;
             $this->region      = $region;
             $this->ethnicity   = $ethnicity;
             $this->semester    = $semester;
