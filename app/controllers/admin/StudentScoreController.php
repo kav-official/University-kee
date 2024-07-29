@@ -41,7 +41,7 @@ class StudentScoreController{
         $class_id   = $f3->get('PARAMS.class_id');
         $year       = $f3->get('PARAMS.year');
         $student    = $Svr->load(array('student_no = ? AND year = ?',$student_no,$year));
-        $items      = $this->db->exec("SELECT * FROM tblscore WHERE student_no = ? AND class_id = ?",array($student_no,$class_id));
+        $items      = $this->db->exec("SELECT * FROM tblscore WHERE student_no = ? AND class_id = ? AND year = ?",array($student_no,$class_id,$year));
         $scoreData  = array();
         foreach($items as $row){
             $scoreData[$row['subject_id']] = $row['score'];
