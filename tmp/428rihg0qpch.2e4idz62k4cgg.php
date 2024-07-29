@@ -112,9 +112,9 @@
                                             <table class="table">
                                                 <thead>
                                                     <tr style="font-family: NotoSerifLao;">
-                                                        <th >ຮູບ</th>
                                                         <th>ຊື່​ເຕັມ</th>
                                                         <th>ຫ້ອງສອນ</th>
+                                                        <th>ວິຊາສອນ</th>
                                                         <th>ເພດ</th>
                                                         <th>ວັນເດືອນປີເກີດ</th>
                                                         <th>ແຂວງ</th>
@@ -131,24 +131,22 @@
                                                     <?php foreach (($items?:[]) as $row): ?>
 														<?php $district=$help->getTitle('DistrictServices',['id = ?',$row['district_id']],'district_name'); ?>
                                                         <tr id="item-<?= ($row['id']) ?>">
-														<td>
-															<?php if ($row['profile_avatar'] != ''): ?>
-															  
-																<div class="lightBoxGallery"><a href="<?= ($row['profile_avatar']) ?>"><img src="<?= ($row['profile_avatar']) ?>" width="100" class="img-thumbnail"></a></div>
-															  
-															  <?php else: ?><div class="lightBoxGallery"><img src="<?= ($BASE) ?>/uploads/user/empty.jpg" width="100" class="img-thumbnail"></a></div>
-															<?php endif; ?>
-														</td>
                                                         <td><?= ($row['first_name']) ?> <?= ($row['last_name']) ?></td>
-                                                        <td><?= ($arrClass[$row['class']]) ?></td>
+                                                        <td><?= ($arrClass[$row['class']] ?? '') ?></td>
+                                                        <td><?= ($arrSubject[$row['subject_id']] ?? '') ?></td>
                                                         <td><?= ($row['gender']) ?></td>
                                                         <td><?= ($row['dob']) ?></td>
-                                                        <td><?= ($arrProvince[$row['province_id']]) ?></td>
+                                                        <td><?= ($arrProvince[$row['province_id']] ?? '') ?></td>
                                                         <td><?= ($district) ?></td>
                                                         <td><?= ($row['village']) ?></td>
                                                         <td><?= ($row['phone']) ?></td>
                                                         <td><?= ($row['email']) ?></td>
-                                                        <td><?= ($row['role']) ?></td>
+                                                        <td>
+															<?php if ($row['role'] == 'admin'): ?>
+																ແອດມິນ
+																<?php else: ?>ອາຈານສອນ
+															<?php endif; ?>
+														</td>
                                                         <td><?= (date('d-m-Y H:i:s',$row['created_at'])) ?></td>
                                                         <td class="text-center">
                                                             <div class="btn-group action-tooltip">
